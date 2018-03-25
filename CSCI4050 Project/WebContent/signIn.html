@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DDI Sign-In</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        form {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+        }
+        
+        input {
+            font-size: 20px;
+        }
+
+        .logo {
+            max-height: 150px;
+        }
+
+        .title {
+            font-size: 50px;
+            font-family: "Apple Chancery", Times, serif;
+        }
+
+        .headerDiv {
+            border-bottom: 5px solid black;
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 0;
+            background-color: lightgray
+        }
+        
+        .normalText {
+            text-align: center;
+            font-size: 40px;
+        }
+        
+        .signInTitle {
+            text-align: center; 
+            font-size: 40px;    
+        }
+
+        .tableStyle {
+            margin: 0 auto;
+            border: 5px solid black;
+            margin-top: 50px;
+            padding-left: 150px;
+            padding-right: 150px;
+        }
+
+        .infoStyle {
+            margin: 0 auto;
+            border: 5px solid black;
+            padding-right: 17.5px;
+            padding-left: 17.5px;
+            padding-bottom: 25px;
+        }
+
+        .buttonStyle {
+            font-size: 20px;
+            padding-right: 50px;
+            padding-left: 50px;
+            border-radius: 10px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="headerDiv">
+        <table>
+            <tr>
+                <td><img src="transparentWebSiteLogo.png" class="logo"></td>
+                <td>
+                    <h1 class="title">Dawg Drive-in</h1>
+                </td>
+                <td style="width: 900px; font-size: 20px;">
+                <p style="text-align: right">Return to <b>Home</b></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table class="tableStyle">
+            <tr>
+                <td>
+                    <p class="normalText">Sign-In</p>
+                </td>
+            </tr>
+        </table>
+        <table class="infoStyle">
+            <tr>
+                <td><p>Email:</p></td>
+            </tr>
+            <tr>
+                <td><input type="text" size="30"></td>
+            </tr>
+            <tr>
+                <td><p>Password:</p></td>
+            </tr>
+            <tr>
+                <td><input type="text" size="30"></td>
+            </tr>
+        </table>
+        <div style="text-align: center; margin-top: 30px;"> 
+            <button class="buttonStyle">Log In</button>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DDI Order Summary</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        form {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+        }
+
+        .logo {
+            max-height: 150px;
+        }
+
+        .title {
+            font-size: 50px;
+            font-family: "Apple Chancery", Times, serif;
+        }
+
+        .headerDiv {
+            border-bottom: 5px solid black;
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 0;
+            background-color: lightgray
+        }
+
+        .register {
+            font-size: 40px;
+            text-align: center;
+
+        }
+
+        .registerBox {
+            border: 3px solid black;
+            margin: 0 auto;
+
+        }
+
+        .boxTitle {
+            font-size: 30px;
+            padding-bottom: 15px;
+            border: 3px solid black;
+        }
+
+        .boxContent {
+            font-size: 20px;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="headerDiv">
+        <table>
+            <tr>
+                <td><img src="transparentWebSiteLogo.png" class="logo"></td>
+                <td>
+                    <h1 class="title">Dawg Drive-in</h1>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <p class="register">Order Summary</p>
+    </div>
+    <div>
+        <table class="registerBox">
+            <caption class="boxTitle">Order Details</caption>
+            <tr>
+                <td class="boxContent" style="font-weight:800;">Name</td>
+
+            </tr>
+            <tr>
+                <td style="font-size: 25px;" class="boxContent"><p>John Doe</p></td>
+            </tr>
+            <tr>
+                <td class="boxContent" style="font-weight:800;">Email:</td>
+
+            </tr>
+            <tr>
+                <td style="font-size: 25px;" class="boxContent"><p>john.doe@email.com</p></td>
+            </tr>
+            <tr>
+                <td class="boxContent" style="font-weight:800;">Movie:</td>
+
+            </tr>
+            <tr>
+                <td style="font-size: 25px;" class="boxContent"> <p>Star Wars: The Force Awakens <span><button style="font-size: 25px;">Edit</button></span></p></td>
+            </tr>
+            <tr>
+                <td class="boxContent" style="font-weight:800;">Date and Time:</td>
+
+            </tr>
+            <tr>
+                <td style="font-size: 25px;" class="boxContent;"><p>03/25/2018 10:00 AM <span><button style="font-size: 25px;">Edit</button></span></p></td>
+            </tr>
+            <tr>
+                <td class="boxContent" style="font-weight:800;">Parking Spot:</td>
+
+            </tr>
+            <tr>
+                <td style="font-size: 25px;" class="boxContent"><p>Spot A1 <span><button style="font-size: 25px;">Edit</button></span></p></td>
+            </tr>
+            <tr>
+                <td class="boxContent" style="font-weight:800;">Pricing and Total:</td>
+
+            </tr>
+            <tr>
+                <td style="font-size: 25px;" class="boxContent"><p style="margin-bottom:0px;">1 spot: $20.00</p></td>
+            </tr>
+            <tr>
+                <td style="font-size: 25px;" class="boxContent"><p style="margin-bottom:0px;">Taxes: $1.40</p></td>
+            </tr>
+            <tr>
+                <td style="font-size: 25px;" class="boxContent"><p style="margin-bottom:0px; border-bottom: 1px dashed black;">Online Fee: $2.00</p></td>
+            </tr>
+            <tr>
+                <td style="font-size: 25px;" class="boxContent"><p style="font-weight:900;">Total: $23.40</p></td>
+            </tr>
+            <tr style="height: 50px;">
+                <td>
+                    <button style="margin-left: 10px; margin-right: 50px; font-size: 20px; margin-top: 10px;">Proceed to Checkout</button>
+                    <button style="font-size: 20px">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

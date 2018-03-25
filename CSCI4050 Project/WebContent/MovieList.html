@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DDI Movies</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        form {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+        }
+        
+        input {
+            font-size: 20px;
+        }
+
+        .logo {
+            max-height: 150px;
+        }
+
+        .title {
+            font-size: 50px;
+            font-family: "Apple Chancery", Times, serif;
+        }
+
+        .headerDiv {
+            border-bottom: 5px solid black;
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 0;
+            background-color: gray;
+        }
+
+        .page-bg {
+            background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("backgroundPic.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            -webkit-filter: blur(5px);
+            -moz-filter: blur(5px);
+            -o-filter: blur(5px);
+            -ms-filter: blur(5px);
+            filter: blur(5px);
+            position: fixed;
+            width: 110%;
+            height: 110%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            border: 5px solid black;
+            margin-left: -5px;
+        }
+
+        .movieInfo {
+            text-align: center;
+            color: whitesmoke
+        }
+
+        .infoMargin {
+            padding-left: 100px;
+        }
+
+        .movieMargin {
+            margin-top: 80px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="headerDiv">
+        <table>
+            <tr>
+                <td><img src="transparentWebSiteLogo.png" class="logo"></td>
+                <td>
+                    <h1 class="title">Dawg Drive-in</h1>
+                </td>
+                <td style="width: 900px; font-size: 20px;">
+                <p style="text-align: right">Return to <b>Home</b></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <p style="text-align: center;color: whitesmoke; font-size: 30px; padding-top: 10px; font-family: Apple Chancery, Time, serif;">Select a Movie to View Showtimes</p>
+        <table>
+            <tr>
+                <td><img src="gonewiththewindMoviePic.png" style="max-height: 500px; margin-left: 100px;cursor:pointer;"></td>
+                <td><img src="breakfastclubMoviePic.png" style="max-height: 500px; margin-right: 100px; margin-left: 100px;cursor:pointer;"></td>
+                <td><img src="starwarsMoviePic.png" style="max-height: 500px;cursor:pointer;"></td>
+            </tr>
+            <tr>
+                <td class="infoMargin">
+                    <p class="movieInfo">Gone With the Wind</p>
+                    <p class="movieInfo">Rating: G</p>
+                    <p class="movieInfo">Released in 1939</p>
+                </td>
+                <td> 
+                    <p class="movieInfo">Breakfast Club</p>
+                    <p class="movieInfo">Rating: R</p>
+                    <p class="movieInfo">Released in 1985</p>
+                </td>
+                <td>
+                    <p class="movieInfo">Star Wars: A New Hope</p>
+                    <p class="movieInfo">Rating: PG</p>
+                    <p class="movieInfo">Released in 1977</p>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="soundofmusicMoviePic.png" class="movieMargin" style="max-height: 500px; margin-left: 100px;cursor:pointer;"></td>
+                <td><img src="raidersofthelostarkMoviePic.png" class="movieMargin" style="max-height: 500px; margin-right: 100px; margin-left: 100px;cursor:pointer;"></td>
+                <td><img src="devilMoviePic.png" class="movieMargin" style="max-height: 500px;cursor:pointer;"></td>
+            </tr>
+            <tr>
+                <td class="infoMargin">
+                    <p class="movieInfo">The Sound of Music</p>
+                    <p class="movieInfo">Rating: G</p>
+                    <p class="movieInfo">Released in 1965</p>
+                </td>
+                <td> 
+                    <p class="movieInfo">Raiders of the Lost Ark</p>
+                    <p class="movieInfo">Rating: PG</p>
+                    <p class="movieInfo">Released in 1981</p>
+                </td>
+                <td>
+                    <p class="movieInfo">The Devil Wears Prada</p>
+                    <p class="movieInfo">Rating: PG-13</p>
+                    <p class="movieInfo">Released in 2000</p>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="curseofblackpearlMoviePic.png" class="movieMargin" style="max-height: 500px; margin-left: 100px;cursor:pointer;"></td>
+                <td><img src="forceawakensMoviePic.png" class="movieMargin" style="max-height: 500px; margin-right: 100px; margin-left: 100px;cursor:pointer;"></td>
+                <td><img src="getoutMoviePic.png" class="movieMargin" style="max-height: 500px;cursor:pointer;"></td>
+            </tr>
+            <tr>
+                <td class="infoMargin">
+                    <p class="movieInfo">Pirates of the Carribean: The Curse of the Black Pearl</p>
+                    <p class="movieInfo">Rating: PG-13</p>
+                    <p class="movieInfo">Released in 2003</p>
+                </td>
+                <td> 
+                    <p class="movieInfo">Star Wars: The Force Awakens</p>
+                    <p class="movieInfo">Rating: PG-13</p>
+                    <p class="movieInfo">Released in 2015</p>
+                </td>
+                <td>
+                    <p class="movieInfo">Get Out</p>
+                    <p class="movieInfo">Rating: R</p>
+                    <p class="movieInfo">Released in 2017</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="page-bg"></div>
+</body>
+
+</html>

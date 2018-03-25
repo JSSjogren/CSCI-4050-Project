@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DDI Administrator</title>
+    <style>
+        body {
+            background-color: rgb(245, 245, 245);
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        form {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+        }
+
+        .logo {
+            max-height: 150px;
+        }
+
+        .title {
+            font-size: 50px;
+            font-family: "Apple Chancery", Times, serif;
+        }
+
+        .headerDiv {
+            border-bottom: 5px solid black;
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 0;
+            background-color: lightgray
+        }
+
+        .register {
+            font-size: 40px;
+            text-align: center;
+
+        }
+
+        .registerBox {
+            border: 3px solid black;
+            margin: 0 auto;
+            padding-right: 100px;
+            
+
+        }
+
+        .boxTitle {
+            font-size: 30px;
+            padding-bottom: 15px;
+            border: 3px solid black;
+        }
+
+        .boxContent {
+            font-size: 20px;
+            
+        }
+
+        .promotitle {
+            font-family: "bookman", Helvetica, serif;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .tableCell {
+            border: 2px solid black;
+            font-size: 20px;
+            width: 200px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="headerDiv">
+        <table>
+            <tr>
+                <td><img src="transparentWebSiteLogo.png" class="logo"></td>
+                <td>
+                    <h1 class="title">Dawg Drive-in</h1>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <p class="register">Manage Promotions</p>
+    </div>
+    <div>
+        <p class="promotitle">Current Promotions</p>
+    </div>
+    <div>
+        <table align="center" style="border: 3px solid black; border-collapse: collapse;">
+            <tr>
+                <td class="tableCell">
+                    <p style="text-align: center; font-weight: 900;">Promo Code</p>
+                </td>
+                <td class="tableCell">
+                    <p style="text-align: center; font-weight: 900;">Discount</p>
+                </td>
+                <td class="tableCell">
+                    <p style="text-align: center; font-weight: 900;">Expiration Date</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="tableCell">
+                    <p style="text-align: center;">promo1</p>
+                </td>
+                <td class="tableCell">
+                    <p style="text-align: center;">$5 Off Purchase</p>
+                </td>
+                <td class="tableCell">
+                    <p style="text-align: center;">2018-04-01</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="tableCell">
+                    <p style="text-align: center;">promo2</p>
+                </td>
+                <td class="tableCell">
+                    <p style="text-align: center;">$3 Off Purchase</p>
+                </td>
+                <td class="tableCell">
+                    <p style="text-align: center;">2018-04-05</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="tableCell">
+                    <p style="text-align: center;">promo3</p>
+                </td>
+                <td class="tableCell">
+                    <p style="text-align: center;">Free Car Spot</p>
+                </td>
+                <td class="tableCell">
+                    <p style="text-align: center;">2018-03-25</p>
+                </td>
+            </tr>
+        </table>
+        <div style="margin-top: 20px; margin-left: 500px;">
+            <button style="margin-left: 85px; margin-right: 90px; font-size: 30px; margin-top: 10px;">Add</button>
+            <button style="font-size: 30px">Delete</button>
+        </div>
+    </div>
+    <div>
+        <table align="center">
+            <tr>
+                <td>
+                    <p>Enter Promo Code: <input type="text" width="30px" size="23px;"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Discount: <input type="text" size="32px;"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Enter Expiration Date: <input type="date" width="30px"></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="margin-left: 510px;">
+        <button style="margin-left: 85px; margin-right: 90px; font-size: 20px; margin-top: 10px;">Add</button>
+        <button style="font-size: 20px">Cancel</button>
+    </div>
+</body>
+
+</html>
