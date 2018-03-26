@@ -80,6 +80,11 @@
         }
         
     </style>
+    <script>
+    		function signIn(){
+    			window.location.href = "signIn.html";
+    		}
+    </script>
 </head>
 
 <body>
@@ -95,7 +100,7 @@
                 <td><button class="tabButton">Food & Drink</button></td>
                 <td><button class="tabButton">Extras</button></td>
                 <td style="width: 400px; font-size: 20px;">
-                    <p style="text-align: right; font-family: avenir, times, serif;">Already have an account? <span><B>SIGN IN</B></span></p>
+                    <p style="text-align: right; font-family: avenir, times, serif;">Already have an account? <span><B onclick="signIn();" style="cursor:pointer;">SIGN IN</B></span></p>
                 </td>
             </tr>
         </table>
