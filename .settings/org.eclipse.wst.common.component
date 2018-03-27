@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="CSCI-4050-Project">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/CSCI4050 Project/src"/>
+        <property name="context-root" value="CSCI-4050-Project"/>
+        <property name="java-output-path" value="/CSCI-4050-Project/bin"/>
+    </wb-module>
+</project-modules>
