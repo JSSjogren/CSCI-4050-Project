@@ -35,6 +35,26 @@ public class RegisteredCustomer extends User {
 	}
 	
 	/**
+	 * Tells DB to update user info
+	 * 
+	 * @return success at updating user entries in DB
+	 */
+	public boolean updateCustomer()
+	{
+		return userDBA.updateUser(this);
+	}
+	
+	public boolean deleteCustomer()
+	{
+		return userDBA.deleteUser(this);
+	}
+	
+	public boolean suspendCustomer()
+	{
+		return userDBA.suspendCustomer(this);
+	}
+	
+	/**
 	 * Checks to see if passed in user information
 	 * can be validated for login.
 	 * 
