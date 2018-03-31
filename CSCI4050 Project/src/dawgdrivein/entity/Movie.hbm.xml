@@ -4,10 +4,10 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-   <class name = "entity.RegisteredCustomer" table = "registeredcustomer">
+   <class name = "entity.Movie" table = "movie">
       
       <meta attribute = "class-description">
-         This class contains RegisteredCustomer attributes. 
+         This class contains Movie attributes. 
       </meta>
       
       <id name = "id" type = "int" column = "id">
@@ -15,14 +15,15 @@
       </id>
       
       <!-- 		name in java class				name in db							type in java class -->
-      <property name = "id" 				column = "userId" 				type = "int"/>
-      <property name = "email" 				column = "email" 				type = "string"/>
-      <property name = "password" 				column = "password" 				type = "string"/>
-      <property name = "firstName" 				column = "firstName" 				type = "string"/>
-      <property name = "lastName" 				column = "lastName" 				type = "string"/>
-      <property name = "phone_number" 				column = "phone_number" 				type = "string"/>
-      <property name = "address" 				column = "address" 				type = "string"/>
-      <property name = "rank" 				column = "typeID" 				type = "int"/>
+      <property name = "id" 				column = "id" 				type = "int"/>
+      <property name = "genre" 				column = "genre" 				type = "string"/>
+      <property name = "cast" 				column = "cast" 				type = "string"/>
+      <property name = "director" 				column = "director" 				type = "string"/>
+      <property name = "producer" 				column = "producer" 				type = "string"/>
+      <property name = "description" 				column = "description" 				type = "string"/>
+      <property name = "trailer_picture" 				column = "trailer_picture" 				type = "string"/>
+      <property name = "trailer_video" 				column = "video" 				type = "string"/>
+      <property name = "MPAA_rating" 				column = "MPAA_rating" 				type = "string"/>
       <property name = "status" 				column = "status" 				type = "int"/>
    </class>
 </hibernate-mapping>
