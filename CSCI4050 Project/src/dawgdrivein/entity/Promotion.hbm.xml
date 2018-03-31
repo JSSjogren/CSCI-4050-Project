@@ -4,10 +4,10 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-   <class name = "entity.RegisteredCustomer" table = "registeredcustomer">
+   <class name = "entity.Promotion" table = "promotion">
       
       <meta attribute = "class-description">
-         This class contains RegisteredCustomer attributes. 
+         This class contains Promotion attributes. 
       </meta>
       
       <id name = "id" type = "int" column = "id">
@@ -15,14 +15,9 @@
       </id>
       
       <!-- 		name in java class				name in db							type in java class -->
-      <property name = "id" 				column = "userId" 				type = "int"/>
-      <property name = "email" 				column = "email" 				type = "string"/>
-      <property name = "password" 				column = "password" 				type = "string"/>
-      <property name = "firstName" 				column = "firstName" 				type = "string"/>
-      <property name = "lastName" 				column = "lastName" 				type = "string"/>
-      <property name = "phone_number" 				column = "phone_number" 				type = "string"/>
-      <property name = "address" 				column = "address" 				type = "string"/>
-      <property name = "rank" 				column = "typeID" 				type = "int"/>
-      <property name = "status" 				column = "status" 				type = "int"/>
+      <property name = "id" 				column = "id" 				type = "int"/>
+      <property name = "exp_date" 				column = "exp_date" 				type = "Date"/>
+      <property name = "code" 				column = "code" 				type = "string"/>
+      <property name = "percent_discount" 				column = "percent_discount" 				type = "int"/>
    </class>
 </hibernate-mapping>
