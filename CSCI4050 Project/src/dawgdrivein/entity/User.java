@@ -1,7 +1,14 @@
 package dawgdrivein.entity;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class User {
 
+	//Should allow us to auto-increment the User ID's
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	protected int id;
 	protected String email;
 	protected String password;
