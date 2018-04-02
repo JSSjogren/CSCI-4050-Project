@@ -10,12 +10,12 @@
          This class contains Movie attributes. 
       </meta>
       
+      <!-- Primary Key -->
       <id name = "id" type = "int" column = "id">
          <generator class="native"/>
       </id>
       
       <!-- 		name in java class				name in db							type in java class -->
-      <property name = "id" 				column = "id" 				type = "int"/>
       <property name = "genre" 				column = "genre" 				type = "string"/>
       <property name = "cast" 				column = "cast" 				type = "string"/>
       <property name = "director" 				column = "director" 				type = "string"/>

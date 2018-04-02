@@ -9,8 +9,10 @@ public class User {
 	protected String lastName;
 	protected String phoneNumber;
 	protected String address;
+	protected int status;
+	protected int rank;
 	
-	public User(int id, String email, String password, String firstName, String lastName, String phoneNumber, String address)
+	public User(int id, String email, String password, String firstName, String lastName, String phoneNumber, String address, int status, int rank)
 	{
 		this.id = id;
 		this.email = email;
@@ -19,6 +21,21 @@ public class User {
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
+		this.status = status;
+		this.rank = rank;
+	}
+	
+	public User()
+	{
+		this.id = -1;
+		this.email = null;
+		this.password = null;
+		this.firstName = null;
+		this.lastName = null;
+		this.phoneNumber = null;
+		this.address = null;
+		this.status = -1;
+		this.rank = 01;
 	}
 	
 	public int getId() {

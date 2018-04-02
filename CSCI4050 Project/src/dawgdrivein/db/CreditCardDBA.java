@@ -6,11 +6,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import dawgdrivein.entity.Hall;
+import dawgdrivein.entity.CreditCard;
 
-public class HallDBA {
+public class CreditCardDBA {
 
-	public boolean createHall(Hall hall)
+	public boolean saveCreditCard(CreditCard cc)
 	{
 		try {
             // 1. configuring hibernate
@@ -24,45 +24,19 @@ public class HallDBA {
  
             // 4. Starting Transaction
             Transaction transaction = session.beginTransaction();
-            session.save(hall);
+            session.save(cc);
             transaction.commit();
-            System.out.println("\n\n Details Saved \n");
+            System.out.println("\n\n Details Added \n");
             return true;
  
-        } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-            System.out.println("error");
-            return false;
-        }	
-	}
-	
-	
-	public boolean updateHall(Hall hall)
-	{
-		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
-            Transaction transaction = session.beginTransaction();
-            session.saveOrUpdate(hall);
-            transaction.commit();
-            System.out.println("\n\n Details Updated \n");
-            return true;
         } catch (HibernateException e) {
             System.out.println(e.getMessage());
             System.out.println("error");
             return false;
         }
 	}
-	
-	public boolean deleteHall(Hall hall)
+
+	public boolean updateCreditCard(CreditCard cc)
 	{
 		try {
             // 1. configuring hibernate
@@ -76,14 +50,43 @@ public class HallDBA {
  
             // 4. Starting Transaction
             Transaction transaction = session.beginTransaction();
-            session.delete(hall);
+            session.delete(cc);
             transaction.commit();
             System.out.println("\n\n Details Deleted \n");
             return true;
+ 
         } catch (HibernateException e) {
             System.out.println(e.getMessage());
             System.out.println("error");
             return false;
         }
 	}
+	
+	public boolean deleteCreditCard(CreditCard cc)
+	{
+		try {
+            // 1. configuring hibernate
+            Configuration configuration = new Configuration().configure();
+ 
+            // 2. create sessionfactory
+            SessionFactory sessionFactory = configuration.buildSessionFactory();
+ 
+            // 3. Get Session object
+            Session session = sessionFactory.openSession();
+ 
+            // 4. Starting Transaction
+            Transaction transaction = session.beginTransaction();
+            session.saveOrUpdate(cc);
+            transaction.commit();
+            System.out.println("\n\n Details Updated \n");
+            return true;
+ 
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+            System.out.println("error");
+            return false;
+        }
+	}
+	
 }
+

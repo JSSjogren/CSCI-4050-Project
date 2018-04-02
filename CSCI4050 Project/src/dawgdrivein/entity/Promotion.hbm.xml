@@ -10,14 +10,12 @@
          This class contains Promotion attributes. 
       </meta>
       
-      <id name = "id" type = "int" column = "id">
-         <generator class="native"/>
-      </id>
+      <!-- Primary Key -->
+      <id name = "code" type = "string" column = "code"></id>
       
       <!-- 		name in java class				name in db							type in java class -->
-      <property name = "id" 				column = "id" 				type = "int"/>
-      <property name = "exp_date" 				column = "exp_date" 				type = "Date"/>
-      <property name = "code" 				column = "code" 				type = "string"/>
-      <property name = "percent_discount" 				column = "percent_discount" 				type = "int"/>
+      <property name = "percent_discount" 		column = "discount" 				type = "int"/>
+   	  <!-- exp_date is anonted in class due to data-type Date issues -->
+   	  
    </class>
 </hibernate-mapping>

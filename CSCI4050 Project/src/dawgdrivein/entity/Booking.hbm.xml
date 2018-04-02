@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "entity.Booking" table = "booking">
+      
+      <meta attribute = "class-description">
+         This class contains Booking attributes. 
+      </meta>
+      
+      <!-- Primary Key -->
+      <id name = "bookingNo" type = "int" column = "bookingNo">
+         <generator class="native"/>
+      </id>
+      
+      <!-- 		name in java class				name in db							type in java class -->
+      <property name = "total_price" 			column = "total_price" 				type = "float"/>
+      <property name = "adult_tickets" 			column = "adult_tickets" 			type = "int"/>
+      <property name = "child_tickets" 			column = "child_tickets" 			type = "int"/>
+      <property name = "senior_tickets" 			column = "senior_tickets" 			type = "int"/>
+      <property name = "percent_discount" 		column = "percent_discount" 			type = "int"/>
+   </class>
+</hibernate-mapping>

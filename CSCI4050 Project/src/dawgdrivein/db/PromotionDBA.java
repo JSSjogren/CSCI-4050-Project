@@ -37,6 +37,32 @@ public class PromotionDBA {
         }
 	}
 	
+	public boolean updatePromo(Promotion promo)
+	{
+		try {
+            // 1. configuring hibernate
+            Configuration configuration = new Configuration().configure();
+ 
+            // 2. create sessionfactory
+            SessionFactory sessionFactory = configuration.buildSessionFactory();
+ 
+            // 3. Get Session object
+            Session session = sessionFactory.openSession();
+ 
+            // 4. Starting Transaction
+            Transaction transaction = session.beginTransaction();
+            session.saveOrUpdate(promo);
+            transaction.commit();
+            System.out.println("\n\n Details Updated \n");
+            return true;
+ 
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+            System.out.println("error");
+            return false;
+        }
+	}
+	
 	public boolean removePromo(Promotion promo)
 	{
 		try {

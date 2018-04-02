@@ -4,6 +4,7 @@
 <hibernate-configuration>
    <session-factory>
    
+   
       <property name = "hibernate.dialect">
          org.hibernate.dialect.MySQLDialect
       </property>
@@ -13,20 +14,20 @@
       </property>
             
       <property name = "hibernate.connection.url">
-         jdbc:mysql://localhost:3306/DDI
+         jdbc:mysql://69.89.31.237/ristiod8_cinema
       </property>
       
       <property name = "hibernate.connection.username">
-         dawgdrivein
+         ristiod8_user
       </property>
       
       <!-- Update with your password -->
       <property name = "hibernate.connection.password">
-        	 csci4050project
+        	 cinemadb
       </property>
       
       <!-- List of XML mapping files -->
-      <mapping resource = "config/Student.hbm.xml"/>
+      <mapping resource = "Promotion.hbm.xml"/>
       
    </session-factory>
 </hibernate-configuration>
