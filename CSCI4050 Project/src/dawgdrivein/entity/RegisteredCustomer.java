@@ -3,24 +3,32 @@ package dawgdrivein.entity;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import dawgdrivein.db.UserDBA;
 
 public class RegisteredCustomer extends User {
 
-	private int rank;
-	private int status;
 	private boolean subscription_pref;
 	private ArrayList<OrderHistory> orderHistory;
 	private UserDBA userDBA;
 	
+	CreditCard cc;
+	
 	public RegisteredCustomer(int id, String fn, String ln, String email, String password, String phoneNumber, String address, int rank, int status, boolean sub_pref)
 	{
-		super(id, email, generateHash(password), fn, ln, phoneNumber, address);
-		this.rank = rank;
-		this.status = status;
+		super(id, email, generateHash(password), fn, ln, phoneNumber, address, rank, status);
 		this.subscription_pref = sub_pref;
 		userDBA = new UserDBA();
+		cc = new CreditCard();
+	}
+	
+	public RegisteredCustomer(int id, String fn, String ln, String email, String password, String phoneNumber, String address, int rank, int status, boolean sub_pref, int cardnumber, Date exp_date, String name_on_card, int CCV, String billing_address)
+	{
+		super(id, email, generateHash(password), fn, ln, phoneNumber, address, rank, status);
+		this.subscription_pref = sub_pref;
+		userDBA = new UserDBA();
+		cc = new CreditCard(id, cardnumber, exp_date, name_on_card, CCV, billing_address);
 	}
 	
 	/**

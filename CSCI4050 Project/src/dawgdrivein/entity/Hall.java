@@ -19,7 +19,6 @@ public class Hall {
 		if (available_capacity >= 1)
 		{
 			this.available_capacity -= 1;
-			hallDBA.updateAvailable(this);
 			return true;
 		}
 		else
@@ -31,7 +30,6 @@ public class Hall {
 		if (available_capacity <= 29)
 		{
 			this.available_capacity += 1;
-			hallDBA.updateAvailable(this);
 			return true;
 		}
 		else
@@ -41,5 +39,15 @@ public class Hall {
 	public boolean createHall()
 	{
 		return hallDBA.createHall(this);
+	}
+	
+	public boolean updateHall()
+	{
+		return hallDBA.updateHall(this);
+	}
+	
+	public boolean deleteHall()
+	{
+		return hallDBA.deleteHall(this);
 	}
 }

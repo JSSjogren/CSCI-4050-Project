@@ -4,23 +4,21 @@ import java.util.Date;
 
 public class SystemAdministrator extends User {
 
-	private int rank;
 
-	public SystemAdministrator(int id, String email, String password, String firstName, String lastName, String phoneNumber, String address, int rank) {
-		super(id, email, password, firstName, lastName, phoneNumber, address);
-		this.rank = rank;
+	public SystemAdministrator(int id, String email, String password, String firstName, String lastName, String phoneNumber, String address, int rank, int status) {
+		super(id, email, password, firstName, lastName, phoneNumber, address, rank, status);
 	}
 
 
-	private boolean enterNewMovie(int id, String genre, String cast, String director, String producer, String description, String trailer_picture, String trailer_video, String MPAA_rating, int status)
+	private boolean enterNewMovie(int id, String genre, String cast, String director, String producer, String description, String trailer_picture, String trailer_video, String MPAA_rating, int status, Date showtime)
 	{
-		Movie movie = new Movie(id, genre, cast, director, producer, description, trailer_picture, trailer_video, MPAA_rating, status);
+		Movie movie = new Movie(id, genre, cast, director, producer, description, trailer_picture, trailer_video, MPAA_rating, status, showtime);
 		return movie.saveMovie();
 	}
 
-	private boolean updateMovie(int newId, String newGenre, String newCast, String newDirector, String newProducer, String newDescription, String newTrailer_picture, String newTrailer_video, String newMPAA_rating, int newStatus)
+	private boolean updateMovie(int newId, String newGenre, String newCast, String newDirector, String newProducer, String newDescription, String newTrailer_picture, String newTrailer_video, String newMPAA_rating, int newStatus, Date newShowtime)
 	{
-		Movie movie = new Movie(newId, newGenre, newCast, newDirector, newProducer, newDescription, newTrailer_picture, newTrailer_video, newMPAA_rating, newStatus);
+		Movie movie = new Movie(newId, newGenre, newCast, newDirector, newProducer, newDescription, newTrailer_picture, newTrailer_video, newMPAA_rating, newStatus, newShowtime);
 		return movie.updateMovie();
 	}
 
@@ -46,13 +44,13 @@ public class SystemAdministrator extends User {
 		//Is the member being updated an Employee?
 		else if (rank == 3)
 		{
-			Employee employee = new Employee(newId, newEmail, newPassword, newFirstName, newLastName, newPhoneNumber, newAddress, newRank);
+			Employee employee = new Employee(newId, newEmail, newPassword, newFirstName, newLastName, newPhoneNumber, newAddress, newRank, newStatus);
 			return employee.updateEmployee();
 		}
 		//Is the member being updated a Manager?
 		else if (rank == 2)
 		{
-			Manager manager = new Manager(newId, newEmail, newPassword, newFirstName, newLastName, newPhoneNumber, newAddress, newRank);
+			Manager manager = new Manager(newId, newEmail, newPassword, newFirstName, newLastName, newPhoneNumber, newAddress, newRank, newStatus);
 			return manager.updateManager();
 		}
 		//Is the member being updated a User?
@@ -73,13 +71,13 @@ public class SystemAdministrator extends User {
 		//Is the member being deleted an Employee?
 		else if (rank == 3)
 		{
-			Employee employee = new Employee(id, email, password, firstName, lastName, phoneNumber, address, rank);
+			Employee employee = new Employee(id, email, password, firstName, lastName, phoneNumber, address, rank, status);
 			return employee.deleteEmployee();
 		}
 		//Is the member being deleted a Manager?
 		else if (rank == 2)
 		{
-			Manager manager = new Manager(id, email, password, firstName, lastName, phoneNumber, address, rank);
+			Manager manager = new Manager(id, email, password, firstName, lastName, phoneNumber, address, rank, status);
 			return manager.deleteManager();
 		}
 		//Is the member being deleted a User?
@@ -102,13 +100,13 @@ public class SystemAdministrator extends User {
 
 	private boolean addPromotion(int id, Date exp_date, String code, int percent_discount)
 	{
-		Promotion promo = new Promotion(id, exp_date, code, percent_discount);
+		Promotion promo = new Promotion(exp_date, code, percent_discount);
 		return promo.createPromo();
 	}
 	
 	private boolean removePromotion(int id, Date exp_date, String code, int percent_discount)
 	{
-		Promotion promo = new Promotion(id, exp_date, code, percent_discount);
+		Promotion promo = new Promotion(exp_date, code, percent_discount);
 		return promo.removePromo();
 	}
 }
