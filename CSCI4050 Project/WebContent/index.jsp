@@ -1,6 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>DDI Home</title>
@@ -100,7 +101,23 @@
                 <td><button class="tabButton">Food & Drink</button></td>
                 <td><button class="tabButton">Extras</button></td>
                 <td style="width: 400px; font-size: 20px;">
-                    <p style="text-align: right; font-family: avenir, times, serif;">Already have an account? <span><B onclick="signIn();" style="cursor:pointer;">SIGN IN</B></span></p>
+                    <p style="text-align: right; font-family: avenir, times, serif;">
+                    <% 
+                			if(session != null && session.getAttribute("user") != null){
+                				String name = (String) session.getAttribute("user");
+                				out.print("Hello, " + name);
+                			}
+                			else{
+                		%>
+                		Already have an account? 
+                    <span>
+                    <B onclick="signIn();" style="cursor:pointer;">SIGN IN</B>
+                    </span>
+             		<% 
+                			}
+             		%>
+                  
+                    </p>
                 </td>
             </tr>
         </table>

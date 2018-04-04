@@ -101,26 +101,30 @@
                 </td>
             </tr>
         </table>
+       <form id="form" method="post" action="SignInController">
         <table class="infoStyle">
-            <tr>
+            	<tr>
                 <td><p>Email:</p></td>
             </tr>
-            <tr>
-                <td><input type="text" size="30"></td>
+            	<tr>
+                <td><input type="text" size="30" name="email"></td>
             </tr>
             <tr>
                 <td><p>Password:</p></td>
             </tr>
             <tr>
-                <td><input type="text" size="30"></td>
+                <td><input type="text" size="30" name="password"></td>
             </tr>
             <tr>
-            		<td><p style="text-align:center;">No account?<span><button onclick="registerPage();" style="cursor:pointer;">Register</button></span></p></td>
+            
+            		<td style="padding-left:110px;"><input type="submit" value="Log In" class="buttonStyle"/></td>
             </tr>
         </table>
+        </form>
         <div style="text-align: center; margin-top: 30px;"> 
-            <button class="buttonStyle">Log In</button>
+        		<p style="text-align:center;">No account?<span><button onclick="registerPage();" style="cursor:pointer;">Register</button></span></p>
         </div>
+        
     </div>
 </body>
 

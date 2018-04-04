@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dawgdrivein.entity.RegisteredCustomer;
 import dawgdrivein.entity.User;
 
+
 public class RegisterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
