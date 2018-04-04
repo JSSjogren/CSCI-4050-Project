@@ -2,12 +2,20 @@ package dawgdrivein.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import dawgdrivein.db.CreditCardDBA;
 
 public class CreditCard {
+	
+	@Column(name = "exp_date", columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date exp_date;
+	
 	private int id;
 	private int card_number;
-	private Date exp_date;
 	private String name_on_card;
 	private int CCV;
 	private String billing_address;
@@ -41,5 +49,25 @@ public class CreditCard {
 	public boolean saveCreditCard()
 	{
 		return ccDBA.saveCreditCard(this);
+	}
+	
+	public boolean updateCreditCard()
+	{
+		return ccDBA.updateCreditCard(this);
+	}
+	
+	public boolean deleteCreditCard()
+	{
+		return ccDBA.deleteCreditCard(this);
+	}
+	
+	/**
+	 * Retrieve a CreditCard by ID from the database
+	 * @param id the ID of the credit card to be grabbed
+	 * @return the CreditCard object from the Database
+	 */
+	public CreditCard retrieveCreditCard(int id)
+	{
+		return ccDBA.retrieveCreditCard(id);
 	}
 }

@@ -36,8 +36,8 @@ public class Movie {
 		this.status = status;
 		movieDBA = new MovieDBA();
 		
-		Showtime firstShowtime = new Showtime(id, showtime);
-		firstShowtime.addShowtime();
+		Showtime firstShowtime = new Showtime(id, showtime, 30);
+		firstShowtime.saveShowtime();
 	}
 	
 	public Movie(int id, String genre, String cast, String director, String producer, String description, String trailer_picture, String trailer_video, String MPAA_rating, int status)
@@ -83,5 +83,10 @@ public class Movie {
 	public boolean deleteMovie()
 	{
 		return movieDBA.deleteMovie(this);
+	}
+	
+	public Movie retrieveMovie(int id)
+	{
+		return movieDBA.retrieveMovie(id);
 	}
 }

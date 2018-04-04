@@ -87,4 +87,31 @@ public class BookingDBA {
             return false;
         }
 	}
+	
+	public Booking retrieveBooking(int id)
+	{
+		try {
+            // 1. configuring hibernate
+            Configuration configuration = new Configuration().configure();
+ 
+            // 2. create sessionfactory
+            SessionFactory sessionFactory = configuration.buildSessionFactory();
+ 
+            // 3. Get Session object
+            Session session = sessionFactory.openSession();
+ 
+            // 4. Starting Transaction
+            Transaction transaction = session.beginTransaction();
+            Booking booking = (Booking)session.get(Booking.class, id);
+            transaction.commit();
+            System.out.println("\n\n Retrieved booking by ID \n");
+            return booking;
+ 
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+            System.out.println("error");
+            return null;
+        }
+	}
+	
 }

@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "entity.Review" table = "review">
+      
+      <meta attribute = "class-description">
+         This class contains Review attributes. 
+      </meta>
+      
+      <!-- Primary Key -->
+      <id name = "id" type = "int" column = "id">
+         <generator class="native"/>
+      </id>
+      
+      <!-- 		name in java class				name in db							type in java class -->
+      <property name = "content" 				column = "content" 					type = "string"/>
+      <property name = "star_rating" 			column = "star_rating" 				type = "int"/>
+      
+   </class>
+</hibernate-mapping>

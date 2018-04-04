@@ -27,7 +27,10 @@
       </property>
       
       <!-- List of XML mapping files -->
-      <mapping resource = "Promotion.hbm.xml"/>
+      <mapping resource = "hibernate/Promotion.hbm.xml"/>
+      <mapping resource = "hibernate/User.hbm.xml"/>
+      <mapping resource = "hibernate/Booking.hbm.xml"/>
+      <mapping resource = "hibernate/Movie.hbm.xml"/>
       
    </session-factory>
 </hibernate-configuration>
