@@ -50,4 +50,9 @@ public class Hall {
 	{
 		return hallDBA.deleteHall(this);
 	}
+	
+	public Hall retrieveHall(int id)
+	{
+		return hallDBA.retrieveHall(id);
+	}
 }

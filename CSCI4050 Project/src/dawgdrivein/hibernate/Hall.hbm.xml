@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "entity.Hall" table = "hall">
+      
+      <meta attribute = "class-description">
+         This class contains Hall attributes. 
+      </meta>
+      
+      <!-- Primary Key -->
+      <id name = "id" type = "int" column = "id">
+         <generator class="native"/>
+      </id>
+      
+      <!-- 		name in java class				name in db							type in java class -->
+      <property name = "available_capacity" 		column = "available_capacity" 		type = "int"/>
+   </class>
+</hibernate-mapping>

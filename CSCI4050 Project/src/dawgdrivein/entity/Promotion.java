@@ -4,22 +4,21 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import dawgdrivein.db.PromotionDBA;
 
 public class Promotion {
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	
 	@Column(name = "exp_date", columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
-	
-	private int id;
 	private Date exp_date;
+	
 	private String code;
 	private int percent_discount;
 	
@@ -56,6 +55,11 @@ public class Promotion {
 	public boolean updatePromo()
 	{
 		return promoDBA.updatePromo(this);
+	}
+	
+	public Promotion retrievePromotion(int id)
+	{
+		return promoDBA.retrievePromo(id);
 	}
 	
 	public int getId() {

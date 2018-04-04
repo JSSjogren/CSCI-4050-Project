@@ -1,15 +1,21 @@
 package dawgdrivein.entity;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
 
 public class User {
 
 	//Should allow us to auto-increment the User ID's
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GenericGenerator(name="gen",strategy="increment")
+	@GeneratedValue(generator="gen")
+	@Column(name = "id", unique = true, nullable = false, precision = 15, scale = 0)
 	protected int id;
+	
 	protected String email;
 	protected String password;
 	protected String firstName;

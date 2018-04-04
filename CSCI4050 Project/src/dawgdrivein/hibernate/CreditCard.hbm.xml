@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "entity.CreditCard" table = "creditcard">
+      
+      <meta attribute = "class-description">
+         This class contains CreditCard attributes. 
+      </meta>
+      
+      <!-- Primary Key -->
+      <id name = "id" type = "int" column = "id">
+         <generator class="native"/>
+      </id>
+      
+      <!-- 		name in java class				name in db							type in java class -->
+      <property name = "card_number" 			column = "card_number" 				type = "int"/>
+      <property name = "name_on_card" 			column = "name_on_card" 				type = "string"/>
+      <property name = "ccv" 					column = "ccv" 						type = "int"/>
+      <property name = "billing_address" 		column = "billing_address" 			type = "string"/>
+   </class>
+</hibernate-mapping>

@@ -1,17 +1,20 @@
 package dawgdrivein.db;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import dawgdrivein.entity.Review;
+import dawgdrivein.entity.Booking;
+import dawgdrivein.entity.CreditCard;
+import dawgdrivein.entity.Movie;
 
-public class ReviewDBA {
+public class OrderHistoryDBA {
 
-	
-	public boolean saveReview(Review review)
+	public List<Booking> getOrderHistory(int userID)
 	{
 		try {
             // 1. configuring hibernate
@@ -25,19 +28,19 @@ public class ReviewDBA {
  
             // 4. Starting Transaction
             Transaction transaction = session.beginTransaction();
-            session.save(review);
-            transaction.commit();
-            System.out.println("\n\n Details Added \n");
-            return true;
+            List<Booking> orderHistory = (List<Booking>) session.createQuery("SELECT * FROM booking WHERE userID='" + userID + "';").list();
+            System.out.println("\n\n Retrieved list of bookings by userID \n");
+            return orderHistory;
  
         } catch (HibernateException e) {
             System.out.println(e.getMessage());
             System.out.println("error");
-            return false;
+            return null;
         }
+		
 	}
 	
-	public boolean updateReview(Review review)
+	public List<Booking> getOrderHistory()
 	{
 		try {
             // 1. configuring hibernate
@@ -51,41 +54,14 @@ public class ReviewDBA {
  
             // 4. Starting Transaction
             Transaction transaction = session.beginTransaction();
-            session.saveOrUpdate(review);
-            transaction.commit();
-            System.out.println("\n\n Details Updated \n");
-            return true;
+            List<Booking> orderHistory = (List<Booking>) session.createQuery("SELECT * FROM booking;").list();
+            System.out.println("\n\n Retrieved list of bookings by userID \n");
+            return orderHistory;
  
         } catch (HibernateException e) {
             System.out.println(e.getMessage());
             System.out.println("error");
-            return false;
-        }
-	}
-	
-	public boolean deleteReview(Review review)
-	{
-		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
-            Transaction transaction = session.beginTransaction();
-            session.delete(review);
-            transaction.commit();
-            System.out.println("\n\n Details Deleted \n");
-            return true;
- 
-        } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-            System.out.println("error");
-            return false;
+            return null;
         }
 	}
 	

@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import dawgdrivein.db.UserDBA;
 
@@ -57,6 +58,15 @@ public class RegisteredCustomer extends User {
 		return userDBA.deleteUser(this);
 	}
 	
+	/**
+	 * Queries database to see if email exists
+	 * @return
+	 */
+	public boolean emailExists()
+	{
+		return userDBA.emailExists(this);
+	}
+	
 	public boolean suspendCustomer()
 	{
 		return userDBA.suspendCustomer(this);
@@ -106,24 +116,30 @@ public class RegisteredCustomer extends User {
 		this.subscription_pref = pref;
 	}
 	
-	private void bookMovie()
+	private boolean bookMovie(Showtime showtime, float totalPrice, int adult_tickets, int child_tickets, int senior_tickets, int showtimeID)
 	{
-		
+		Booking booking = new Booking(id, 1, totalPrice, adult_tickets, child_tickets, senior_tickets, showtimeID);
+		return booking.saveBooking();
 	}
 	
 	private void checkout()
 	{
-		
+		//todo
 	}
 	
-	private void addReview()
+	private void addReview(String content, int star_rating)
 	{
-		
+		Review review = new Review(1, content, star_rating);
+		review.saveReview();
 	}
 	
-	private void editProfile()
+	private void editProfile(String newFN, String newLN, String newEmail, String newAddress, boolean newSubPref)
 	{
-		
+		this.firstName = newFN;
+		this.lastName = newLN;
+		this.email = newEmail;
+		this.subscription_pref = newSubPref;
+		this.address = newAddress;
 	}
 	
 	private void recoverLostPassword()
@@ -131,21 +147,21 @@ public class RegisteredCustomer extends User {
 		
 	}
 	
-	private void returnTickets()
+	private void returnTickets(Booking booking)
 	{
-		
+		booking.deleteBooking();
 	}
 	
-	private ArrayList<String> viewOrderHistory()
+	private List<Booking> viewOrderHistory()
 	{
-		
-		return null;
+		OrderHistory oh = new OrderHistory(id);
+		return oh.getOrderHistory(id);
 	}
 	
-	private void verification()
+	private void verification(String enteredNo)
 	{
 		//If the user is inactive
-		if (status == 0)
+		if (status == 0 && enteredNo.equals("1234"))
 			status = 1;
 	}
 }
