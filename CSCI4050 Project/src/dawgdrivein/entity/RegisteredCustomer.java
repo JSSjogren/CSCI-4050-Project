@@ -16,17 +16,17 @@ public class RegisteredCustomer extends User {
 	
 	CreditCard cc;
 	
-	public RegisteredCustomer(int id, String fn, String ln, String email, String password, String phoneNumber, String address, int rank, int status, boolean sub_pref)
+	public RegisteredCustomer(String fn, String ln, String email, String password, String address, int rank, int status, boolean sub_pref)
 	{
-		super(id, email, generateHash(password), fn, ln, phoneNumber, address, rank, status);
+		super(0, email, generateHash(password), fn, ln, address, rank, status);
 		this.subscription_pref = sub_pref;
 		userDBA = new UserDBA();
 		cc = new CreditCard();
 	}
 	
-	public RegisteredCustomer(int id, String fn, String ln, String email, String password, String phoneNumber, String address, int rank, int status, boolean sub_pref, int cardnumber, Date exp_date, String name_on_card, int CCV, String billing_address)
+	public RegisteredCustomer(String fn, String ln, String email, String password, String address, int rank, int status, boolean sub_pref, int cardnumber, Date exp_date, String name_on_card, int CCV, String billing_address)
 	{
-		super(id, email, generateHash(password), fn, ln, phoneNumber, address, rank, status);
+		super(0, email, generateHash(password), fn, ln, address, rank, status);
 		this.subscription_pref = sub_pref;
 		userDBA = new UserDBA();
 		cc = new CreditCard(id, cardnumber, exp_date, name_on_card, CCV, billing_address);
@@ -36,11 +36,11 @@ public class RegisteredCustomer extends User {
 	 * The servlet is sending a RegisteredCustomer object to
 	 * the UserDBA class to be stored in persistent memory.
 	 * 
-	 * @param user the object passed into the DBAccess class
+	 * @return success at saving user in DB
 	 */
-	public boolean saveRegisteredCustomer(RegisteredCustomer user)
+	public boolean saveRegisteredCustomer()
 	{
-		return userDBA.saveUser(user);
+		return userDBA.saveUser(this);
 	}
 	
 	/**

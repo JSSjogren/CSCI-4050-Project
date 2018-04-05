@@ -49,5 +49,13 @@ public class RegisterController extends HttpServlet {
 			response.sendRedirect("RegistrationError.html");
 		}
 		//if all fields were entered....move on to handle all information, send verification code, etc...
+		
+		//Concat all address fields
+		String address = addressStreet + ", " + city + ", " + state + ", " + zipCode;
+		
+		//Status 0 = Inactive, 1 = Active, 2 = Suspended
+		//Create registered customer and save to database
+		RegisteredCustomer rc = new RegisteredCustomer(fn, ln, email, password, address, 4, 0, true);
+		rc.saveRegisteredCustomer();
 	}
 }
