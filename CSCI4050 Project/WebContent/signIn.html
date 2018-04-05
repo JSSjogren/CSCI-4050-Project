@@ -76,6 +76,9 @@
     		function registerPage(){
     			window.location.href = "Registration.html";
     		}
+    		function home(){
+    			window.location.href = "index.jsp";
+    		}
     	</script>
 </head>
 
@@ -88,7 +91,7 @@
                     <h1 class="title">Dawg Drive-in</h1>
                 </td>
                 <td style="width: 900px; font-size: 20px;">
-                <p style="text-align: right">Return to <b>Home</b></p>
+                <p style="text-align: right">Return to <b onclick="home();" style="cursor:pointer;">Home</b></p>
                 </td>
             </tr>
         </table>
@@ -117,7 +120,7 @@
             </tr>
             <tr>
             
-            		<td style="padding-left:110px;"><input type="submit" value="Log In" class="buttonStyle"/></td>
+            		<td style="padding-left:110px;"><input type="submit" value="Log In" class="buttonStyle" style="cursor:pointer;"/></td>
             </tr>
         </table>
         </form>
