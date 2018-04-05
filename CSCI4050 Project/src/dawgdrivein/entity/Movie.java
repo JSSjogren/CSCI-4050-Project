@@ -70,21 +70,38 @@ public class Movie {
 		this.movieDBA = null;
 	}
 	
+	/**
+	 * Updates this movie object in the DB
+	 * @return whether the update was successful
+	 */
 	public boolean updateMovie()
 	{
 		return movieDBA.updateMovie(this);
 	}
 	
+	/**
+	 * Saves this movie object in the DB
+	 * @return whether the save was successful
+	 */
 	public boolean saveMovie()
 	{
-		return movieDBA.enterNewMovie(this);
+		return movieDBA.saveMovie(this);
 	}
 	
+	/**
+	 * Deletes this movie object from the DB
+	 * @return whether the delete was completed
+	 */
 	public boolean deleteMovie()
 	{
 		return movieDBA.deleteMovie(this);
 	}
 	
+	/**
+	 * Retrieves a movie object based on its ID
+	 * @param id the ID to search for
+	 * @return the retrieved Movie object
+	 */
 	public Movie retrieveMovie(int id)
 	{
 		return movieDBA.retrieveMovie(id);

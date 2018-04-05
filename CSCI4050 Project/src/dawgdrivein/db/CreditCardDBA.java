@@ -12,6 +12,11 @@ import dawgdrivein.entity.CreditCard;
 public class CreditCardDBA {
 
 	
+	/**
+	 * Save CreditCard in DB
+	 * @param cc the object to be saved
+	 * @return whether save was successful
+	 */
 	public boolean saveCreditCard(CreditCard cc)
 	{
 		try {
@@ -38,6 +43,11 @@ public class CreditCardDBA {
         }
 	}
 
+	/**
+	 * Update CreditCard object in database
+	 * @param cc the object to be updated
+	 * @return whether update was successful
+	 */
 	public boolean updateCreditCard(CreditCard cc)
 	{
 		try {
@@ -64,6 +74,11 @@ public class CreditCardDBA {
         }
 	}
 	
+	/**
+	 * Delete CreditCard object from DB
+	 * @param cc the object to be deleted
+	 * @return whether the delete was successful
+	 */
 	public boolean deleteCreditCard(CreditCard cc)
 	{
 		try {
@@ -90,6 +105,11 @@ public class CreditCardDBA {
         }
 	}
 	
+	/**
+	 * Retrieve a single CreditCard object from DB
+	 * @param id the key to compare in the DB
+	 * @return the retrieved CreditCard object
+	 */
 	public CreditCard retrieveCreditCard(int id)
 	{
 		try {

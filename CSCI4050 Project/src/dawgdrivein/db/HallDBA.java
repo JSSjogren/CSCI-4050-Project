@@ -11,6 +11,11 @@ import dawgdrivein.entity.Hall;
 
 public class HallDBA {
 
+	/**
+	 * Saves a Hall object into the database
+	 * @param hall the hall to save
+	 * @return whether the save was completed
+	 */
 	public boolean createHall(Hall hall)
 	{
 		try {
@@ -37,7 +42,11 @@ public class HallDBA {
         }	
 	}
 	
-	
+	/**
+	 * Update a Hall object in the database
+	 * @param hall the object to update in the DB
+	 * @return whether the update was successful
+	 */
 	public boolean updateHall(Hall hall)
 	{
 		try {
@@ -63,6 +72,11 @@ public class HallDBA {
         }
 	}
 	
+	/**
+	 * Delete Hall object from the database
+	 * @param hall the object to delete
+	 * @return whether the delete was completed
+	 */
 	public boolean deleteHall(Hall hall)
 	{
 		try {

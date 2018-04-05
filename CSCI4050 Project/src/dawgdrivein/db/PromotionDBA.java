@@ -11,8 +11,12 @@ import dawgdrivein.entity.Promotion;
 
 public class PromotionDBA {
 
-	
-	public boolean createPromo(Promotion promo)
+	/**
+	 * Saves a Promo object in the database
+	 * @param promo the object to be stored in the DB
+	 * @return whether the save was successful
+	 */
+	public boolean savePromo(Promotion promo)
 	{
 		try {
             // 1. configuring hibernate
@@ -38,6 +42,11 @@ public class PromotionDBA {
         }
 	}
 	
+	/**
+	 * Update a promo in the DB
+	 * @param promo the Promo object to be updated in the DB
+	 * @return whether the update was successful
+	 */
 	public boolean updatePromo(Promotion promo)
 	{
 		try {
@@ -64,7 +73,12 @@ public class PromotionDBA {
         }
 	}
 	
-	public boolean removePromo(Promotion promo)
+	/**
+	 * Remove a Promo object from the DB
+	 * @param promo the Promo object to be deleted
+	 * @return whether the delete was successful
+	 */
+	public boolean deletePromo(Promotion promo)
 	{
 		try {
             // 1. configuring hibernate
@@ -90,6 +104,11 @@ public class PromotionDBA {
         }
 	}
 	
+	/**
+	 * Retrieves a specific Promo based on ID
+	 * @param id the ID to use as a reference
+	 * @return the retrieved Promo object
+	 */
 	public Promotion retrievePromo(int id)
 	{
 		try {

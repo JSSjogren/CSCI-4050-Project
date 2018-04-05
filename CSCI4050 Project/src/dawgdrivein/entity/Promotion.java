@@ -42,21 +42,38 @@ public class Promotion {
 		this.promoDBA = null;
 	}
 	
-	public boolean createPromo()
+	/**
+	 * Saves this Promo object to the DB
+	 * @return whether the save was successful
+	 */
+	public boolean savePromo()
 	{
-		return promoDBA.createPromo(this);
+		return promoDBA.savePromo(this);
 	}
 	
-	public boolean removePromo()
+	/**
+	 * Deletes this Promo object from the DB
+	 * @return whether the delete was completed
+	 */
+	public boolean deletePromo()
 	{
-		return promoDBA.removePromo(this);
+		return promoDBA.deletePromo(this);
 	}
 
+	/**
+	 * Updates this promo object in the DB
+	 * @return whether the update was successful
+	 */
 	public boolean updatePromo()
 	{
 		return promoDBA.updatePromo(this);
 	}
 	
+	/**
+	 * Retrieves a Promo based on its ID from the DB
+	 * @param id the ID to use as reference
+	 * @return the retrieved Promo object
+	 */
 	public Promotion retrievePromotion(int id)
 	{
 		return promoDBA.retrievePromo(id);

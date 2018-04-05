@@ -11,7 +11,12 @@ import dawgdrivein.entity.Movie;
 
 public class MovieDBA {
 
-	public boolean enterNewMovie(Movie movie)
+	/**
+	 * Save a Movie to the database
+	 * @param movie the movie to be inserted in the DB
+	 * @return whether the save was successful
+	 */
+	public boolean saveMovie(Movie movie)
 	{
 		try {
             // 1. configuring hibernate
@@ -37,6 +42,11 @@ public class MovieDBA {
         }
 	}
 	
+	/**
+	 * Update a Movie in the DB
+	 * @param movie the object to be updated in the database
+	 * @return whether the update was successful
+	 */
 	public boolean updateMovie(Movie movie)
 	{
 		try {
@@ -63,6 +73,11 @@ public class MovieDBA {
         }
 	}
 
+	/**
+	 * Delete a movie in the DB
+	 * @param movie the movie to be deleted from the DB
+	 * @return whether the delete was completed
+	 */
 	public boolean deleteMovie(Movie movie)
 	{
 		try {

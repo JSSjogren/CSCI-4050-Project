@@ -25,19 +25,41 @@ public class Review {
 		this.reviewDBA = new ReviewDBA();
 	}
 	
+	/**
+	 * Saves this Review in the DB
+	 * @return whether the save was successful
+	 */
 	public boolean saveReview()
 	{
 		return reviewDBA.saveReview(this);
 	}
 	
+	/**
+	 * Updates this Review in the DB
+	 * @return whether the update was successful
+	 */
 	public boolean updateReview()
 	{
 		return reviewDBA.updateReview(this);
 	}
 	
+	/**
+	 * Deletes this Review from the DB
+	 * @return whether the delete was completed
+	 */
 	public boolean deleteReview()
 	{
 		return reviewDBA.deleteReview(this);
+	}
+	
+	/**
+	 * Retrieves a Review object from the DB via ID
+	 * @param id the ID to use as reference
+	 * @return the retrieved Review object
+	 */
+	public Review retrieveReview(int id)
+	{
+		return reviewDBA.retrieveReview(id);
 	}
 	
 	public int getId() {

@@ -37,7 +37,7 @@ public class UserDBA {
         }
 	}
 	
-	public boolean saveUser(RegisteredCustomer user)
+	public boolean saveUser(User user)
 	{
 		try {
             // 1. configuring hibernate

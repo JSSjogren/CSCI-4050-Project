@@ -101,13 +101,13 @@ public class SystemAdministrator extends User {
 	private boolean addPromotion(int id, Date exp_date, String code, int percent_discount)
 	{
 		Promotion promo = new Promotion(id, exp_date, code, percent_discount);
-		return promo.createPromo();
+		return promo.savePromo();
 	}
 	
 	private boolean removePromotion(int id, Date exp_date, String code, int percent_discount)
 	{
 		Promotion promo = new Promotion(id, exp_date, code, percent_discount);
-		return promo.removePromo();
+		return promo.deletePromo();
 	}
 }
 

@@ -7,6 +7,8 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import dawgdrivein.db.UserDBA;
+
 public class User {
 
 	//Should allow us to auto-increment the User ID's
@@ -106,6 +108,5 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
 	
 }

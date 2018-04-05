@@ -46,16 +46,28 @@ public class CreditCard {
 		ccDBA = new CreditCardDBA();
 	}
 	
+	/**
+	 * Save specified credit card object in database
+	 * @return whether or not save was successful
+	 */
 	public boolean saveCreditCard()
 	{
 		return ccDBA.saveCreditCard(this);
 	}
 	
+	/**
+	 * Update specified credit card object in database
+	 * @return whether or not update was successful
+	 */
 	public boolean updateCreditCard()
 	{
 		return ccDBA.updateCreditCard(this);
 	}
 	
+	/**
+	 * Delete specified credit card object from database
+	 * @return whether or not deletion was successful
+	 */
 	public boolean deleteCreditCard()
 	{
 		return ccDBA.deleteCreditCard(this);
