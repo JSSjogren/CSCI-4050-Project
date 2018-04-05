@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DDI Sign-In Error</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        form {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+        }
+        
+        input {
+            font-size: 20px;
+        }
+
+        .logo {
+            max-height: 150px;
+        }
+
+        .title {
+            font-size: 50px;
+            font-family: "Apple Chancery", Times, serif;
+        }
+
+        .headerDiv {
+            border-bottom: 5px solid black;
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 0;
+            background-color: lightgray
+        }
+
+        .register {
+            font-size: 40px;
+            text-align: center;
+
+        }
+
+        .registerBox {
+            border: 3px solid black;
+            margin: 0 auto;
+
+        }
+
+        .boxTitle {
+            font-size: 30px;
+            padding-bottom: 15px;
+            border: 3px solid black;
+        }
+
+        .boxContent {
+            font-size: 20px;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+    		function signIn(){
+			window.location.href = "signIn.html";
+		}
+    		function home(){
+    			window.location.href = "index.jsp";
+    		}
+    </script>	
+</head>
+
+<body>
+    <div class="headerDiv">
+        <table>
+            <tr>
+                <td><img src="transparentWebSiteLogo.png" class="logo"></td>
+                <td>
+                    <h1 class="title">Dawg Drive-in</h1>
+                </td>
+                <td style="width: 900px; font-size: 20px;">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p style="text-align: center; font-size: 40px">Sign-In Error</p>
+    <p style="text-align: center; font-size: 25px">An error has occurred. Please make sure you entered your email and password correctly.</p>
+    <table align="center">
+    	<tr>
+    		<td><button onclick="signIn();" style="font-size: 20px; margin-right: 15px;">Return to Sign-In</button></td> <td><button onclick="home();" style="font-size: 20px; margin-left: 15px;">Return to Homepage</button></td>	
+    	</tr>
+    </table>
+</body>
+
+</html>

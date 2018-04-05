@@ -44,19 +44,10 @@ public class RegisterController extends HttpServlet {
 		//todo
 		boolean subscribed = true;
 		
-		RequestDispatcher rd = null;
- 
-		if (!password.equals(confirmPassword))
-			rd = request.getRequestDispatcher("/error.jsp");
-		
-		//RegisteredCustomer rc = new RegisteredCustomer(id, fn, ln, email, password, phoneNumber, address, rank, status, subscribed);
-		//boolean success = rc.saveRegisteredCustomer(rc);
-		
-		//if (success) {
-			//rd = request.getRequestDispatcher("/success.jsp");
-		//} else {
-			//rd = request.getRequestDispatcher("/error.jsp");
-		//}
-		//rd.forward(request, response);
+		//checks if any form fields and empty
+		if(fn.equals("") || ln.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("") || addressStreet.equals("") || city.equals("") || state.equals("") || zipCode.equals("")) {
+			response.sendRedirect("RegistrationError.html");
+		}
+		//if all fields were entered....move on to handle all information, send verification code, etc...
 	}
 }
