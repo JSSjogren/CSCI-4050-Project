@@ -22,19 +22,17 @@ public class User {
 	protected String password;
 	protected String firstName;
 	protected String lastName;
-	protected String phoneNumber;
 	protected String address;
 	protected int status;
 	protected int rank;
 	
-	public User(int id, String email, String password, String firstName, String lastName, String phoneNumber, String address, int status, int rank)
+	public User(int id, String email, String password, String firstName, String lastName, String address, int status, int rank)
 	{
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.status = status;
 		this.rank = rank;
@@ -47,7 +45,6 @@ public class User {
 		this.password = null;
 		this.firstName = null;
 		this.lastName = null;
-		this.phoneNumber = null;
 		this.address = null;
 		this.status = -1;
 		this.rank = 01;
@@ -91,14 +88,6 @@ public class User {
 	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-	
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-	
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
 	}
 	
 	public String getAddress() {

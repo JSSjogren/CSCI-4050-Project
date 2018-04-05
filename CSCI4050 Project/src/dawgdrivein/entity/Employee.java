@@ -7,8 +7,8 @@ import dawgdrivein.db.UserDBA;
 public class Employee extends User {
 		
 	private UserDBA userDBA;
-	public Employee(int id, String email, String password, String firstName, String lastName, String phoneNumber, String address, int rank, int status) {
-		super(id, email, password, firstName, lastName, phoneNumber, address, rank, status);
+	public Employee(String email, String password, String firstName, String lastName, String address, int rank, int status) {
+		super(0, email, password, firstName, lastName, address, rank, status);
 		userDBA = new UserDBA();
 	}
 	

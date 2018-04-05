@@ -5,8 +5,8 @@ import java.util.Date;
 public class SystemAdministrator extends User {
 
 
-	public SystemAdministrator(int id, String email, String password, String firstName, String lastName, String phoneNumber, String address, int rank, int status) {
-		super(id, email, password, firstName, lastName, phoneNumber, address, rank, status);
+	public SystemAdministrator(String email, String password, String firstName, String lastName, String address, int rank, int status) {
+		super(0, email, password, firstName, lastName, address, rank, status);
 	}
 
 
@@ -33,24 +33,24 @@ public class SystemAdministrator extends User {
 
 	}
 
-	private boolean updateMemberInfo(int newId, String newEmail, String newPassword, String newFirstName, String newLastName, String newPhoneNumber, String newAddress, int newRank, int newStatus, boolean newSubscription_pref)
+	private boolean updateMemberInfo(String newEmail, String newPassword, String newFirstName, String newLastName, String newAddress, int newRank, int newStatus, boolean newSubscription_pref)
 	{
 		//Is the member being updated a RegisteredCustomer?
 		if (rank == 4)
 		{
-			RegisteredCustomer customer = new RegisteredCustomer(newId, newEmail, newPassword, newFirstName, newLastName, newPhoneNumber, newAddress, newRank, newStatus, newSubscription_pref);
+			RegisteredCustomer customer = new RegisteredCustomer( newEmail, newPassword, newFirstName, newLastName, newAddress, newRank, newStatus, newSubscription_pref);
 			return customer.updateCustomer();
 		}
 		//Is the member being updated an Employee?
 		else if (rank == 3)
 		{
-			Employee employee = new Employee(newId, newEmail, newPassword, newFirstName, newLastName, newPhoneNumber, newAddress, newRank, newStatus);
+			Employee employee = new Employee(newEmail, newPassword, newFirstName, newLastName, newAddress, newRank, newStatus);
 			return employee.updateEmployee();
 		}
 		//Is the member being updated a Manager?
 		else if (rank == 2)
 		{
-			Manager manager = new Manager(newId, newEmail, newPassword, newFirstName, newLastName, newPhoneNumber, newAddress, newRank, newStatus);
+			Manager manager = new Manager(newEmail, newPassword, newFirstName, newLastName, newAddress, newRank, newStatus);
 			return manager.updateManager();
 		}
 		//Is the member being updated a User?
@@ -60,24 +60,24 @@ public class SystemAdministrator extends User {
 		return false;
 	}
 
-	private boolean deleteMemberInfo(int id, String email, String password, String firstName, String lastName, String phoneNumber, String address, int rank, int status, boolean subscription_pref)
+	private boolean deleteMemberInfo(int id, String email, String password, String firstName, String lastName, String address, int rank, int status, boolean subscription_pref)
 	{
 		//Is the member being deleted a RegisteredCustomer?
 		if (rank == 4)
 		{
-			RegisteredCustomer customer = new RegisteredCustomer(id, email, password, firstName, lastName, phoneNumber, address, rank, status, subscription_pref);
+			RegisteredCustomer customer = new RegisteredCustomer(email, password, firstName, lastName, address, rank, status, subscription_pref);
 			return customer.deleteCustomer();
 		}
 		//Is the member being deleted an Employee?
 		else if (rank == 3)
 		{
-			Employee employee = new Employee(id, email, password, firstName, lastName, phoneNumber, address, rank, status);
+			Employee employee = new Employee(email, password, firstName, lastName, address, rank, status);
 			return employee.deleteEmployee();
 		}
 		//Is the member being deleted a Manager?
 		else if (rank == 2)
 		{
-			Manager manager = new Manager(id, email, password, firstName, lastName, phoneNumber, address, rank, status);
+			Manager manager = new Manager(email, password, firstName, lastName, address, rank, status);
 			return manager.deleteManager();
 		}
 		//Is the member being deleted a User?
@@ -87,11 +87,11 @@ public class SystemAdministrator extends User {
 		return false;
 	}
 
-	private boolean suspendMemberAcct(int id, String email, String password, String firstName, String lastName, String phoneNumber, String address, int rank, int status, boolean subscription_pref)
+	private boolean suspendMemberAcct(String email, String password, String firstName, String lastName, String address, int rank, int status, boolean subscription_pref)
 	{
 		if (rank == 4)
 		{
-			RegisteredCustomer customer = new RegisteredCustomer(id, email, password, firstName, lastName, phoneNumber, address, rank, status, subscription_pref);
+			RegisteredCustomer customer = new RegisteredCustomer(email, password, firstName, lastName, address, rank, status, subscription_pref);
 			return customer.suspendCustomer();
 		}
 		
