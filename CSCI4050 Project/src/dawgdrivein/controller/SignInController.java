@@ -39,6 +39,12 @@ public class SignInController extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
+		//Check if these strings match a record in the database. If these do not match or are empty, send to SignInError.html
+		if(email.equals("") || password.equals("")) {
+			response.sendRedirect("SignInError.html");
+		}
+		//Now we know fields are not empty if they pass ^
+		//Now check if database has a matching record...if so sign them in and create the session stuff...if not send redirect again
 	}
 
 }
