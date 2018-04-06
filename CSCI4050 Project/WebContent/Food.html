@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Food & Drink</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+
+        form {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 5px;
+        }
+        
+        input {
+            font-size: 20px;
+        }
+        
+        th {
+        		font-size: 25px;
+        		padding: 20px;
+        		border: 3px solid black;
+        }
+
+        .logo {
+            max-height: 150px;
+        }
+
+        .title {
+            font-size: 50px;
+            font-family: "Apple Chancery", Times, serif;
+        }
+
+        .headerDiv {
+            border-bottom: 5px solid black;
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 0;
+            background-color: lightgray
+        }
+        
+        .normalText {
+            text-align: center;
+            font-size: 25px;
+        }
+        
+        .subTitle {
+            text-align: center; 
+            font-size: 40px;
+        }
+        
+    </style>
+    <script>
+    		function home(){
+			window.location.href = "index.jsp";
+		}
+    </script>
+</head>
+
+<body>
+    <div class="headerDiv">
+        <table>
+            <tr>
+                <td><img src="transparentWebSiteLogo.png" class="logo"></td>
+                <td>
+                    <h1 class="title">Dawg Drive-in</h1>
+                </td>
+                <td style="width: 900px; font-size: 20px;">
+                <p style="text-align: right; cursor:pointer;" onclick="home();">Return Home</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+    		<h1 align="center">Dawg Drive-In Food & Drink Options</h1>
+    		<h3 align="center"> Note: All accommodations can be purchased in your movie theater lot</h3>
+    </div>
+    <table align="center" style="border: 3px solid black; border-collapse: collapse;">
+    		<tr>
+    			<th>Item</th> <th>Price</th>
+    		</tr>
+    		<tr>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">Popcorn</td>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">$5.00</td>
+    		</tr>
+    		<tr>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">Candy</td>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">$3.00</td>
+    		</tr>
+    		<tr>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">Soda</td>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">$4.00</td>
+    		</tr>
+    		<tr>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">Soft Pretzel</td>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">$3.25</td>
+    		</tr>
+    		<tr>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">Ice Cream</td>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">$2.70</td>
+    		</tr>
+    		<tr>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">Cotton Candy</td>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">$2.50</td>
+    		</tr>
+    		<tr>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">Nachos</td>
+    			<td style="border: 3px solid black; font-size:20px; padding: 20px;">$3.75</td>
+    		</tr>
+    	</table>
+    
+</body>
+
+</html>
