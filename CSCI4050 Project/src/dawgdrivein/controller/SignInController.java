@@ -45,6 +45,8 @@ public class SignInController extends HttpServlet {
 		}
 		//Now we know fields are not empty if they pass ^
 		//Now check if database has a matching record...if so sign them in and create the session stuff...if not send redirect again
+		//When signing someone into the session set a session attribute named 'rank' to the string representation of their ranking. This
+		//is easier for me to use when determining if the person is an admin.
 	}
 
 }

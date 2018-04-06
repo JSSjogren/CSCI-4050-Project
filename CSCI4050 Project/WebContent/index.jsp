@@ -85,6 +85,12 @@
     		function signIn(){
     			window.location.href = "signIn.html";
     		}
+    		function food(){
+    			window.location.href = "Food.html";
+    		}
+    		function lots(){
+    			window.location.href = "OurLots.html";
+    		}
     </script>
 </head>
 
@@ -97,21 +103,26 @@
                     <h1 class="title">Dawg Drive-in</h1>
                 </td>
                 <td><button class="tabButton">Movies</button></td>
-                <td><button class="tabButton">Our Lots</button></td>
-                <td><button class="tabButton">Food & Drink</button></td>
-                <td><button class="tabButton">Extras</button></td>
-                <td style="width: 400px; font-size: 20px;">
+                <td><button class="tabButton" onclick="lots();">Our Lots</button></td>
+                <td><button class="tabButton" onclick="food();">Food & Drink</button></td>
+                <td><button class="tabButton">Book Tickets</button></td>
+                <td style="width: 300px; font-size: 20px;">
                     <p style="text-align: right; font-family: avenir, times, serif;">
                     <% 
                 			if(session != null && session.getAttribute("user") != null){
                 				String name = (String) session.getAttribute("user");
                 				out.print("Hello, " + name);
+                		%>
+                			<span>
+                    		<B onclick="signIn();" style="cursor:pointer; margin-right: 5px; position: absolute; left: 1295px; top: 120px;">Log out</B>
+                    		</span>
+                		<%
                 			}
                 			else{
                 		%>
-                		Already have an account? 
+                		Have an account? 
                     <span>
-                    <B onclick="signIn();" style="cursor:pointer;">SIGN IN</B>
+                    <B onclick="signIn();" style="cursor:pointer; margin-right: 5px;">SIGN IN</B>
                     </span>
              		<% 
                 			}
