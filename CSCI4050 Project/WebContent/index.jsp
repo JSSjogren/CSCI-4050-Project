@@ -91,6 +91,9 @@
     		function lots(){
     			window.location.href = "OurLots.html";
     		}
+    		function movie(){
+    			window.location.href = "MovieBrowse.jsp";
+    		}
     </script>
 </head>
 
@@ -102,7 +105,7 @@
                 <td>
                     <h1 class="title">Dawg Drive-in</h1>
                 </td>
-                <td><button class="tabButton">Movies</button></td>
+                <td><button class="tabButton" onclick="movie();">Movies</button></td>
                 <td><button class="tabButton" onclick="lots();">Our Lots</button></td>
                 <td><button class="tabButton" onclick="food();">Food & Drink</button></td>
                 <td><button class="tabButton">Book Tickets</button></td>
