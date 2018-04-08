@@ -116,7 +116,7 @@
     
     <div id="addMovie" style="border: 3px solid black;">
     		<p class="register">Add Movie</p>
-    		<form action="" method="post" id="form" style="margin-bottom: 30px;">
+    		<form action="" method="get" id="form" style="margin-bottom: 30px;">
         <table class="registerBox" align="center">
             <caption class="boxTitle">Enter Movie Info</caption>
             <tr>
@@ -240,7 +240,7 @@
     
     <div id="updateMovie" style="border: 3px solid black;">
     		<p class="register">Update Movie</p>
-    		<form action="" method="post" id="form" style="margin-bottom: 30px;">
+    		<form action="" method="post" id="form2" style="margin-bottom: 30px;">
         <table class="registerBox" align="center">
             <caption class="boxTitle">Enter Updated Movie Info</caption>
             <tr>
@@ -314,7 +314,7 @@
             </tr>
             <tr style="height: 50px;">
                 <td>
-                    <button style="font-size: 20px; margin-top: 10px; width: 400px; margin-left: 15px; cursor:pointer;" form="form">Submit</button>
+                    <button style="font-size: 20px; margin-top: 10px; width: 400px; margin-left: 15px; cursor:pointer;" form="form2">Submit</button>
                   
                 </td>
             </tr>
