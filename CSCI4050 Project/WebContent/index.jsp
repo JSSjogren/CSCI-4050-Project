@@ -94,6 +94,9 @@
     		function movie(){
     			window.location.href = "MovieBrowse.jsp";
     		}
+    		function admin(){
+    			window.location.href = "Administrator.jsp";
+    		}
     </script>
 </head>
 
@@ -109,6 +112,18 @@
                 <td><button class="tabButton" onclick="lots();">Our Lots</button></td>
                 <td><button class="tabButton" onclick="food();">Food & Drink</button></td>
                 <td><button class="tabButton">Book Tickets</button></td>
+                <%
+                		session.setAttribute("rank", 1);
+                		if(session != null && session.getAttribute("rank") != null){
+                			int rank = (int) session.getAttribute("rank");
+                			if(rank == 1){
+                		
+                %>
+                <td><button class="tabButton" onclick="admin();">Admin</button></td>
+                <%
+                			}
+                		}
+                %>
                 <td style="width: 300px; font-size: 20px;">
                     <p style="text-align: right; font-family: avenir, times, serif;">
                     <% 
