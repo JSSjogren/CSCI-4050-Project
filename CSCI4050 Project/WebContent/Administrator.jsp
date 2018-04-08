@@ -116,7 +116,7 @@
     
     <div id="addMovie" style="border: 3px solid black;">
     		<p class="register">Add Movie</p>
-    		<form action="" method="get" id="form" style="margin-bottom: 30px;">
+    		<form action="AddMovieController" method="get" id="form" style="margin-bottom: 30px;">
         <table class="registerBox" align="center">
             <caption class="boxTitle">Enter Movie Info</caption>
             <tr>
@@ -232,7 +232,7 @@
             %>
         </table>
         <div></div>
-        <form action="" method="get" style="margin-left: 400px;">
+        <form action="DeleteMovieController" method="get" style="margin-left: 400px;">
         		Enter Movie Name to be deleted: <input type="text" name="movie" style="width: 300px; margin-top: 30px; margin-bottom: 30px"/>
         		<input type="submit" value="Delete" />
         </form>
@@ -240,7 +240,7 @@
     
     <div id="updateMovie" style="border: 3px solid black;">
     		<p class="register">Update Movie</p>
-    		<form action="" method="post" id="form2" style="margin-bottom: 30px;">
+    		<form action="UpdateMovieController" method="get" id="form2" style="margin-bottom: 30px;">
         <table class="registerBox" align="center">
             <caption class="boxTitle">Enter Updated Movie Info</caption>
             <tr>
@@ -373,7 +373,7 @@
 			}
             %>
         </table>
-        <form action="" method="get" style="margin-left: 600px; margin-bottom: 30px;">
+        <form action="UpdateTypeController" method="get" style="margin-left: 600px; margin-bottom: 30px;">
         		UserId to be changed: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/><br>
         		New TypeId: <input type="number" min="1" max="6" name="typeId" style="margin-bottom: 10px;"><br>
         		<input type="submit" value="Change" />
@@ -432,7 +432,7 @@
 			}
             %>
         </table>
-        <form action="" method="get" style="margin-left: 600px; margin-bottom: 30px;">
+        <form action="UpdateStatusController" method="get" style="margin-left: 600px; margin-bottom: 30px;">
         		UserId to be changed: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/><br>
         		New Status: <input type="number" min="0" max="2" name="status" style="margin-bottom: 10px;"><br>
         		<input type="submit" value="Change" />
@@ -491,7 +491,7 @@
 			}
             %>
         </table>
-        <form action="" method="get" style="margin-left: 600px; margin-bottom: 30px;">
+        <form action="DeleteUserController" method="get" style="margin-left: 600px; margin-bottom: 30px;">
         		UserId to be deleted: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/><br>
         		<input type="submit" value="Delete" />
         </form>
@@ -564,7 +564,7 @@
         		</div>
     		</div>
     		<div id="add" style="display: none;">
-    			<form id="addPromo">
+    			<form id="addPromo" action="AddPromoController" method="get">
         		<table align="center">
         			<tr>
         				<td>Add Promotion by Entering the Information Below</td>
@@ -594,7 +594,7 @@
     		</div>
     		<div id="update"  style="display: none;">
     			<form id="updatePromo">
-        		<table align="center">
+        		<table align="center" action="UpdatePromoController" method="get">
         			<tr>
         				<td align="center">Update Promotion by Entering the Promo Code and Updated Info</td>
         			</tr>
@@ -622,7 +622,7 @@
         		</form>
     		</div>
     		<div id="delete" style="display: none;">
-    			<form id="deletePromo">
+    			<form id="deletePromo" action="DeletePromoController" method="get">
         		<table align="center">
         			<tr>
         				<td align="center">Delete Promotion by Entering the Code Below</td>
