@@ -76,19 +76,23 @@
             </tr>
         </table>
     </div>
+    <form action="VerifyController" method="get">
+    <div>
     <p style="text-align: center; font-size: 40px">Verify Account</p>
     <p style="text-align: center; font-size: 25px">A verifcation code has been sent to your email. Type in your verifcation code to confirm your account registration.</p>
     <div>
         <table class="registerBox" style="background-color: lightgray;">
             <tr>
                 <td><p style="font-size: 20px">Enter Code:</p></td>
-                <td><input type="text" size="60px"></td>
+                <td><input type="text" name="code" size="60px"></td>
             </tr>
         </table>
     </div>
     <div style="text-align: center; margin-top: 20px;">
-        <button style="font-size: 20px;">Submit</button>
+        <input type="submit" value="Submit" style="font-size: 20px;" />
     </div>
+    </div>
+    </form>
 </body>
 
 </html>
