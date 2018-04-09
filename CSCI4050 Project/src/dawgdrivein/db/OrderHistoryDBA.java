@@ -21,17 +21,11 @@ public class OrderHistoryDBA {
 	 */
 	public List<Booking> getOrderHistory(int userID)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             List<Booking> orderHistory = (List<Booking>) session.createQuery("SELECT * FROM booking WHERE userID='" + userID + "';").list();
             System.out.println("\n\n Retrieved list of bookings by userID \n");
@@ -42,6 +36,10 @@ public class OrderHistoryDBA {
             System.out.println("error");
             return null;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 		
 	}
 	
@@ -51,17 +49,11 @@ public class OrderHistoryDBA {
 	 */
 	public List<Booking> getOrderHistory()
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             List<Booking> orderHistory = (List<Booking>) session.createQuery("SELECT * FROM booking;").list();
             System.out.println("\n\n Retrieved list of bookings by userID \n");
@@ -72,6 +64,10 @@ public class OrderHistoryDBA {
             System.out.println("error");
             return null;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 }

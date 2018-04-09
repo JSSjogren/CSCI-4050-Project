@@ -13,17 +13,11 @@ public class UserDBA {
 	
 	public boolean emailExists(RegisteredCustomer user)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             RegisteredCustomer checkUser = session.load(RegisteredCustomer.class, user.getEmail());
             if (checkUser.getEmail().equals(user.getEmail()))
@@ -35,21 +29,19 @@ public class UserDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	public boolean saveUser(User user)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
@@ -61,6 +53,10 @@ public class UserDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	public boolean validateUser(String email, String password)
@@ -71,17 +67,11 @@ public class UserDBA {
 	
 	public boolean updateUser(User user)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.saveOrUpdate(user);
             transaction.commit();
@@ -93,21 +83,19 @@ public class UserDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	public boolean deleteUser(User user)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.delete(user);
             transaction.commit();
@@ -119,6 +107,10 @@ public class UserDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	public boolean suspendCustomer(RegisteredCustomer customer)

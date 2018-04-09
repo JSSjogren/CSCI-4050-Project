@@ -18,17 +18,11 @@ public class HallDBA {
 	 */
 	public boolean createHall(Hall hall)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.save(hall);
             transaction.commit();
@@ -40,6 +34,10 @@ public class HallDBA {
             System.out.println("error");
             return false;
         }	
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	/**
@@ -49,17 +47,11 @@ public class HallDBA {
 	 */
 	public boolean updateHall(Hall hall)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.saveOrUpdate(hall);
             transaction.commit();
@@ -70,6 +62,10 @@ public class HallDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	/**
@@ -79,17 +75,11 @@ public class HallDBA {
 	 */
 	public boolean deleteHall(Hall hall)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.delete(hall);
             transaction.commit();
@@ -100,6 +90,10 @@ public class HallDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	/**
@@ -109,17 +103,11 @@ public class HallDBA {
 	 */
 	public Hall retrieveHall(int id)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             Hall hall = (Hall)session.get(Hall.class, id);
             transaction.commit();
@@ -131,5 +119,9 @@ public class HallDBA {
             System.out.println("error");
             return null;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 }
