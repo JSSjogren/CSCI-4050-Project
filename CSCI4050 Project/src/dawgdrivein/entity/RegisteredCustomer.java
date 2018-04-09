@@ -6,30 +6,43 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import dawgdrivein.db.UserDBA;
 
+@Entity
+@Table(name = "User")
 public class RegisteredCustomer extends User {
 
-	private boolean subscription_pref;
+	@Transient
 	private ArrayList<OrderHistory> orderHistory;
+	@Transient
 	private UserDBA userDBA;
 	
+	@Transient
 	CreditCard cc;
 	
-	public RegisteredCustomer(String fn, String ln, String email, String password, String address, int rank, int status, boolean sub_pref)
+	public RegisteredCustomer(String fn, String ln, String email, String password, int rank, int status, boolean sub_pref)
 	{
-		super(0, email, generateHash(password), fn, ln, address, rank, status);
-		this.subscription_pref = sub_pref;
+		super(0, fn, ln, email, generateHash(password), rank, status, sub_pref);
 		userDBA = new UserDBA();
 		cc = new CreditCard();
 	}
 	
-	public RegisteredCustomer(String fn, String ln, String email, String password, String address, int rank, int status, boolean sub_pref, int cardnumber, Date exp_date, String name_on_card, int CCV, String billing_address)
+	public RegisteredCustomer(String fn, String ln, String email, String password, int rank, int status, boolean sub_pref, int cardnumber, Date exp_date, String name_on_card, int CCV, String billing_address)
 	{
-		super(0, email, generateHash(password), fn, ln, address, rank, status);
-		this.subscription_pref = sub_pref;
+		super(0, fn, ln, email, generateHash(password), rank, status, sub_pref);
 		userDBA = new UserDBA();
 		cc = new CreditCard(id, cardnumber, exp_date, name_on_card, CCV, billing_address);
+	}
+	
+	public RegisteredCustomer()
+	{
+		super(0, null, null, null, null, -1, -1, false);
+		userDBA = null;
+		cc = null;
 	}
 	
 	/**
@@ -85,35 +98,9 @@ public class RegisteredCustomer extends User {
 		return userDBA.validateUser(email, generateHash(password));
 	}
 	
-	/**
-	 * Turns the user's password into a hashValue
-	 * 
-	 * @param input the user's password
-	 * @return the hashed version of the user's password
-	 */
-	private static String generateHash(String input) {
-		StringBuilder hash = new StringBuilder();
-
-		try {
-			MessageDigest sha = MessageDigest.getInstance("SHA-1");
-			byte[] hashedBytes = sha.digest(input.getBytes());
-			char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-					'a', 'b', 'c', 'd', 'e', 'f' };
-			for (int idx = 0; idx < hashedBytes.length; ++idx) {
-				byte b = hashedBytes[idx];
-				hash.append(digits[(b & 0xf0) >> 4]);
-				hash.append(digits[b & 0x0f]);
-			}
-		} catch (NoSuchAlgorithmException e) {
-			// handle error here.
-		}
-
-		return hash.toString();
-	}
-	
 	private void changeSubscriptionPreference(boolean pref)
 	{
-		this.subscription_pref = pref;
+		this.sub_pref = pref;
 	}
 	
 	private boolean bookMovie(Showtime showtime, float totalPrice, int adult_tickets, int child_tickets, int senior_tickets, int showtimeID)
@@ -138,8 +125,7 @@ public class RegisteredCustomer extends User {
 		this.firstName = newFN;
 		this.lastName = newLN;
 		this.email = newEmail;
-		this.subscription_pref = newSubPref;
-		this.address = newAddress;
+		this.sub_pref = newSubPref;
 	}
 	
 	private void recoverLostPassword()

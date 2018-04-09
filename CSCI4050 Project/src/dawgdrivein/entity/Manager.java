@@ -2,15 +2,28 @@ package dawgdrivein.entity;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import dawgdrivein.db.UserDBA;
 
+@Entity
+@Table(name = "User")
 public class Manager extends User {
 	
+	@Transient
 	UserDBA userDBA;
 	
-	public Manager(String email, String password, String firstName, String lastName, String address, int rank, int status) {
-		super(0, email, password, firstName, lastName, address, rank, status);
+	public Manager(String email, String password, String firstName, String lastName, int rank, int status) {
+		super(0, firstName, lastName, email, generateHash(password), rank, status, false);
 		userDBA = new UserDBA();
+	}
+	
+	public Manager()
+	{
+		super(0, null, null, null, null, -1, -1, false);
+		userDBA = null;
 	}
 	
 	/**

@@ -1,41 +1,50 @@
 package dawgdrivein.entity;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import dawgdrivein.db.UserDBA;
-
+@MappedSuperclass
+@Table(name = "User")
 public class User {
 
 	//Should allow us to auto-increment the User ID's
 	@Id
-	@GenericGenerator(name="gen",strategy="increment")
-	@GeneratedValue(generator="gen")
-	@Column(name = "id", unique = true, nullable = false, precision = 15, scale = 0)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "UserId")
 	protected int id;
 	
-	protected String email;
-	protected String password;
+	@Column(name = "FirstName")
 	protected String firstName;
+	@Column(name = "LastName")
 	protected String lastName;
-	protected String address;
+	@Column(name = "Email")
+	protected String email;
+	@Column(name = "Password")
+	protected String password;
+	@Column(name = "Status")
 	protected int status;
+	@Column(name = "TypeId")
 	protected int rank;
+	@Column(name = "SubPref")
+	protected boolean sub_pref;
 	
-	public User(int id, String email, String password, String firstName, String lastName, String address, int status, int rank)
+	public User(int id,  String firstName, String lastName, String email, String password,  int rank, int status, boolean sub_pref)
 	{
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.address = address;
 		this.status = status;
 		this.rank = rank;
+		this.sub_pref = sub_pref;
 	}
 	
 	public User()
@@ -45,9 +54,9 @@ public class User {
 		this.password = null;
 		this.firstName = null;
 		this.lastName = null;
-		this.address = null;
 		this.status = -1;
-		this.rank = 01;
+		this.rank = -1;
+		this.sub_pref = false;
 	}
 	
 	public int getId() {
@@ -89,13 +98,61 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
-	public String getAddress() {
-		return address;
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
+	public boolean isSub_pref() {
+		return sub_pref;
+	}
+
+	public void setSub_pref(boolean sub_pref) {
+		this.sub_pref = sub_pref;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", status=" + status + ", rank=" + rank + ", sub_pref=" + sub_pref + "]";
 	}
 	
-	public void setAddress(String address) {
-		this.address = address;
+	/**
+	 * Turns the user's password into a hashValue
+	 * 
+	 * @param input the user's password
+	 * @return the hashed version of the user's password
+	 */
+	protected static String generateHash(String input) {
+		StringBuilder hash = new StringBuilder();
+
+		try {
+			MessageDigest sha = MessageDigest.getInstance("SHA-1");
+			byte[] hashedBytes = sha.digest(input.getBytes());
+			char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+					'a', 'b', 'c', 'd', 'e', 'f' };
+			for (int idx = 0; idx < hashedBytes.length; ++idx) {
+				byte b = hashedBytes[idx];
+				hash.append(digits[(b & 0xf0) >> 4]);
+				hash.append(digits[b & 0x0f]);
+			}
+		} catch (NoSuchAlgorithmException e) {
+			// handle error here.
+		}
+
+		return hash.toString();
 	}
 	
 }
