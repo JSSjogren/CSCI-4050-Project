@@ -55,7 +55,7 @@ public class RegisterController extends HttpServlet {
 		
 		//Status 0 = Inactive, 1 = Active, 2 = Suspended
 		//Create registered customer and save to database
-		RegisteredCustomer rc = new RegisteredCustomer(fn, ln, email, password, address, 4, 0, true);
+		RegisteredCustomer rc = new RegisteredCustomer(fn, ln, email, password, 4, 0, true);
 		rc.saveRegisteredCustomer();
 	}
 }
