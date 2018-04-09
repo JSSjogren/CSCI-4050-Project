@@ -6,7 +6,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import dawgdrivein.entity.Employee;
+import dawgdrivein.entity.Manager;
 import dawgdrivein.entity.RegisteredCustomer;
+import dawgdrivein.entity.SystemAdministrator;
 import dawgdrivein.entity.User;
 
 public class UserDBA {
@@ -37,7 +40,16 @@ public class UserDBA {
 	
 	public boolean saveUser(User user)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = null;
+		if (user.getRank() == 1)
+			sessionFactory = new Configuration().configure().addAnnotatedClass(RegisteredCustomer.class).buildSessionFactory();
+		else if (user.getRank() == 2)
+			sessionFactory = new Configuration().configure().addAnnotatedClass(Employee.class).buildSessionFactory();
+		else if (user.getRank() == 3)
+			sessionFactory = new Configuration().configure().addAnnotatedClass(Manager.class).buildSessionFactory();
+		else if (user.getRank() == 4)
+			sessionFactory = new Configuration().configure().addAnnotatedClass(SystemAdministrator.class).buildSessionFactory();
+		
 		Session session = sessionFactory.openSession();
 		
 		try {

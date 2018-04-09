@@ -39,13 +39,13 @@ public class RegisterController extends HttpServlet {
 		String zipCode = request.getParameter("zip");
 		//value is "yes" if they chose to subscribe
 		String subscribe = request.getParameter("subscribe");
-		int rank = 4;
+		int rank = 1;
 		int status = 0;
 		//todo
 		boolean subscribed = true;
 		
 		//checks if any form fields and empty
-		if(fn.equals("") || ln.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("") || addressStreet.equals("") || city.equals("") || state.equals("") || zipCode.equals("")) {
+		if(fn.equals("") || ln.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("") || addressStreet.equals("") || city.equals("") || state.equals("") || zipCode.equals("") || !password.equals(confirmPassword)) {
 			response.sendRedirect("RegistrationError.html");
 		}
 		//if all fields were entered....move on to handle all information, send verification code, etc...
@@ -55,7 +55,17 @@ public class RegisterController extends HttpServlet {
 		
 		//Status 0 = Inactive, 1 = Active, 2 = Suspended
 		//Create registered customer and save to database
-		RegisteredCustomer rc = new RegisteredCustomer(fn, ln, email, password, 4, 0, true);
-		rc.saveRegisteredCustomer();
+		RegisteredCustomer rc = new RegisteredCustomer(fn, ln, email, password, 1, 0, true);
+		if (!rc.emailExists())
+		{
+			rc.saveRegisteredCustomer();
+			response.sendRedirect("Verification.html");
+		}
+		else
+		{
+			response.sendRedirect("RegistrationError.html");
+		}
+		
+		
 	}
 }
