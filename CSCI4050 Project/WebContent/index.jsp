@@ -100,6 +100,9 @@
     		function profile(){
     			window.location.href = "EditProfile.jsp";
     		}
+    		function movieSelect(){
+    			window.location.href = "MovieSelect.jsp";
+    		}
     </script>
 </head>
 
@@ -114,7 +117,24 @@
                 <td><button class="tabButton" onclick="movie();">Movies</button></td>
                 <td><button class="tabButton" onclick="lots();">Our Lots</button></td>
                 <td><button class="tabButton" onclick="food();">Food & Drink</button></td>
-                <td><button class="tabButton">Book Tickets</button></td>
+                
+                <%
+                		if(session != null && session.getAttribute("user") == null){
+                %>
+                
+                <td><button class="tabButton" onclick="signIn();">Book Tickets</button></td>
+                
+                <%
+                		}
+                		else{
+                %>
+                	 <td><button class="tabButton" onclick="movieSelect();">Book Tickets</button></td>
+                	 
+                	<%
+                		}
+                	
+                	%>
+                
                 <%
                 		if(session != null && session.getAttribute("rank") != null){
                 			int rank = (int) session.getAttribute("rank");
