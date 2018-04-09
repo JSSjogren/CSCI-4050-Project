@@ -48,6 +48,7 @@ public class RegisterController extends HttpServlet {
 		//checks if any form fields and empty
 		if(fn.equals("") || ln.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("") || addressStreet.equals("") || city.equals("") || state.equals("") || zipCode.equals("") || !password.equals(confirmPassword)) {
 			response.sendRedirect("RegistrationError.html");
+			return;
 		}
 		//if all fields were entered....move on to handle all information, send verification code, etc...
 		
@@ -57,16 +58,17 @@ public class RegisterController extends HttpServlet {
 		//Status 0 = Inactive, 1 = Active, 2 = Suspended
 		//Create registered customer and save to database
 		RegisteredCustomer rc = new RegisteredCustomer(fn, ln, email, password, 1, 0, true);
-		if (!rc.emailExists())
+		if (rc.emailExists() == false)
 		{
 			rc.saveRegisteredCustomer();
 			
 			Email verifyEmail = new Email();
 			verifyEmail.verificationEmail(rc);
 			
-			response.sendRedirect("Verification.html");
-			System.out.println("Id: " + rc.getId());
 			request.getSession().setAttribute("userId", rc.getId());
+			response.sendRedirect("Verification.html");
+			
+			System.out.println("Id: " + rc.getId());
 			int id = (Integer)request.getSession().getAttribute("userId");
 			System.out.println("ID in RegistrationController: " + id);
 		}

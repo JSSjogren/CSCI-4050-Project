@@ -41,7 +41,7 @@ public class RegisteredCustomer extends User {
 	public RegisteredCustomer()
 	{
 		super(0, null, null, null, null, -1, -1, false);
-		userDBA = null;
+		userDBA = new UserDBA();
 		cc = null;
 	}
 	
@@ -82,6 +82,7 @@ public class RegisteredCustomer extends User {
 	 */
 	public boolean emailExists()
 	{
+		System.out.println("EmailExists in RegisteredCustomer");
 		return userDBA.emailExists(this);
 	}
 	
@@ -98,7 +99,7 @@ public class RegisteredCustomer extends User {
 	 * @param password the user's password
 	 * @return validation success/failure
 	 */
-	private boolean validate(String email, String password)
+	public RegisteredCustomer validate(String email, String password)
 	{
 		return userDBA.validateUser(email, generateHash(password));
 	}
@@ -149,10 +150,8 @@ public class RegisteredCustomer extends User {
 		return oh.getOrderHistory(id);
 	}
 	
-	private void verification(String enteredNo)
+	public void verification(int userId)
 	{
-		//If the user is inactive
-		if (status == 0 && enteredNo.equals("1234"))
-			status = 1;
+		userDBA.verifyUser(userId);
 	}
 }
