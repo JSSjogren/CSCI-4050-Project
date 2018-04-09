@@ -108,7 +108,7 @@
     		<h1 align="center">My Profile</h1>
     </div>
     <div id="EditProfile">
-    		<form action="" method="post">
+    		<form action="UpdateProfileController" method="post">
         <table class="registerBox">
         		<%
         			try{
@@ -280,13 +280,13 @@
     		</div>
     </div>
     <div id="returnTicket" style="margin-top: 70px;">
-    		<form action="" method="get">
+    		<form action="RefundController" method="get">
     		<table align="center" style="border: 3px solid black; border-collapse: collapse;">
     			<tr>
     				<th style="border: 3px solid black;">Enter BookingId of Order to get Refund</th>
     			</tr>
     			<tr">
-    				<td>BookingId: <input type="text" style="width: 395px; margin-top: 30px; margin-bottom: 30px;" /></td>
+    				<td>BookingId: <input type="text" name="bookingId" style="width: 395px; margin-top: 30px; margin-bottom: 30px;" /></td>
     			</tr>
     			<tr">
     				<td align="center"><input type="submit" value="Submit" style="width: 200px; margin-top: 15px; margin-bottom: 15px;" /></td>
