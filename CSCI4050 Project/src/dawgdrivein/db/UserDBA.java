@@ -38,6 +38,13 @@ public class UserDBA {
 		}
 	}
 	
+	public int getDatabaseId(User user)
+	{
+		
+		return -1;
+	}
+	
+	
 	public boolean saveUser(User user)
 	{
 		SessionFactory sessionFactory = null;
@@ -56,6 +63,7 @@ public class UserDBA {
             // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.save(user);
+            session.flush();
             transaction.commit();
             System.out.println("\n\n Details Added \n");
             return true;
