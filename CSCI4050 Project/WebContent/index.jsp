@@ -97,6 +97,9 @@
     		function admin(){
     			window.location.href = "Administrator.jsp";
     		}
+    		function profile(){
+    			window.location.href = "EditProfile.jsp";
+    		}
     </script>
 </head>
 
@@ -113,7 +116,6 @@
                 <td><button class="tabButton" onclick="food();">Food & Drink</button></td>
                 <td><button class="tabButton">Book Tickets</button></td>
                 <%
-                		session.setAttribute("rank", 1);
                 		if(session != null && session.getAttribute("rank") != null){
                 			int rank = (int) session.getAttribute("rank");
                 			if(rank == 1){
@@ -127,10 +129,18 @@
                 <td style="width: 300px; font-size: 20px;">
                     <p style="text-align: right; font-family: avenir, times, serif;">
                     <% 
+                    	session.setAttribute("user", "Kevin");
                 			if(session != null && session.getAttribute("user") != null){
                 				String name = (String) session.getAttribute("user");
-                				out.print("Hello, " + name);
+                				out.print("Hello, ");
                 		%>
+                		<B onclick="profile();" style="cursor:pointer;">
+                		<%
+                		out.print(session.getAttribute("user"));
+                		%>
+   
+                		</B>
+                			
                 			<span>
                     		<B onclick="signIn();" style="cursor:pointer; margin-right: 5px; position: absolute; left: 1295px; top: 120px;">Log out</B>
                     		</span>
