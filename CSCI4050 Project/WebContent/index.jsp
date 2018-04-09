@@ -138,7 +138,7 @@
                 <%
                 		if(session != null && session.getAttribute("rank") != null){
                 			int rank = (int) session.getAttribute("rank");
-                			if(rank == 1){
+                			if(rank == 4){
                 		
                 %>
                 <td><button class="tabButton" onclick="admin();">Admin</button></td>
@@ -149,13 +149,13 @@
                 <td style="width: 300px; font-size: 20px;">
                     <p style="text-align: right; font-family: avenir, times, serif;">
                     <% 
-                			if(session != null && session.getAttribute("user") != null){
-                				String name = (String) session.getAttribute("user");
+                			if(session != null && session.getAttribute("firstName") != null){
+                				String name = (String) session.getAttribute("firstName");
                 				out.print("Hello, ");
                 		%>
                 		<B onclick="profile();" style="cursor:pointer;">
                 		<%
-                		out.print(session.getAttribute("user"));
+                		out.print(session.getAttribute("firstName"));
                 		%>
    
                 		</B>

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dawgdrivein.entity.RegisteredCustomer;
+
 /**
  * Servlet implementation class VerifyController
  */
@@ -32,6 +34,9 @@ public class VerifyController extends HttpServlet {
 		String code = request.getParameter("code");
 		if (code.equals("1234"))
 		{
+			RegisteredCustomer register = new RegisteredCustomer();
+			register.verification(id);
+			
 			response.sendRedirect("VerifyConfirmation.html");
 		}
 		else
