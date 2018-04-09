@@ -45,6 +45,11 @@ public class RegisteredCustomer extends User {
 		cc = null;
 	}
 	
+	public int getDatabaseId()
+	{
+		return userDBA.getDatabaseId(this);
+	}
+	
 	/**
 	 * The servlet is sending a RegisteredCustomer object to
 	 * the UserDBA class to be stored in persistent memory.

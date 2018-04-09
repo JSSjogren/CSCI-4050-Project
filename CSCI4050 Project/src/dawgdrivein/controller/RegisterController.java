@@ -65,6 +65,10 @@ public class RegisterController extends HttpServlet {
 			verifyEmail.verificationEmail(rc);
 			
 			response.sendRedirect("Verification.html");
+			System.out.println("Id: " + rc.getId());
+			request.getSession().setAttribute("userId", rc.getId());
+			int id = (Integer)request.getSession().getAttribute("userId");
+			System.out.println("ID in RegistrationController: " + id);
 		}
 		else
 		{

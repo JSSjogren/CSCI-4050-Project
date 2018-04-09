@@ -26,7 +26,18 @@ public class VerifyController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int id = (Integer)request.getSession().getAttribute("userId");
+		System.out.println("ID in VerifyController: " + id);
 		String code = request.getParameter("code");
+		if (code.equals("1234"))
+		{
+			response.sendRedirect("VerifyConfirmation.html");
+		}
+		else
+		{
+			response.sendRedirect("Verification.html");
+		}
 	}
 
 	/**
