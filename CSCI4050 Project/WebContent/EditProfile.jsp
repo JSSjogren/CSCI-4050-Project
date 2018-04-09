@@ -120,18 +120,19 @@
         			 	String query = "Select * from User where UserId = '" + user + "'";
         				Statement stmt = conn.createStatement();
         				ResultSet rs = stmt.executeQuery(query);
-        				rs.next();
-        				String fn = rs.getString("FirstName");
-        				String ln = rs.getString("LastName");
-        				String email = rs.getString("Email");
-  					query = "Select * from Address where UserId = '" + user + "'";
-  					Statement stmtTwo = conn.createStatement();
-  					ResultSet rsTwo = stmtTwo.executeQuery(query);
-  					String street = rsTwo.getString("Street");
-  					String city = rsTwo.getString("city");
-  					String state = rsTwo.getString("State");
-  					String zip = rsTwo.getString("Zip");
-        				
+        				while(rs.next()){
+        					String fn = rs.getString("FirstName");
+        					String ln = rs.getString("LastName");
+        					String email = rs.getString("Email");
+  						query = "Select * from Address where UserId = '" + user + "'";
+  						Statement stmtTwo = conn.createStatement();
+  						ResultSet rsTwo = stmtTwo.executeQuery(query);
+  						String street = rsTwo.getString("Street");
+  						String city = rsTwo.getString("city");
+  						String state = rsTwo.getString("State");
+  						String zip = rsTwo.getString("Zip");
+  						break;
+        				}
         				conn.close();
         			}catch(Exception e){
         				e.printStackTrace();
@@ -196,9 +197,8 @@
                 <td><input type="checkbox" name="subscribe" value="yes" style="margin-left: 10px; margin-top: 15px;"> Subscribe to Promotions</td>
             </tr>
             <tr style="height: 50px;">
-                <td>
-                    <button style="margin-left: 40px; margin-right: 90px; font-size: 20px; margin-top: 10px;">Submit Changes</button>
-                    <button style="font-size: 20px">Cancel</button>
+                <td align="center">
+                    <input type="submit" value="Submit Changes" style="font-size: 20px;"/>
                 </td>
             </tr>
         </table>
