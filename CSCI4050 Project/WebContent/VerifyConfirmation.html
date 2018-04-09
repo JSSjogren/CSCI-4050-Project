@@ -49,6 +49,14 @@
         }
         
     </style>
+    <script>
+    function signIn(){
+		window.location.href = "signIn.html";
+	}
+    function home(){
+		window.location.href = "index.jsp";
+	}
+    </script>
 </head>
 
 <body>
@@ -59,17 +67,14 @@
                 <td>
                     <h1 class="title">Dawg Drive-in</h1>
                 </td>
-                <td style="width: 900px; font-size: 20px;">
-                <p style="text-align: right">Already have an account? <span><B>SIGN IN</B></span></p>
-                </td>
             </tr>
         </table>
     </div>
     <p class="subTitle">Account Verified!</p>
     <p class="normalText" style="margin-left: 80px; margin-right: 80px;">Congratulations! Your account has been successfully verified. You may now log into you new account using your email and password. As a new user, you may now book tickets and apply promotions to your orders.</p>
-    <p class="normalText">Click <b>HERE</b> to return to Homepage</p>
+    <p class="normalText">Click <b style="cursor:pointer;" onclick="home();">HERE</b> to return to Homepage</p>
     <p class="normalText">OR</p>
-    <p class="normalText">Click <b>HERE</b> to sign-in to your new account</p>
+    <p class="normalText">Click <b style="cursor:pointer;" onclick="signIn();">HERE</b> to sign-in to your new account</p>
 </body>
 
 </html>
