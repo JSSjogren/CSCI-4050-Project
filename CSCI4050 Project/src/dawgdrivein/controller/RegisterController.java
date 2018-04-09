@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dawgdrivein.entity.Email;
 import dawgdrivein.entity.RegisteredCustomer;
 import dawgdrivein.entity.User;
 
@@ -59,6 +60,10 @@ public class RegisterController extends HttpServlet {
 		if (!rc.emailExists())
 		{
 			rc.saveRegisteredCustomer();
+			
+			Email verifyEmail = new Email();
+			verifyEmail.verificationEmail(rc);
+			
 			response.sendRedirect("Verification.html");
 		}
 		else
