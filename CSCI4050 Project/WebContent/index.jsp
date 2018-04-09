@@ -129,7 +129,6 @@
                 <td style="width: 300px; font-size: 20px;">
                     <p style="text-align: right; font-family: avenir, times, serif;">
                     <% 
-                    	session.setAttribute("user", "Kevin");
                 			if(session != null && session.getAttribute("user") != null){
                 				String name = (String) session.getAttribute("user");
                 				out.print("Hello, ");
