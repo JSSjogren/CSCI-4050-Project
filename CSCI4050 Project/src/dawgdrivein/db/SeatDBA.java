@@ -17,17 +17,11 @@ public class SeatDBA {
 	
 	public boolean saveReservedSeat(Seat seat)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.save(seat);
             transaction.commit();
@@ -39,21 +33,19 @@ public class SeatDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	public boolean deleteReservedSeat(Seat seat)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.delete(seat);
             transaction.commit();
@@ -65,21 +57,19 @@ public class SeatDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	public boolean isSeatAvailable(Seat seat)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             
             Seat checkSeat = (Seat) session.createQuery("SELECT * FROM seat WHERE hallID='" + seat.getHallID() + "' AND seatNo='" + seat.getSeat() + "';");
@@ -94,5 +84,9 @@ public class SeatDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 }

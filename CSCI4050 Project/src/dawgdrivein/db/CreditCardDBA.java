@@ -19,17 +19,11 @@ public class CreditCardDBA {
 	 */
 	public boolean saveCreditCard(CreditCard cc)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.save(cc);
             transaction.commit();
@@ -41,6 +35,10 @@ public class CreditCardDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 
 	/**
@@ -50,17 +48,11 @@ public class CreditCardDBA {
 	 */
 	public boolean updateCreditCard(CreditCard cc)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.delete(cc);
             transaction.commit();
@@ -72,6 +64,10 @@ public class CreditCardDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	/**
@@ -81,17 +77,11 @@ public class CreditCardDBA {
 	 */
 	public boolean deleteCreditCard(CreditCard cc)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.saveOrUpdate(cc);
             transaction.commit();
@@ -103,6 +93,10 @@ public class CreditCardDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	/**
@@ -112,17 +106,11 @@ public class CreditCardDBA {
 	 */
 	public CreditCard retrieveCreditCard(int id)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             CreditCard cc = (CreditCard)session.get(CreditCard.class, id);
             transaction.commit();
@@ -134,6 +122,10 @@ public class CreditCardDBA {
             System.out.println("error");
             return null;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 }
 

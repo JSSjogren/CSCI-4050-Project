@@ -18,17 +18,11 @@ public class MovieDBA {
 	 */
 	public boolean saveMovie(Movie movie)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.save(movie);
             transaction.commit();
@@ -40,6 +34,10 @@ public class MovieDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	/**
@@ -49,17 +47,11 @@ public class MovieDBA {
 	 */
 	public boolean updateMovie(Movie movie)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.saveOrUpdate(movie);
             transaction.commit();
@@ -71,6 +63,10 @@ public class MovieDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 
 	/**
@@ -80,17 +76,11 @@ public class MovieDBA {
 	 */
 	public boolean deleteMovie(Movie movie)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             session.delete(movie);
             transaction.commit();
@@ -102,6 +92,10 @@ public class MovieDBA {
             System.out.println("error");
             return false;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 	
 	/**
@@ -111,17 +105,11 @@ public class MovieDBA {
 	 */
 	public Movie retrieveMovie(int id)
 	{
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
 		try {
-            // 1. configuring hibernate
-            Configuration configuration = new Configuration().configure();
- 
-            // 2. create sessionfactory
-            SessionFactory sessionFactory = configuration.buildSessionFactory();
- 
-            // 3. Get Session object
-            Session session = sessionFactory.openSession();
- 
-            // 4. Starting Transaction
+            // Starting Transaction
             Transaction transaction = session.beginTransaction();
             Movie movie = (Movie)session.get(Movie.class, id);
             transaction.commit();
@@ -133,5 +121,9 @@ public class MovieDBA {
             System.out.println("error");
             return null;
         }
+		finally
+		{
+			sessionFactory.close();
+		}
 	}
 }
