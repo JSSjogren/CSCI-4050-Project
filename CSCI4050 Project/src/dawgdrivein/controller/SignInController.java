@@ -56,6 +56,7 @@ public class SignInController extends HttpServlet {
 		{
 			System.out.println("Cust null");
 			response.sendRedirect("SignInError.html");
+			return;
 		}
 		
 		//Setup session so that we can get important attributes of the signed in user
