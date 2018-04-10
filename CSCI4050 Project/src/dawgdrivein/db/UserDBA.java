@@ -128,7 +128,6 @@ public class UserDBA {
 			resultSet.beforeFirst();
 			while (resultSet.next())
 			{
-				System.out.println("Pls");
 				int userId = resultSet.getInt("userId");
 				int userType = resultSet.getInt("typeId");
 				if (resultSet.getString("password").equals(password))
