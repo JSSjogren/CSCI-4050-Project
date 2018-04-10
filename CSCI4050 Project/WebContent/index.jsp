@@ -161,7 +161,10 @@
                 		</B>
                 			
                 			<span>
-                    		<B onclick="signIn();" style="cursor:pointer; margin-right: 5px; position: absolute; left: 1295px; top: 120px;">Log out</B>
+                			<!-- <form id="form" method="post" action="SignInController"> -->
+                			<a href="LogoutController" accesskey="1" title="" style="color: black; text-decoration: none; cursor:pointer; margin-right: 5px; position: absolute; left: 1295px; top: 120px;">Logout</a>
+                    		<!-- <B onclick="signIn();" style="cursor:pointer; margin-right: 5px; position: absolute; left: 1295px; top: 120px;">Log out</B> -->
+                    		<!-- </form> -->
                     		</span>
                 		<%
                 			}
