@@ -156,6 +156,10 @@
                 		<B onclick="profile();" style="cursor:pointer;">
                 		<%
                 		out.print(session.getAttribute("firstName"));
+                		
+                		int rank = (int) session.getAttribute("rank");
+                			if(rank!=4){
+                		
                 		%>
    
                 		</B>
@@ -167,6 +171,25 @@
                     		<!-- </form> -->
                     		</span>
                 		<%
+                			}
+                			else{
+                				
+                		%>
+                			<span>
+                			<!-- <form id="form" method="post" action="SignInController"> -->
+                			<a href="LogoutController" accesskey="1" title="" style="color: black; text-decoration: none; cursor:pointer; margin-right: 5px; position: absolute; left: 1345px; top: 160px;">Logout</a>
+                    		<!-- <B onclick="signIn();" style="cursor:pointer; margin-right: 5px; position: absolute; left: 1295px; top: 120px;">Log out</B> -->
+                    		<!-- </form> -->
+                    		</span>
+                		
+                		
+                		<% 
+                			
+                				
+                				
+                			}
+                		
+                	
                 			}
                 			else{
                 		%>
