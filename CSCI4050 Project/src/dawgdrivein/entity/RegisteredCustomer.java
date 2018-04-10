@@ -18,8 +18,6 @@ public class RegisteredCustomer extends User {
 
 	@Transient
 	private ArrayList<OrderHistory> orderHistory;
-	@Transient
-	private UserDBA userDBA;
 	
 	@Transient
 	CreditCard cc;
@@ -27,21 +25,18 @@ public class RegisteredCustomer extends User {
 	public RegisteredCustomer(String fn, String ln, String email, String password, int rank, int status, boolean sub_pref)
 	{
 		super(0, fn, ln, email, generateHash(password), rank, status, sub_pref);
-		userDBA = new UserDBA();
 		cc = new CreditCard();
 	}
 	
 	public RegisteredCustomer(String fn, String ln, String email, String password, int rank, int status, boolean sub_pref, int cardnumber, Date exp_date, String name_on_card, int CCV, String billing_address)
 	{
 		super(0, fn, ln, email, generateHash(password), rank, status, sub_pref);
-		userDBA = new UserDBA();
 		cc = new CreditCard(id, cardnumber, exp_date, name_on_card, CCV, billing_address);
 	}
 	
 	public RegisteredCustomer()
 	{
 		super(0, null, null, null, null, -1, -1, false);
-		userDBA = new UserDBA();
 		cc = null;
 	}
 	
@@ -91,18 +86,6 @@ public class RegisteredCustomer extends User {
 		return userDBA.suspendCustomer(this);
 	}
 	
-	/**
-	 * Checks to see if passed in user information
-	 * can be validated for login.
-	 * 
-	 * @param email the user's primary key
-	 * @param password the user's password
-	 * @return validation success/failure
-	 */
-	public RegisteredCustomer validate(String email, String password)
-	{
-		return userDBA.validateUser(email, generateHash(password));
-	}
 	
 	private void changeSubscriptionPreference(boolean pref)
 	{

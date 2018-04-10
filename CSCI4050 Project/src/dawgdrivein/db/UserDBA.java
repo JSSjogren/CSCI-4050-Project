@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,6 +17,7 @@ import dawgdrivein.entity.Manager;
 import dawgdrivein.entity.RegisteredCustomer;
 import dawgdrivein.entity.SystemAdministrator;
 import dawgdrivein.entity.User;
+import dawgdrivein.hibernate.HibernateUtil;
 
 public class UserDBA {
 
@@ -100,7 +102,7 @@ public class UserDBA {
 		}
 	}
 
-	public RegisteredCustomer validateUser(String email, String password)
+	public User validateUser(String email, String password)
 	{
 		Connection connect = null;
 		Statement statement = null;
@@ -122,7 +124,6 @@ public class UserDBA {
 				return null;
 			}
 			
-			System.out.println("Past resultSet null");
 			//If ResultSet is empty the email doesn't exist, otherwise it does.
 			resultSet.beforeFirst();
 			while (resultSet.next())
@@ -132,20 +133,14 @@ public class UserDBA {
 				int userType = resultSet.getInt("typeId");
 				if (resultSet.getString("password").equals(password))
 				{
-					SessionFactory sessionFactory =  getAnnotatedSessionfactory(userType); //Creating a session factory object
-					Session session = sessionFactory.openSession(); //Creating a session object for inserting users  object to the database table User
-					try
+					resultSet = statement.executeQuery("SELECT User.userId, User.firstName, User.lastName, User.status, User.typeId, User.subpref FROM User WHERE email = '" + email + "' AND password = '" + password + "';");
+					while (resultSet.next())
 					{
-						Transaction trans = session.beginTransaction();
-						RegisteredCustomer cust = (RegisteredCustomer) session.get(RegisteredCustomer.class, userId);
-						trans.commit();
-						return cust;
-					} catch (Exception e)
-					{
-						e.printStackTrace();
-						return null;
+						User user = new User(resultSet.getInt("userId"), resultSet.getString("firstName"), resultSet.getString("lastName"), email, password, resultSet.getInt("typeId"), resultSet.getInt("Status"), resultSet.getBoolean("subpref"));
+						return user;
 					}
 				}
+				return null;
 			}
 
 		} catch (Exception e)
@@ -181,19 +176,19 @@ public class UserDBA {
 		}
 	}
 	
-	public SessionFactory getAnnotatedSessionfactory(int rank)
-	{
-		if (rank == 1)
-			return new Configuration().configure().addAnnotatedClass(RegisteredCustomer.class).buildSessionFactory();
-		else if (rank == 2)
-			return new Configuration().configure().addAnnotatedClass(Employee.class).buildSessionFactory();
-		else if (rank == 3)
-			return new Configuration().configure().addAnnotatedClass(Manager.class).buildSessionFactory();
-		else if (rank == 4)
-			return new Configuration().configure().addAnnotatedClass(SystemAdministrator.class).buildSessionFactory();
-		else
-			return null;
-	}
+//	public SessionFactory getAnnotatedSessionfactory(int rank)
+//	{
+//		if (rank == 1)
+//			return new Configuration().configure().addAnnotatedClass(RegisteredCustomer.class).buildSessionFactory();
+//		else if (rank == 2)
+//			return new Configuration().configure().addAnnotatedClass(Employee.class).buildSessionFactory();
+//		else if (rank == 3)
+//			return new Configuration().configure().addAnnotatedClass(Manager.class).buildSessionFactory();
+//		else if (rank == 4)
+//			return new Configuration().configure().addAnnotatedClass(SystemAdministrator.class).buildSessionFactory();
+//		else
+//			return null;
+//	}
 
 	public boolean deleteUser(User user)
 	{

@@ -1,5 +1,6 @@
 package dawgdrivein.entity;
 
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -9,10 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import dawgdrivein.db.UserDBA;
 
 @MappedSuperclass
 @Table(name = "User")
-public class User {
+public class User implements Serializable {
 
 	//Should allow us to auto-increment the User ID's
 	@Id
@@ -34,6 +38,8 @@ public class User {
 	protected int rank;
 	@Column(name = "SubPref")
 	protected boolean sub_pref;
+	@Transient
+	protected UserDBA userDBA;
 	
 	public User(int id,  String firstName, String lastName, String email, String password,  int rank, int status, boolean sub_pref)
 	{
@@ -45,6 +51,8 @@ public class User {
 		this.status = status;
 		this.rank = rank;
 		this.sub_pref = sub_pref;
+		
+		userDBA = new UserDBA();
 	}
 	
 	public User()
@@ -57,6 +65,8 @@ public class User {
 		this.status = -1;
 		this.rank = -1;
 		this.sub_pref = false;
+		
+		userDBA = new UserDBA();
 	}
 	
 	public int getId() {
@@ -153,6 +163,19 @@ public class User {
 		}
 
 		return hash.toString();
+	}
+	
+	/**
+	 * Checks to see if passed in user information
+	 * can be validated for login.
+	 * 
+	 * @param email the user's primary key
+	 * @param password the user's password
+	 * @return validation success/failure
+	 */
+	public User validate(String email, String password)
+	{
+		return (User) userDBA.validateUser(email, generateHash(password));
 	}
 	
 }

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dawgdrivein.entity.RegisteredCustomer;
+import dawgdrivein.entity.User;
 
 /**
  * Servlet implementation class SignInController
@@ -48,20 +48,22 @@ public class SignInController extends HttpServlet {
 		}
 		
 		
-		RegisteredCustomer customer = new RegisteredCustomer();
-		customer = customer.validate(email, password);
+		User user = new User();
+		System.out.println(email + " " + password);
+		user = user.validate(email, password);
 		
-		if (customer == null)
+		if (user == null)
+		{
+			System.out.println("Cust null");
 			response.sendRedirect("SignInError.html");
+		}
 		
 		//Setup session so that we can get important attributes of the signed in user
-		request.getSession().setAttribute("userId", customer.getId());
-		request.getSession().setAttribute("firstName", customer.getFirstName());
-		request.getSession().setAttribute("lastName", customer.getLastName());
-		request.getSession().setAttribute("rank", customer.getRank());
-		request.getSession().setAttribute("status", customer.getStatus());
-		
-		System.out.println(request.getSession().getAttribute("firstName"));
+		request.getSession().setAttribute("userId", user.getId());
+		request.getSession().setAttribute("firstName", user.getFirstName());
+		request.getSession().setAttribute("lastName", user.getLastName());
+		request.getSession().setAttribute("rank", user.getRank());
+		request.getSession().setAttribute("status", user.getStatus());
 		
 		response.sendRedirect("index.jsp");
 		
