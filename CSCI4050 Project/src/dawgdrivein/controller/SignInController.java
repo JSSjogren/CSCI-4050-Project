@@ -57,6 +57,12 @@ public class SignInController extends HttpServlet {
 			response.sendRedirect("SignInError.html");
 			return;
 		}
+		if (user.isTemporary())
+		{
+			response.sendRedirect("ChangePassword.html");
+			request.getSession().setAttribute("userId", user.getId());
+			return;
+		}
 		
 		//Setup session so that we can get important attributes of the signed in user
 		request.getSession().setAttribute("userId", user.getId());

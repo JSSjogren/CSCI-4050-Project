@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dawgdrivein.entity.User;
+
 /**
  * Servlet implementation class PasswordChangeController
  */
@@ -36,6 +38,14 @@ public class PasswordChangeController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String password = request.getParameter("password");
 		String confirm = request.getParameter("confirmPassword");
+		
+		if (password.equals(confirm))
+		{
+			User user = new User();
+			user.setId((int)request.getSession().getAttribute("userId"));
+			user.changePassword(password, confirm);
+			response.sendRedirect("ChangePasswordConfirmation.html");
+		}
 	}
 
 }
