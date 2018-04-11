@@ -45,25 +45,25 @@ public class SystemAdministrator extends User {
 	private boolean updateMemberInfo(String newEmail, String newPassword, String newFirstName, String newLastName, int newRank, int newStatus, boolean newSubscription_pref)
 	{
 		//Is the member being updated a RegisteredCustomer?
-		if (rank == 1)
+		if (rank == 4)
 		{
 			RegisteredCustomer customer = new RegisteredCustomer(newFirstName, newLastName, newEmail, newPassword, newRank, newStatus, newSubscription_pref);
 			return customer.updateCustomer();
 		}
 		//Is the member being updated an Employee?
-		else if (rank == 2)
+		else if (rank == 3)
 		{
 			Employee employee = new Employee(newFirstName, newLastName, newEmail, newPassword, newRank, newStatus);
 			return employee.updateEmployee();
 		}
 		//Is the member being updated a Manager?
-		else if (rank == 3)
+		else if (rank == 2)
 		{
 			Manager manager = new Manager(newFirstName, newLastName, newEmail, newPassword, newRank, newStatus);
 			return manager.updateManager();
 		}
-		//Is the member being updated a SystemAdmin?
-		else if (rank == 4)
+		//Is the member being updated a User?
+		else if (rank == 1)
 			return false;
 
 		return false;
@@ -72,25 +72,25 @@ public class SystemAdministrator extends User {
 	private boolean deleteMemberInfo(int id, String email, String password, String firstName, String lastName, int rank, int status, boolean subscription_pref)
 	{
 		//Is the member being deleted a RegisteredCustomer?
-		if (rank == 1)
+		if (rank == 4)
 		{
 			RegisteredCustomer customer = new RegisteredCustomer(firstName, lastName, email, password, rank, status, subscription_pref);
 			return customer.deleteCustomer();
 		}
 		//Is the member being deleted an Employee?
-		else if (rank == 2)
+		else if (rank == 3)
 		{
 			Employee employee = new Employee(firstName, lastName, email, password, rank, status);
 			return employee.deleteEmployee();
 		}
 		//Is the member being deleted a Manager?
-		else if (rank == 3)
+		else if (rank == 2)
 		{
 			Manager manager = new Manager(firstName, lastName, email, password, rank, status);
 			return manager.deleteManager();
 		}
-		//Is the member being deleted a SystemAdmin?
-		else if (rank == 4)
+		//Is the member being deleted a User?
+		else if (rank == 1)
 			return false;
 
 		return false;
@@ -98,7 +98,7 @@ public class SystemAdministrator extends User {
 
 	private boolean suspendMemberAcct(String email, String password, String firstName, String lastName, int rank, int status, boolean subscription_pref)
 	{
-		if (rank == 1)
+		if (rank == 4)
 		{
 			RegisteredCustomer customer = new RegisteredCustomer(firstName, lastName, email, password, rank, status, subscription_pref);
 			return customer.suspendCustomer();
