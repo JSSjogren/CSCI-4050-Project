@@ -92,10 +92,11 @@ public class RegisteredCustomer extends User {
 		this.sub_pref = pref;
 	}
 	
-	private boolean bookMovie(Showtime showtime, float totalPrice, int adult_tickets, int child_tickets, int senior_tickets, int showtimeID)
+	private boolean bookMovie(Showtime showtime, float totalPrice, int noOfTickets, int showtimeID)
 	{
-		Booking booking = new Booking(id, 1, totalPrice, adult_tickets, child_tickets, senior_tickets, showtimeID);
-		return booking.saveBooking();
+//		Booking booking = new Booking(id, 1, totalPrice, noOfTickets, showtimeID);
+//		return booking.saveBooking();
+		return false;
 	}
 	
 	private void checkout()
