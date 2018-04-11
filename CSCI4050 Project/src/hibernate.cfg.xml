@@ -1,0 +1,35 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+   
+  	  <property name="hibernate.current_session_context_class">thread</property>
+   
+      <property name = "hibernate.dialect">
+         org.hibernate.dialect.MySQL5Dialect
+      </property>
+      
+      <property name = "hibernate.connection.driver_class">
+         com.mysql.jdbc.Driver
+      </property>
+            
+      <property name = "hibernate.connection.url">
+         jdbc:mysql://69.89.31.237/ristiod8_dawgcinema
+      </property>
+      
+      <property name = "hibernate.connection.username">
+         ristiod8_dcuser
+      </property>
+      
+      <!-- Update with your password -->
+      <property name = "hibernate.connection.password">
+         cinemadb
+      </property>
+      
+      <property name = "show_sql">
+      	true
+      </property>
+      
+   </session-factory>
+</hibernate-configuration>
