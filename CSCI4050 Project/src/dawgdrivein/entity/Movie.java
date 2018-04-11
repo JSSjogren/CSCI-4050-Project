@@ -3,22 +3,58 @@ package dawgdrivein.entity;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import dawgdrivein.db.MovieDBA;
 
+@Entity
+@Table(name = "Movie")
 public class Movie {
 
+	//Should allow us to auto-increment the movieId's
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "MovieId")
 	private int id;
+	
+	@Column(name = "Genre")
 	private String genre;
+
+	@Column(name = "Cast")
 	private String cast;
+	
+	@Column(name = "Director")
 	private String director;
+	
+	@Column(name = "Producer")
 	private String producer;
+	
+	@Column(name = "Description")
 	private String description;
+	
+	@Column(name = "TrailerPicture")
 	private String trailer_picture;
+	
+	@Column(name = "TrailerVideo")
 	private String trailer_video;
+	
+	@Column(name = "MpaaRating")
 	private String MPAA_rating;
+	
+//	@Column(name = "Status")
+	@Transient
 	private int status;
+	
+	@Transient
 	ArrayList<Showtime> showtimes;
 	
+	@Transient
 	MovieDBA movieDBA;
 	
 	//Movie must have at least 1 showtime

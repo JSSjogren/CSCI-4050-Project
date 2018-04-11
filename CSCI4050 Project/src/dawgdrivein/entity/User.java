@@ -5,17 +5,21 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import dawgdrivein.db.UserDBA;
 
-@MappedSuperclass
-@Table(name = "User")
+@Entity
+@Table(name="User")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+
 public class User implements Serializable {
 
 	//Should allow us to auto-increment the User ID's
