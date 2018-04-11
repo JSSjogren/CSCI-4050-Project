@@ -1,6 +1,6 @@
 package dawgdrivein.db;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -175,47 +175,50 @@ public class UserDBA {
 		}
 	}
 	
-//	public SessionFactory getAnnotatedSessionfactory(int rank)
-//	{
-//		if (rank == 1)
-//			return new Configuration().configure().addAnnotatedClass(RegisteredCustomer.class).buildSessionFactory();
-//		else if (rank == 2)
-//			return new Configuration().configure().addAnnotatedClass(Employee.class).buildSessionFactory();
-//		else if (rank == 3)
-//			return new Configuration().configure().addAnnotatedClass(Manager.class).buildSessionFactory();
-//		else if (rank == 4)
-//			return new Configuration().configure().addAnnotatedClass(SystemAdministrator.class).buildSessionFactory();
-//		else
-//			return null;
-//	}
-
 	public boolean deleteUser(User user)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		Session session = sessionFactory.openSession();
-
+		Connection connect = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
 		try {
-			// Starting Transaction
-			Transaction transaction = session.beginTransaction();
-			session.delete(user);
-			transaction.commit();
-			System.out.println("\n\n Details Deleted \n");
-			return true;
+			//Drop on ground
+			Class.forName("com.mysql.jdbc.Driver");
+			// Setup the connection with the DB
+			connect = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
 
-		} catch (HibernateException e) {
-			System.out.println(e.getMessage());
-			System.out.println("error");
-			return false;
-		}
-		finally
+			// Statements allow to issue SQL queries to the database
+			statement = connect.createStatement();
+			// Removes the row where the primary key matches the user's ID
+			statement.executeUpdate("DELETE FROM User WHERE userId = " + user.getId() + ";");
+			return true;
+		} catch (Exception e)
 		{
-			sessionFactory.close();
+			e.printStackTrace();
+			return false;
 		}
 	}
 
-	public boolean suspendCustomer(RegisteredCustomer customer)
+	public boolean suspendCustomer(User user)
 	{
-		return true;
+		Connection connect = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+			//Drop on ground
+			Class.forName("com.mysql.jdbc.Driver");
+			// Setup the connection with the DB
+			connect = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+
+			// Statements allow to issue SQL queries to the database
+			statement = connect.createStatement();
+			// Update a user's status to 2 (suspended)
+			statement.executeUpdate("UPDATE TABLE User SET status = 2 WHERE userId = " + user.getId() + ";");
+			return true;
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public void verifyUser(int id)
@@ -232,6 +235,91 @@ public class UserDBA {
 			statement = connect.createStatement();
 			// Query to update user in DB to set them as active
 			statement.executeUpdate("UPDATE User SET status = 1 WHERE UserId = " + id + ";");
+
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean setTemporaryPassword(String email, String temporaryPassword)
+	{
+		Connection connect = null;
+		Statement statement = null;
+		int userId = -1;
+		try {
+			//Drop on ground
+			Class.forName("com.mysql.jdbc.Driver");
+			// Setup the connection with the DB
+			connect = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+
+			// Statements allow to issue SQL queries to the database
+			statement = connect.createStatement();
+			
+			ResultSet rs = statement.executeQuery("SELECT User.userId FROM User WHERE email = '" + email + "';");
+			
+			if (!rs.next())
+				return false;
+			rs.beforeFirst();
+			
+			while (rs.next())
+			{
+				userId = rs.getInt("userId");
+			}
+			
+			// Query to update user in DB to set their temporary password
+			statement.executeUpdate("UPDATE User SET password = '" + temporaryPassword + "' WHERE UserId = " + userId + ";");
+			statement.executeUpdate("UPDATE User SET temporary = true WHERE UserId = " + userId + ";");
+			return true;
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean isTemporary(int id)
+	{
+		Connection connect = null;
+		Statement statement = null;
+		try {
+			//Drop on ground
+			Class.forName("com.mysql.jdbc.Driver");
+			// Setup the connection with the DB
+			connect = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+
+			// Statements allow to issue SQL queries to the database
+			statement = connect.createStatement();
+			// Query to update user in DB to set them as active
+			ResultSet rs = statement.executeQuery("SELECT User.temporary FROM User WHERE UserId = " + id + ";");
+			while (rs.next())
+			{
+				boolean temporary = rs.getBoolean("temporary");
+				return temporary;
+			}
+			return false;
+
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public void changePassword(int id, String password) {
+		Connection connect = null;
+		Statement statement = null;
+		try {
+			//Drop on ground
+			Class.forName("com.mysql.jdbc.Driver");
+			// Setup the connection with the DB
+			connect = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+
+			// Statements allow to issue SQL queries to the database
+			statement = connect.createStatement();
+			// Query to update user in DB to set them as active
+			statement.executeUpdate("UPDATE User SET password = '" + password + "' WHERE UserId = " + id + ";");
+			statement.executeUpdate("UPDATE User SET temporary = false WHERE UserId = " + id + ";");
 
 		} catch (Exception e)
 		{

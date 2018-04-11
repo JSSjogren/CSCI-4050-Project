@@ -67,10 +67,10 @@ public class Email {
 		}
 	}
 	
-	public String temporaryPasswordEmail(User user)
+	public String temporaryPasswordEmail(String userEmail)
 	{
 		// Recipient's email ID needs to be mentioned.
-		String to = user.getEmail();
+		String to = userEmail;
 
 		// Sender's email ID needs to be mentioned
 		String from = "dawgdrivein@gmail.com";
@@ -112,7 +112,7 @@ public class Email {
 			String tempPassword = generateRandomPassword();
 			
 			// Now set the actual message
-			message.setText("Hello " + user.getFirstName() +  ", \n\nYour temporary password is: " + tempPassword + ". Please login using this password to enter the change password form.\n\n Regards,\nDawg Drive In Development Team");
+			message.setText("Hello, \n\nYour temporary password is: " + tempPassword + ". Please login using this password to enter the change password form.\n\n Regards,\nDawg Drive In Development Team");
 
 			// Send message
 			Transport.send(message);
