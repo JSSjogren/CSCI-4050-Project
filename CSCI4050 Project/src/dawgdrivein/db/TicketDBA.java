@@ -12,7 +12,7 @@ public class TicketDBA {
 
 	public boolean saveTicket(Ticket ticket)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Ticket.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		try {

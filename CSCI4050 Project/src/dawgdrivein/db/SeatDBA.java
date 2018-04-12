@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 
 import dawgdrivein.entity.Booking;
 import dawgdrivein.entity.Seat;
+import dawgdrivein.entity.Showtime;
 import dawgdrivein.entity.Seat;
 
 public class SeatDBA {
@@ -17,7 +18,7 @@ public class SeatDBA {
 	
 	public boolean saveReservedSeat(Seat seat)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Seat.class).addAnnotatedClass(Showtime.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		try {

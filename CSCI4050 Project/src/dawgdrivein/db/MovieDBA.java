@@ -18,7 +18,7 @@ public class MovieDBA {
 	 */
 	public boolean saveMovie(Movie movie)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Movie.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		try {

@@ -2,6 +2,9 @@ package dawgdrivein.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -11,11 +14,13 @@ import dawgdrivein.db.TicketDBA;
 @Table(name = "Ticket")
 public class Ticket {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "TicketId")
+	private int ticketNo;
+	
 	@Column(name = "BookingId")
 	private int bookingID;
-	
-	@Column(name = "TicketNo")
-	private int ticketNo;
 	
 	@Column(name = "ShowtimeId")
 	private int showtimeID;

@@ -1,5 +1,6 @@
 package dawgdrivein.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -20,22 +21,21 @@ import dawgdrivein.db.ShowtimeDBA;
 @Table (name = "Showtime")
 public class Showtime {
 
-	@Column(name = "exp_date", columnDefinition="DATETIME")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date showtime;
+	@Column(name = "TimeDate", columnDefinition="DATETIME")
+	private Timestamp showtime;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ShowId")
 	private int id;
 	
-	@ManyToOne(targetEntity = Movie.class)
+	@Column(name = "MovieId")
 	private int movieId;
 	
 	@Transient
 	private ShowtimeDBA showtimeDBA;
 	
-	public Showtime(int id, Date showtime, int movieId) 
+	public Showtime(int id, Timestamp showtime, int movieId) 
 	{
 		this.id = id;
 		this.showtime = showtime;
@@ -66,11 +66,11 @@ public class Showtime {
 		return showtimeDBA.deleteShowtime(this);
 	}
 
-	public Date getShowtime() {
+	public Timestamp getShowtime() {
 		return showtime;
 	}
 
-	public void setShowtime(Date showtime) {
+	public void setShowtime(Timestamp showtime) {
 		this.showtime = showtime;
 	}
 

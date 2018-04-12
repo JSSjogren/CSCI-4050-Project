@@ -31,7 +31,7 @@ public class RegisteredCustomer extends User {
 	public RegisteredCustomer(String fn, String ln, String email, String password, int rank, int status, boolean sub_pref, int cardnumber, Date exp_date, String name_on_card, int CCV, String billing_address)
 	{
 		super(0, fn, ln, email, generateHash(password), rank, status, sub_pref);
-		cc = new CreditCard(id, cardnumber, exp_date, name_on_card, CCV, billing_address);
+//		cc = new CreditCard(id, cardnumber, exp_date, name_on_card, CCV, billing_address);
 	}
 	
 	public RegisteredCustomer()
@@ -104,9 +104,9 @@ public class RegisteredCustomer extends User {
 		//todo
 	}
 	
-	private void addReview(String content, int star_rating)
+	private void addReview(String content, int star_rating, int movieId)
 	{
-		Review review = new Review(1, content, star_rating);
+		Review review = new Review(1, content, star_rating, movieId);
 		review.saveReview();
 	}
 	

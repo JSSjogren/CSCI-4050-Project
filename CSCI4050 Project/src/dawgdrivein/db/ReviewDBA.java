@@ -18,7 +18,7 @@ public class ReviewDBA {
 	 */
 	public boolean saveReview(Review review)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Review.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		try {

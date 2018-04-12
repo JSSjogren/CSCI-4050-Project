@@ -19,7 +19,7 @@ public class CreditCardDBA {
 	 */
 	public boolean saveCreditCard(CreditCard cc)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(CreditCard.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		try {

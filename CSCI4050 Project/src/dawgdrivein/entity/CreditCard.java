@@ -3,47 +3,66 @@ package dawgdrivein.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import dawgdrivein.db.CreditCardDBA;
 
+@Entity
+@Table(name = "CreditCard")
 public class CreditCard {
 	
-	@Column(name = "exp_date", columnDefinition="DATETIME")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CardId")
+	private int id;
+	
+	@Column(name = "ExpDate", columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date exp_date;
 	
-	private int id;
-	private int card_number;
-	private String name_on_card;
-	private int CCV;
-	private String billing_address;
+	@Column(name = "UserId")
+	private int userId;
 	
+	@Column(name = "CardNo")
+	private String card_number;
+	
+	@Column(name = "Ccv")
+	private int CCV;
+	
+	@Column(name = "CardType")
+	private String cardType;
+	
+	@Transient
 	private CreditCardDBA ccDBA;
 	
-	public CreditCard(int id, int card_number, Date exp_date, String name_on_card, int CCV, String billing_address)
-	{
+	public CreditCard(int id, Date exp_date, int userId, String card_number, int cCV, String cardType) {
 		this.id = id;
-		this.card_number = card_number;
 		this.exp_date = exp_date;
-		this.name_on_card = name_on_card;
-		this.CCV = CCV;
-		this.billing_address = billing_address;
+		this.userId = userId;
+		this.card_number = card_number;
+		CCV = cCV;
+		this.cardType = cardType;
 		
-		ccDBA = new CreditCardDBA();
+		this.ccDBA = new CreditCardDBA();
 	}
 	
 	public CreditCard()
 	{
 		this.id = -1;
-		this.card_number = -1;
 		this.exp_date = null;
-		this.name_on_card = null;
-		this.CCV = -1;
-		this.billing_address = null;
+		this.userId = -1;
+		this.card_number = null;
+		CCV = -1;
+		this.cardType = null;
 		
-		ccDBA = new CreditCardDBA();
+		this.ccDBA = new CreditCardDBA();
 	}
 	
 	/**
@@ -81,5 +100,53 @@ public class CreditCard {
 	public CreditCard retrieveCreditCard(int id)
 	{
 		return ccDBA.retrieveCreditCard(id);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Date getExp_date() {
+		return exp_date;
+	}
+
+	public void setExp_date(Date exp_date) {
+		this.exp_date = exp_date;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getCard_number() {
+		return card_number;
+	}
+
+	public void setCard_number(String card_number) {
+		this.card_number = card_number;
+	}
+
+	public int getCCV() {
+		return CCV;
+	}
+
+	public void setCCV(int cCV) {
+		CCV = cCV;
+	}
+
+	public String getCardType() {
+		return cardType;
+	}
+
+	public void setCardType(String cardType) {
+		this.cardType = cardType;
 	}
 }
