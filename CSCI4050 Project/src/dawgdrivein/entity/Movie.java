@@ -1,7 +1,7 @@
 package dawgdrivein.entity;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +22,9 @@ public class Movie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MovieId")
 	private int id;
+	
+	@Column(name = "Title")
+	private String title;
 	
 	@Column(name = "Genre")
 	private String genre;
@@ -47,20 +50,19 @@ public class Movie {
 	@Column(name = "MpaaRating")
 	private String MPAA_rating;
 	
-//	@Column(name = "Status")
-	@Transient
-	private int status;
+	@Column(name = "releaseDate", columnDefinition="DATETIME")
+	private Date releaseDate;
 	
-	@Transient
-	ArrayList<Showtime> showtimes;
+	@Column(name = "Expiration", columnDefinition="DATETIME")
+	private Date expiration;
 	
 	@Transient
 	MovieDBA movieDBA;
 	
-	//Movie must have at least 1 showtime
-	public Movie(int id, String genre, String cast, String director, String producer, String description, String trailer_picture, String trailer_video, String MPAA_rating, int status, Date showtime)
+	public Movie(int id, String title, String genre, String cast, String director, String producer, String description, String trailer_picture, String trailer_video, String MPAA_rating, Date releaseDate, Date expiration)
 	{
 		this.id = id;
+		this.title = title;
 		this.genre = genre;
 		this.cast = cast;
 		this.director = director;
@@ -69,31 +71,16 @@ public class Movie {
 		this.trailer_picture = trailer_picture;
 		this.trailer_video = trailer_video;
 		this.MPAA_rating = MPAA_rating;
-		this.status = status;
-		movieDBA = new MovieDBA();
+		this.releaseDate = releaseDate;
+		this.expiration = expiration;
 		
-		Showtime firstShowtime = new Showtime(id, showtime, 30);
-		firstShowtime.saveShowtime();
-	}
-	
-	public Movie(int id, String genre, String cast, String director, String producer, String description, String trailer_picture, String trailer_video, String MPAA_rating, int status)
-	{
-		this.id = id;
-		this.genre = genre;
-		this.cast = cast;
-		this.director = director;
-		this.producer = producer;
-		this.description = description;
-		this.trailer_picture = trailer_picture;
-		this.trailer_video = trailer_video;
-		this.MPAA_rating = MPAA_rating;
-		this.status = status;
 		movieDBA = new MovieDBA();
 	}
 	
 	public Movie()
 	{
 		this.id = -1;
+		this.title = null;
 		this.genre = null;
 		this.cast = null;
 		this.director = null;
@@ -102,8 +89,10 @@ public class Movie {
 		this.trailer_picture = null;
 		this.trailer_video = null;
 		this.MPAA_rating = null;
-		this.status = -1;
-		this.movieDBA = null;
+		this.releaseDate = null;
+		this.expiration = null;
+		
+		this.movieDBA = new MovieDBA();
 	}
 	
 	/**
@@ -215,11 +204,30 @@ public class Movie {
 		MPAA_rating = mPAA_rating;
 	}
 
-	public int getStatus() {
-		return status;
+	public Date getReleaseDate() {
+		return releaseDate;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
 	}
+
+	public Date getExpiration() {
+		return expiration;
+	}
+
+	public void setExpiration(Date expiration) {
+		this.expiration = expiration;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+
 }

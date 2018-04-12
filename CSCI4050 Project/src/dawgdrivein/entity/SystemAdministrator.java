@@ -1,6 +1,6 @@
 package dawgdrivein.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -19,21 +19,21 @@ public class SystemAdministrator extends User {
 		super(0, null, null, null, null, -1, -1, false);
 	}
 
-	private boolean enterNewMovie(int id, String genre, String cast, String director, String producer, String description, String trailer_picture, String trailer_video, String MPAA_rating, int status, Date showtime)
+	private boolean enterNewMovie(int id, String title, String genre, String cast, String director, String producer, String description, String trailer_picture, String trailer_video, String MPAA_rating, Date releaseDate, Date expiration)
 	{
-		Movie movie = new Movie(id, genre, cast, director, producer, description, trailer_picture, trailer_video, MPAA_rating, status, showtime);
+		Movie movie = new Movie(id, title, genre, cast, director, producer, description, trailer_picture, trailer_video, MPAA_rating, releaseDate, expiration);
 		return movie.saveMovie();
 	}
 
-	private boolean updateMovie(int newId, String newGenre, String newCast, String newDirector, String newProducer, String newDescription, String newTrailer_picture, String newTrailer_video, String newMPAA_rating, int newStatus, Date newShowtime)
+	private boolean updateMovie(int newId, String newTitle, String newGenre, String newCast, String newDirector, String newProducer, String newDescription, String newTrailer_picture, String newTrailer_video, String newMPAA_rating, Date newReleaseDate, Date newExpiration)
 	{
-		Movie movie = new Movie(newId, newGenre, newCast, newDirector, newProducer, newDescription, newTrailer_picture, newTrailer_video, newMPAA_rating, newStatus, newShowtime);
+		Movie movie = new Movie(newId, newTitle, newGenre, newCast, newDirector, newProducer, newDescription, newTrailer_picture, newTrailer_video, newMPAA_rating, newReleaseDate, newExpiration);
 		return movie.updateMovie();
 	}
 
-	private boolean deleteMovie(int id, String genre, String cast, String director, String producer, String description, String trailer_picture, String trailer_video, String MPAA_rating, int status)
+	private boolean deleteMovie(int id, String title, String genre, String cast, String director, String producer, String description, String trailer_picture, String trailer_video, String MPAA_rating, Date releaseDate, Date expiration)
 	{
-		Movie movie = new Movie(id, genre, cast, director, producer, description, trailer_picture, trailer_video, MPAA_rating, status);
+		Movie movie = new Movie(id, title, genre, cast, director, producer, description, trailer_picture, trailer_video, MPAA_rating, releaseDate, expiration);
 		return movie.deleteMovie();
 	}
 

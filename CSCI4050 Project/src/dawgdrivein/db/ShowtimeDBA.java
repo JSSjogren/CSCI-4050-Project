@@ -13,7 +13,7 @@ public class ShowtimeDBA {
 	//todo: Fill in DBAccess methods
 	public boolean saveShowtime(Showtime showtime)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Showtime.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		try {

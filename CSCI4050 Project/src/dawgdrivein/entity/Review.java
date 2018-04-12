@@ -31,11 +31,12 @@ public class Review {
 	@Transient
 	private ReviewDBA reviewDBA;
 	
-	public Review(int id, String content, int star_rating)
+	public Review(int id, String content, int star_rating, int movieId)
 	{
 		this.id = id;
 		this.content = content;
 		this.star_rating = star_rating;
+		this.movieId = movieId;
 		this.reviewDBA = new ReviewDBA();
 	}
 	
@@ -44,6 +45,7 @@ public class Review {
 		this.id = -1;
 		this.content = null;
 		this.star_rating = -1;
+		this.movieId = -1;
 		this.reviewDBA = new ReviewDBA();
 	}
 	
