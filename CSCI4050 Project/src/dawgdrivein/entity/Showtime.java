@@ -89,5 +89,5 @@ public class Showtime {
 	public void setMovieId(int movieId) {
 		this.movieId = movieId;
 	}
-	
+
 }

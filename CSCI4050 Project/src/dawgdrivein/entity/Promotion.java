@@ -3,25 +3,37 @@ package dawgdrivein.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.Transient;
 
 import dawgdrivein.db.PromotionDBA;
 
+@Entity
+@Table(name = "Promotion")
 public class Promotion {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "PromoId")
 	private int id;
 	
 	@Column(name = "exp_date", columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date exp_date;
 	
+	@Column(name = "Code")
 	private String code;
+	
+	@Column(name = "PercentDiscount")
 	private int percent_discount;
 	
+	@Transient
 	PromotionDBA promoDBA;
 	
 	public Promotion(int id, Date exp_date, String code, int percent_discount)
@@ -78,7 +90,7 @@ public class Promotion {
 	{
 		return promoDBA.retrievePromo(id);
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -86,7 +98,7 @@ public class Promotion {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public Date getExp_date() {
 		return exp_date;
 	}
@@ -110,5 +122,5 @@ public class Promotion {
 	public void setPercent_discount(int percent_discount) {
 		this.percent_discount = percent_discount;
 	}
-
+	
 }
