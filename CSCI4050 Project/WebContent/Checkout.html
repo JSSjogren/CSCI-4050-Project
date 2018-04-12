@@ -42,7 +42,6 @@
 
         .registerBox {
             border: 3px solid black;
-            margin: 0 auto;
 
         }
 
@@ -74,57 +73,65 @@
         <p class="register">Checkout</p>
     </div>
     <div>
-        <table class="registerBox">
+    		<form id="pay" style="margin-bottom: 0px; padding-bottom: 0px;">
+        <table class="registerBox" align="center" style="">
             <caption class="boxTitle">Enter Payment Card Info</caption>
             <tr>
                 <td class="boxContent">First Name on Card:</td>
 
             </tr>
             <tr>
-                <td><input type="text" size="60"></td>
+                <td><input type="text" name="fn" size="60" style="font-size: 18px;"></td>
             </tr>
             <tr>
                 <td class="boxContent">Last Name on Card:</td>
 
             </tr>
             <tr>
-                <td><input type="text" size="60"></td>
+                <td><input type="text" name="ln" size="60" style="font-size: 18px;"></td>
             </tr>
             <tr>
                 <td class="boxContent">Card Number:</td>
 
             </tr>
             <tr>
-                <td><input type="text" size="60"></td>
+                <td><input type="text" name="cardNum" size="60" style="font-size: 18px;"></td>
             </tr>
             <tr>
-                <td class="boxContent">Expiration Month:</td>
+                <td class="boxContent">Expiration Month (MM):</td>
+            </tr>
+            <tr>
+                <td><input type="text" name="month" size="60" style="font-size: 18px;"></td>
+            </tr>
+            <tr>
+                <td class="boxContent">Expiration Year (yyyy):</td>
 
             </tr>
             <tr>
-                <td><input type="text" size="60"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Expiration Year:</td>
-
-            </tr>
-            <tr>
-                <td><input type="text" size="60"></td>
+                <td><input type="text" name="year" size="60" style="font-size: 18px;"></td>
             </tr>
             <tr>
                 <td class="boxContent">Security code:</td>
 
             </tr>
             <tr>
-                <td><input type="text" size="60"></td>
+                <td><input type="text" name="code" size="60" style="font-size: 18px;"></td>
             </tr>
             <tr style="height: 50px;">
-                <td>
-                    <button style="margin-left: 85px; margin-right: 90px; font-size: 20px; margin-top: 10px;">Purchase</button>
-                    <button style="font-size: 20px">Cancel</button>
+                <td align="center" style="padding-bottom: 10px;">
+                    <button type="submit" form="pay" style="font-size: 20px; margin-top: 10px; width: 200px;">Purchase</button>
                 </td>
             </tr>
         </table>
+        </form>
+        <table align="center" style="border-bottom: 3px solid black; border-left: 3px solid black; border-right: 3px solid black; width: 566px; margin-top: 0px;">
+        		<tr>
+        			<td align="center" style="padding-top: 10px; padding-bottom: 10px;">
+        				<button style="font-size: 20px; width: 200px;">Cancel Order</button>
+        			</td>
+        		</tr>
+        </table>
+        
     </div>
 </body>
 
