@@ -11,23 +11,19 @@
             margin: 0;
             margin-bottom: 20px;
         }
-
         form {
             padding-left: 10px;
             padding-right: 10px;
             padding-bottom: 5px;
         }
-
         .logo {
             max-height: 150px;
         }
-
         .title {
             font-size: 50px;
             font-family: "Apple Chancery", Times, serif;
             margin-right: 40px;
         }
-
         .headerDiv {
             /*border-bottom: 5px solid black;*/
             margin-top: 0;
@@ -36,7 +32,6 @@
             background-color: gray;
             border-bottom: 1px groove;
         }
-
         .tabButton {
             background-color: inherit;
             float: left;
@@ -49,13 +44,10 @@
             font-weight: 600;
             font-family: avenir,times,serif;
             color: #b0162d;
-
         }
-
         .tabButton:hover {
             background-color: darkgray;
         }
-
         .page-bg {
             background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("backgroundPic.jpg");
             background-size: cover;
@@ -142,11 +134,17 @@
                 		
                 %>
                 <td><button class="tabButton" onclick="admin();">Admin</button></td>
+                	<td style="width: 250px; font-size: 20px;">
                 <%
                 			}
                 		}
+                		else{
                 %>
                 <td style="width: 300px; font-size: 20px;">
+                <%
+                		}
+                %>
+                
                     <p style="text-align: right; font-family: avenir, times, serif;">
                     <% 
                 			if(session != null && session.getAttribute("firstName") != null){
@@ -177,7 +175,7 @@
                 		%>
                 			<span>
                 			<!-- <form id="form" method="post" action="SignInController"> -->
-                			<a href="LogoutController" accesskey="1" title="" style="color: black; text-decoration: none; cursor:pointer; margin-right: 5px; position: absolute; left: 1345px; top: 160px;">Logout</a>
+                			<a href="LogoutController" accesskey="1" title="" style="color: black; text-decoration: none; cursor:pointer; margin-right: 5px; position: absolute; left: 1310px; top: 120px;">Logout</a>
                     		<!-- <B onclick="signIn();" style="cursor:pointer; margin-right: 5px; position: absolute; left: 1295px; top: 120px;">Log out</B> -->
                     		<!-- </form> -->
                     		</span>
@@ -212,11 +210,11 @@
     </div>
    <div>
         <p style="text-align: center;color: whitesmoke; font-size: 30px; padding-top: 10px; font-family: Apple Chancery, Time, serif;">Movies at Dawg Drive-In</p>
-        <table>
+        <table align="center">
             <tr>
-                <td><img src="gonewiththewindMoviePic.png" style="max-height: 500px; margin-left: 100px;"></td>
-                <td><img src="breakfastclubMoviePic.png" style="max-height: 500px; margin-right: 100px; margin-left: 100px;"></td>
-                <td><img src="starwarsMoviePic.png" style="max-height: 500px"></td>
+                <td><img src="gonewiththewindMoviePic.png" style="max-height: 500px; padding: 50px;"></td>
+                <td><img src="breakfastclubMoviePic.png" style="max-height: 500px; padding: 50px;"></td>
+                <td><img src="starwarsMoviePic.png" style="max-height: 500px; padding: 50px;"></td>
             </tr>
             <tr>
                 <td>

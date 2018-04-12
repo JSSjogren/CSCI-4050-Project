@@ -110,13 +110,15 @@
     <div id="EditProfile">
     		<form action="UpdateProfileController" method="post">
         <table class="registerBox">
-        		<%
+        		<%	
+        		
         			try{
         				Connection conn;
         				Class.forName("com.mysql.jdbc.Driver");
         			 	conn = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
         			 	String status = "Established connection";
-        			 	String user = (String) session.getAttribute("userId");
+        			 	Integer userNum = (Integer) session.getAttribute("userId");
+        			 	String user = userNum.toString();
         			 	String query = "Select * from User where UserId = '" + user + "'";
         				Statement stmt = conn.createStatement();
         				ResultSet rs = stmt.executeQuery(query);
@@ -124,13 +126,24 @@
         					String fn = rs.getString("FirstName");
         					String ln = rs.getString("LastName");
         					String email = rs.getString("Email");
+        					pageContext.setAttribute("fn", fn);
+      					pageContext.setAttribute("ln", ln);
+      					pageContext.setAttribute("email", email);
   						query = "Select * from Address where UserId = '" + user + "'";
   						Statement stmtTwo = conn.createStatement();
   						ResultSet rsTwo = stmtTwo.executeQuery(query);
-  						String street = rsTwo.getString("Street");
-  						String city = rsTwo.getString("city");
-  						String state = rsTwo.getString("State");
-  						String zip = rsTwo.getString("Zip");
+  						while(rsTwo.next()){
+  							String street = rsTwo.getString("Street");
+  							String city = rsTwo.getString("city");
+  							String state = rsTwo.getString("State");
+  							String zip = rsTwo.getString("Zip");
+ 
+  							pageContext.setAttribute("street", street);
+  							pageContext.setAttribute("city", city);
+  							pageContext.setAttribute("state", state);
+  							pageContext.setAttribute("zip", zip);
+  						}
+  						//pageContext.setAttribute("genre", genre);
   						break;
         				}
         				conn.close();
@@ -235,7 +248,8 @@
 				Class.forName("com.mysql.jdbc.Driver");
 			 	conn = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
 			 	String status = "Established connection";
-			 	String user = (String) session.getAttribute("userId");
+			 	Integer userNum = (Integer) session.getAttribute("userId");
+			 	String user = userNum.toString();
 			 	String query = "Select * from Booking where UserId = '" + user + "'";
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
