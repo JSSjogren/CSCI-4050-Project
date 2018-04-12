@@ -1,12 +1,34 @@
 package dawgdrivein.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import dawgdrivein.db.ReviewDBA;
 
+@Entity
+@Table(name = "Review")
 public class Review {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ReviewId")
 	private int id;
+	
+	@Column(name = "Content")
 	private String content;
+	
+	@Column(name = "StarRating")
 	private int star_rating;
+	
+	@Column(name = "MovieId")
+	private int movieId;
+	
+	@Transient
 	private ReviewDBA reviewDBA;
 	
 	public Review(int id, String content, int star_rating)
@@ -61,30 +83,37 @@ public class Review {
 	{
 		return reviewDBA.retrieveReview(id);
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getContent() {
 		return content;
 	}
-	
+
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+
 	public int getStar_rating() {
 		return star_rating;
 	}
-	
+
 	public void setStar_rating(int star_rating) {
 		this.star_rating = star_rating;
 	}
-	
+
+	public int getMovieId() {
+		return movieId;
+	}
+
+	public void setMovieId(int movieId) {
+		this.movieId = movieId;
+	}
 	
 }

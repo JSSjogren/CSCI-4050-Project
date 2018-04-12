@@ -72,12 +72,12 @@ public class SeatDBA {
             // Starting Transaction
             Transaction transaction = session.beginTransaction();
             
-            Seat checkSeat = (Seat) session.createQuery("SELECT * FROM seat WHERE hallID='" + seat.getHallID() + "' AND seatNo='" + seat.getSeat() + "';");
-            System.out.println("\n\n Retrieved Seat by hallID and seatNo \n");
+            Seat checkSeat = (Seat) session.createQuery("SELECT * FROM seat WHERE showId='" + seat.getShowtimeID() + "' AND seatNo='" + seat.getSeat() + "';");
+            System.out.println("\n\n Retrieved Seat by showID and seatNo \n");
             if (checkSeat == null)
-            		return true;
-            else
             		return false;
+            else
+            		return true;
 
         } catch (HibernateException e) {
             System.out.println(e.getMessage());

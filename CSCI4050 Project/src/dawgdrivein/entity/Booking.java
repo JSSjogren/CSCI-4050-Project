@@ -140,4 +140,20 @@ public class Booking {
 		this.showtimeID = showtimeID;
 	}
 
+	public int getPromoId() {
+		return promoId;
+	}
+
+	public void setPromoId(int promoId) {
+		this.promoId = promoId;
+	}
+
+	public int getMovieId() {
+		return movieId;
+	}
+
+	public void setMovieId(int movieId) {
+		this.movieId = movieId;
+	}
+
 }
