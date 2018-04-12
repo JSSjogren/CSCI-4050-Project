@@ -188,6 +188,12 @@
             <tr>
                 <td><input type="text" size="60" name="releaseDate"></td>
             </tr>
+            <tr>
+                <td class="boxContent">Date and Time (yyyy-mm-dd --:-- --):</td>
+            </tr>
+            <tr>
+                <td><input type="datetime-local" size="60" name="dateTime"></td>
+            </tr>
             <tr style="height: 50px;">
                 <td>
                     <button style="font-size: 20px; margin-top: 10px; width: 400px; margin-left: 15px; cursor:pointer;" form="form">Submit</button>
