@@ -409,7 +409,13 @@
         </table>
         <table align="center">
         		<tr>
-        			<td align="center"><p style="color: white; text-align: center; margin-top: 50px;">Enter Ages: <input type="text" name="ages" maxlength="40px"></p></td>
+        			<td align="center"><p style="color: white; text-align: center; margin-top: 50px;">Enter Ages:        			
+        				<select name="age">
+						<option value="child">Mostly Children</option>
+						<option value="adult">Mostly Adults</option>
+						<option value="senior">Mostly Seniors</option>
+					</select>      			
+        			</p></td>
         		</tr>
         		<tr>
                 <td align="center">
