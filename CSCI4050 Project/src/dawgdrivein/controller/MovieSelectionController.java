@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dawgdrivein.entity.Movie;
+
 /**
  * Servlet implementation class MovieSelectionController
  */
@@ -29,7 +31,11 @@ public class MovieSelectionController extends HttpServlet {
 		String movieSelected = request.getParameter("movieSelected");
 		request.getSession().setAttribute("movieSelected", movieSelected);
 		if (request.getSession().getAttribute("userId") != null)
+		{
+			Movie movie = new Movie();
+			request.getSession().setAttribute("movieId", movie.getMovieIdByName(movieSelected));
 			response.sendRedirect("DatePicker.jsp");
+		}
 		else
 			response.sendRedirect("signIn.html");
 	}

@@ -65,6 +65,11 @@ public class Showtime {
 	{
 		return showtimeDBA.deleteShowtime(this);
 	}
+	
+	public int getShowtimeIdFromDB(int movieId, String time)
+	{
+		return showtimeDBA.getShowtimeIdFromDB(movieId, time);
+	}
 
 	public Timestamp getShowtime() {
 		return showtime;

@@ -79,14 +79,7 @@
 </head>
 
 <%
-session.setAttribute("firstName", "John");
-session.setAttribute("lastName", "Doe");
-session.setAttribute("email", "johndoe@gmail.com");
-session.setAttribute("movieSelected", "13 Hours");
-session.setAttribute("seating", "Spot 3");
-session.setAttribute("numSeats", 1);
-session.setAttribute("time", "12:00 PM");
-session.setAttribute("day", "05-10-2018");
+
 
 
 
@@ -96,8 +89,8 @@ String email = (String) session.getAttribute("email");
 String movieSelected = (String) session.getAttribute("movieSelected");
 String seating = (String) session.getAttribute("seating");
 int numSeats = (int) session.getAttribute("numSeats");
-String time = (String) session.getAttribute("time");
-String day = (String) session.getAttribute("day");
+String time = (String) session.getAttribute("timeSelected");
+String day = (String) session.getAttribute("dateSelected");
 
 String name = fn + " " + ln;
 String timeAndDate = day + " " + time;
@@ -194,37 +187,16 @@ pageContext.setAttribute("time", timeAndDate);
 
             			}
             		
-            			double ticketPrices;
-            			
-            			if(discount){
-            				ticketPrices = numSeats * 20.00;
-            				double p = Integer.parseInt(discountPercent);
-            				p = p/100.0;
-            				double saving = ticketPrices*p;
-            				ticketPrices = ticketPrices-saving;
-            				
-            			}
-            			else{
-            				ticketPrices = numSeats * 20.00;
-            			}
-            			
-            			
-            			double taxes = ticketPrices * 0.06;
-            			double onlineFee = 2.00;
-            			double total = ticketPrices + taxes + onlineFee;
-            			
-            			DecimalFormat df = new DecimalFormat("#.00");
-            			
-            			
-            			
-            			session.setAttribute("ticketPrices",df.format(ticketPrices));
-            			session.setAttribute("taxes",df.format(taxes));
-            			session.setAttribute("onlineFee",df.format(onlineFee));
-            			session.setAttribute("total",df.format(total));
-            			
-            			String spotsAndPrice = seating + ": $" + df.format(total);
-            			
-            			session.setAttribute("spotsAndPrice", spotsAndPrice);
+    					DecimalFormat df = new DecimalFormat("0.00");
+    					df.setMinimumFractionDigits(2);
+
+    					session.setAttribute("spotsAndPrice", "Ticket Total: $" + df.format(session.getAttribute("preTotal")));
+
+    					session.setAttribute("taxAmount", "" + df.format(Double.parseDouble((String)session.getAttribute("taxAmount"))));
+
+    					session.setAttribute("total", "" + df.format(Double.parseDouble((String)session.getAttribute("total"))));
+
+    					session.setAttribute("parkingFee", "" + df.format(Double.parseDouble((String)session.getAttribute("parkingFee"))));
             			
             			
             		%>
@@ -252,6 +224,29 @@ pageContext.setAttribute("time", timeAndDate);
      		</tr>
         </table>
     </div>
+    
+    <% 
+    session.removeAttribute("spotsAndPrice");
+    session.removeAttribute("taxAmount");
+    session.removeAttribute("total");
+    session.removeAttribute("parkingFee");
+    session.removeAttribute("movieSelected");
+    session.removeAttribute("seating");
+    session.removeAttribute("seatList");
+    session.removeAttribute("numSeats");
+    session.removeAttribute("numSpaces");
+    session.removeAttribute("timeSelected");
+    session.removeAttribute("dateSelected");
+    session.removeAttribute("movieId");
+    session.removeAttribute("showId");
+    session.removeAttribute("preTotal");
+    session.removeAttribute("discountAmount");
+    session.removeAttribute("taxAmount");
+    session.removeAttribute("numSpaces");
+    session.removeAttribute("numChildren");
+    session.removeAttribute("numAdults");
+    session.removeAttribute("numSeniors");
+    %>
 </body>
 
 </html>

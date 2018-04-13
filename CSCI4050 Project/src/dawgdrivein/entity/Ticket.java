@@ -22,28 +22,16 @@ public class Ticket {
 	@Column(name = "BookingId")
 	private int bookingID;
 	
-	@Column(name = "ShowtimeId")
-	private int showtimeID;
-	
-	@Column(name = "MovieId")
-	private int movieID;
-	
 	@Column(name = "SeatId")
 	private int seatID;
-	
-	@Column(name = "TicketPrice")
-	private int ticketPrice;
 	
 	@Transient
 	TicketDBA ticketDBA;
 	
-	public Ticket(int bookingID, int ticketNo, int showtimeID, int movieID, int seatID, int ticketPrice) {
+	public Ticket(int bookingID, int ticketNo, int seatID) {
 		this.bookingID = bookingID;
 		this.ticketNo = ticketNo;
-		this.showtimeID = showtimeID;
-		this.movieID = movieID;
 		this.seatID = seatID;
-		this.ticketPrice = ticketPrice;
 		
 		ticketDBA = new TicketDBA();
 	}
@@ -52,10 +40,7 @@ public class Ticket {
 	{
 		this.bookingID = -1;
 		this.ticketNo = -1;
-		this.showtimeID = -1;
-		this.movieID = -1;
 		this.seatID = -1;
-		this.ticketPrice = -1;
 		
 		ticketDBA = new TicketDBA();
 	}
@@ -91,22 +76,6 @@ public class Ticket {
 		this.ticketNo = ticketNo;
 	}
 
-	public int getShowtimeID() {
-		return showtimeID;
-	}
-
-	public void setShowtimeID(int showtimeID) {
-		this.showtimeID = showtimeID;
-	}
-
-	public int getMovieID() {
-		return movieID;
-	}
-
-	public void setMovieID(int movieID) {
-		this.movieID = movieID;
-	}
-
 	public int getSeatID() {
 		return seatID;
 	}
@@ -115,12 +84,4 @@ public class Ticket {
 		this.seatID = seatID;
 	}
 
-	public int getTicketPrice() {
-		return ticketPrice;
-	}
-
-	public void setTicketPrice(int ticketPrice) {
-		this.ticketPrice = ticketPrice;
-	}
-	
 }

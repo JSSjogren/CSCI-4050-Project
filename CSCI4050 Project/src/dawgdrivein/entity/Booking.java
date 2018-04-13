@@ -58,12 +58,15 @@ public class Booking {
 	
 	@Transient
 	private static final double ONLINE_FEE = 2.00;
+	
+	@Transient
+	private static final double PARKING_SPACE_FEE = 7.00;
 
-	public Booking(int userID, int bookingNo, float totalPrice, int noOfTickets, int showtimeID, int promoId, int movieId)
+	public Booking(int userID, int bookingNo, float total, int noOfTickets, int showtimeID, int promoId, int movieId)
 	{
 		this.userID = userID;
 		this.bookingNo = bookingNo;
-		this.totalPrice = totalPrice;
+		this.totalPrice = total;
 		this.noOfTickets = noOfTickets;
 		this.showtimeID = showtimeID;
 		this.promoId = promoId;
@@ -203,8 +206,12 @@ public class Booking {
 		return TAX;
 	}
 	
-	public static double getOnlineFee() {
+	public double getOnlineFee() {
 		return ONLINE_FEE;
+	}
+
+	public double getParkingSpaceFee() {
+		return PARKING_SPACE_FEE;
 	}
 
 	

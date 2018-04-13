@@ -1,11 +1,14 @@
 package dawgdrivein.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dawgdrivein.entity.Showtime;
 
 /**
  * Servlet implementation class TimePickerController
@@ -31,7 +34,12 @@ public class TimePickerController extends HttpServlet {
 		String time = (String)request.getSession().getAttribute("timeSelected");
 		
 		if (request.getSession().getAttribute("userId") != null)
+		{
+			Showtime showtime = new Showtime();
+			System.out.println(request.getSession().getAttribute("dateSelected") + "T" + time);
+			request.getSession().setAttribute("showId", showtime.getShowtimeIdFromDB((Integer)request.getSession().getAttribute("movieId"), request.getSession().getAttribute("dateSelected") + "T" + time));
 			response.sendRedirect("SeatPicker.jsp");
+		}
 		else
 			response.sendRedirect("signIn.html");
 		System.out.println(time);

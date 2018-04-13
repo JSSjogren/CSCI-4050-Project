@@ -1,5 +1,10 @@
 package dawgdrivein.db;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -80,6 +85,46 @@ public class ShowtimeDBA {
 		finally
 		{
 			sessionFactory.close();
+		}
+	}
+	
+	public int getShowtimeIdFromDB(int movieId, String time)
+	{
+		Connection connect = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+			//Drop on ground
+			Class.forName("com.mysql.jdbc.Driver");
+			// Setup the connection with the DB
+			connect = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+
+			// Statements allow to issue SQL queries to the database
+			statement = connect.createStatement();
+			// Result set get the result of the SQL query
+			resultSet = statement.executeQuery("SELECT Showtime.showId FROM Showtime WHERE movieId = '" + movieId + "' AND timedate = '" + time + "';");
+
+			//If ResultSet is empty the email doesn't exist, otherwise it does.
+			if (!resultSet.next())
+			{
+				//Close connection
+				connect.close();
+				return -1;
+			}
+			else
+			{
+				resultSet.beforeFirst();
+				resultSet.next();
+				int showId = resultSet.getInt("showId");
+				//Close connection
+				connect.close();
+				return showId;
+			}
+
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return -1;
 		}
 	}
 	

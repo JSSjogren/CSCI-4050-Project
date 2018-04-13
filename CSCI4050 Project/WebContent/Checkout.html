@@ -2,137 +2,152 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>DDI Checkout</title>
-    <style>
-        body {
-            background-color: whitesmoke;
-            margin: 0;
-            margin-bottom: 20px;
-        }
+<meta charset="UTF-8">
+<title>DDI Checkout</title>
+<style>
+body {
+	background-color: whitesmoke;
+	margin: 0;
+	margin-bottom: 20px;
+}
 
-        form {
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-bottom: 5px;
-        }
+form {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+}
 
-        .logo {
-            max-height: 150px;
-        }
+.logo {
+	max-height: 150px;
+}
 
-        .title {
-            font-size: 50px;
-            font-family: "Apple Chancery", Times, serif;
-        }
+.title {
+	font-size: 50px;
+	font-family: "Apple Chancery", Times, serif;
+}
 
-        .headerDiv {
-            border-bottom: 5px solid black;
-            margin-top: 0;
-            margin-left: 0;
-            margin-right: 0;
-            background-color: lightgray
-        }
+.headerDiv {
+	border-bottom: 5px solid black;
+	margin-top: 0;
+	margin-left: 0;
+	margin-right: 0;
+	background-color: lightgray
+}
 
-        .register {
-            font-size: 40px;
-            text-align: center;
+.register {
+	font-size: 40px;
+	text-align: center;
+}
 
-        }
+.registerBox {
+	border: 3px solid black;
+}
 
-        .registerBox {
-            border: 3px solid black;
+.boxTitle {
+	font-size: 30px;
+	padding-bottom: 15px;
+	border: 3px solid black;
+}
 
-        }
-
-        .boxTitle {
-            font-size: 30px;
-            padding-bottom: 15px;
-            border: 3px solid black;
-        }
-
-        .boxContent {
-            font-size: 20px;
-            margin: 0 auto;
-        }
-    </style>
+.boxContent {
+	font-size: 20px;
+	margin: 0 auto;
+}
+</style>
 </head>
 
 <body>
-    <div class="headerDiv">
-        <table>
-            <tr>
-                <td><img src="transparentWebSiteLogo.png" class="logo"></td>
-                <td>
-                    <h1 class="title">Dawg Drive-in</h1>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div>
-        <p class="register">Checkout</p>
-    </div>
-    <div>
-    		<form id="pay" style="margin-bottom: 0px; padding-bottom: 0px;">
-        <table class="registerBox" align="center" style="">
-            <caption class="boxTitle">Enter Payment Card Info</caption>
-            <tr>
-                <td class="boxContent">First Name on Card:</td>
+	<div class="headerDiv">
+		<table>
+			<tr>
+				<td><img src="transparentWebSiteLogo.png" class="logo"></td>
+				<td>
+					<h1 class="title">Dawg Drive-in</h1>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<p class="register">Checkout</p>
+	</div>
+	<div>
+		<form id="pay" style="margin-bottom: 0px; padding-bottom: 0px;" method = "post" action = "CheckoutController">
+			<table class="registerBox" align="center" style="">
+				<caption class="boxTitle">Enter Payment Card Info</caption>
+				<tr>
+					<td class="boxContent">First Name on Card:</td>
 
-            </tr>
-            <tr>
-                <td><input type="text" name="fn" size="60" style="font-size: 18px;"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Last Name on Card:</td>
+				</tr>
+				<tr>
+					<td><input type="text" name="fn" size="60"
+						style="font-size: 18px;"></td>
+				</tr>
+				<tr>
+					<td class="boxContent">Last Name on Card:</td>
 
-            </tr>
-            <tr>
-                <td><input type="text" name="ln" size="60" style="font-size: 18px;"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Card Number:</td>
+				</tr>
+				<tr>
+					<td><input type="text" name="ln" size="60"
+						style="font-size: 18px;"></td>
+				</tr>
+				<tr>
+					<td class="boxContent">Card Number:</td>
 
-            </tr>
-            <tr>
-                <td><input type="text" name="cardNum" size="60" style="font-size: 18px;"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Expiration Month (MM):</td>
-            </tr>
-            <tr>
-                <td><input type="text" name="month" size="60" style="font-size: 18px;"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Expiration Year (yyyy):</td>
+				</tr>
+				<tr>
+					<td><input type="text" name="cardNum" size="60"
+						style="font-size: 18px;"></td>
+				</tr>
+				<tr>
+					<td class="boxContent">Expiration Month (MM):</td>
+				</tr>
+				<tr>
+					<td><input type="text" name="month" size="60"
+						style="font-size: 18px;"></td>
+				</tr>
+				<tr>
+					<td class="boxContent">Expiration Year (yyyy):</td>
 
-            </tr>
-            <tr>
-                <td><input type="text" name="year" size="60" style="font-size: 18px;"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Security code:</td>
+				</tr>
+				<tr>
+					<td><input type="text" name="year" size="60"
+						style="font-size: 18px;"></td>
+				</tr>
+				<tr>
+					<td class="boxContent">Security code:</td>
 
-            </tr>
-            <tr>
-                <td><input type="text" name="code" size="60" style="font-size: 18px;"></td>
-            </tr>
-            <tr style="height: 50px;">
-                <td align="center" style="padding-bottom: 10px;">
-                    <button type="submit" form="pay" style="font-size: 20px; margin-top: 10px; width: 200px;">Purchase</button>
-                </td>
-            </tr>
-        </table>
-        </form>
-        <table align="center" style="border-bottom: 3px solid black; border-left: 3px solid black; border-right: 3px solid black; width: 566px; margin-top: 0px;">
-        		<tr>
-        			<td align="center" style="padding-top: 10px; padding-bottom: 10px;">
-        				<button style="font-size: 20px; width: 200px;">Cancel Order</button>
-        			</td>
-        		</tr>
-        </table>
-        
-    </div>
+				</tr>
+				<tr>
+					<td><input type="text" name="code" size="60"
+						style="font-size: 18px;"></td>
+				</tr>
+				<tr>
+					<td class="boxContent">Card Type:</td>
+
+				</tr>
+				<tr>
+					<td><input type="text" name="cardType" size="60"
+						style="font-size: 18px;"></td>
+				</tr>
+				<tr style="height: 50px;">
+					<td align="center" style="padding-bottom: 10px;">
+						<button type="submit" form="pay"
+							style="font-size: 20px; margin-top: 10px; width: 200px;">Purchase</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<table align="center"
+			style="border-bottom: 3px solid black; border-left: 3px solid black; border-right: 3px solid black; width: 566px; margin-top: 0px;">
+			<tr>
+				<td align="center" style="padding-top: 10px; padding-bottom: 10px;">
+					<button style="font-size: 20px; width: 200px;">Cancel
+						Order</button>
+				</td>
+			</tr>
+		</table>
+
+	</div>
 </body>
 
 </html>
