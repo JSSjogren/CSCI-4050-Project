@@ -22,7 +22,6 @@
         .title {
             font-size: 50px;
             font-family: "Apple Chancery", Times, serif;
-            margin-right: 40px;
         }
         .headerDiv {
             /*border-bottom: 5px solid black;*/
@@ -100,13 +99,13 @@
 
 <body>
     <div class="headerDiv">
-        <table>
+        <table style=" width: 100%;">
             <tr>
-                <td><img src="transparentWebSiteLogo.png" class="logo"></td>
-                <td>
-                    <h1 class="title">Dawg Drive-in</h1>
+                <td style="width: 8%"><img src="transparentWebSiteLogo.png" class="logo"></td>
+                <td align="left" style="width: 28%;">
+                    <h1 class="title" style="margin-right: 0px; margin-left: 0px; padding: 0px;">Dawg Drive-in</h1>
                 </td>
-                <td><button class="tabButton" onclick="movie();">Movies</button></td>
+                <td style=""><button class="tabButton" onclick="movie();">Movies</button></td>
                 <td><button class="tabButton" onclick="lots();">Our Lots</button></td>
                 <td><button class="tabButton" onclick="food();">Food & Drink</button></td>
                 
@@ -134,18 +133,18 @@
                 		
                 %>
                 <td><button class="tabButton" onclick="admin();">Admin</button></td>
-                	<td style="width: 250px; font-size: 20px;">
+                	
                 <%
                 			}
                 		}
-                		else{
+                		
                 %>
-                <td style="width: 300px; font-size: 20px;">
+                <td style="width: 300px; font-size: 20px; padding-right: 15px;">
                 <%
-                		}
+                		
                 %>
                 
-                    <p style="text-align: right; font-family: avenir, times, serif;">
+                    <p style="text-align: right; font-family: avenir, times, serif; padding-right: 15px;">
                     <% 
                 			if(session != null && session.getAttribute("firstName") != null){
                 				String name = (String) session.getAttribute("firstName");
@@ -164,7 +163,7 @@
                 			
                 			<span>
                 			<!-- <form id="form" method="post" action="SignInController"> -->
-                			<a href="LogoutController" accesskey="1" title="" style="color: black; text-decoration: none; cursor:pointer; margin-right: 5px; position: absolute; left: 1295px; top: 120px;">Logout</a>
+                			<a href="LogoutController" accesskey="1" title="" style="color: black; text-decoration: none; cursor:pointer; margin-right: 5px; position: relative; left: -34%; top: 50px;"><B>Logout</B></a>
                     		<!-- <B onclick="signIn();" style="cursor:pointer; margin-right: 5px; position: absolute; left: 1295px; top: 120px;">Log out</B> -->
                     		<!-- </form> -->
                     		</span>
@@ -175,7 +174,7 @@
                 		%>
                 			<span>
                 			<!-- <form id="form" method="post" action="SignInController"> -->
-                			<a href="LogoutController" accesskey="1" title="" style="color: black; text-decoration: none; cursor:pointer; margin-right: 5px; position: absolute; left: 1310px; top: 120px;">Logout</a>
+                			<a href="LogoutController" accesskey="1" title="" style="color: black; text-decoration: none; cursor:pointer; margin-right: 5px; position: relative; left: -35%; top: 50px;">Logout</a>
                     		<!-- <B onclick="signIn();" style="cursor:pointer; margin-right: 5px; position: absolute; left: 1295px; top: 120px;">Log out</B> -->
                     		<!-- </form> -->
                     		</span>
@@ -209,7 +208,7 @@
         <p style="text-align: center; font-size: 30px; margin-left: 70px; margin-right: 70px; font-family: avenir, times, serif">Dawg-Drive In is a drive-in movie theater experience! Here you get to see any of our movies from the comfort of your own car in one of our movie lots! All you need is to register for an account or sign-in to book your tickets now.</p>
     </div>
    <div>
-        <p style="text-align: center;color: whitesmoke; font-size: 30px; padding-top: 10px; font-family: Apple Chancery, Time, serif;">Movies at Dawg Drive-In</p>
+        <p style="text-align: center;color: whitesmoke; font-size: 30px; padding-top: 10px; font-family: Apple Chancery, Time, serif;">Featured movies at Dawg Drive-In</p>
         <table align="center">
             <tr>
                 <td><img src="gonewiththewindMoviePic.png" style="max-height: 500px; padding: 50px;"></td>

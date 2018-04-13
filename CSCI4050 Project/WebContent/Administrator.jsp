@@ -101,17 +101,17 @@
 
 <body>
     <div class="headerDiv">
-        <table>
+        <table style="width: 100%;">
             <tr>
-                <td><img src="transparentWebSiteLogo.png" class="logo"></td>
-                <td>
+                <td style="width: 8%"><img src="transparentWebSiteLogo.png" class="logo"></td>
+                <td style="margin-left: 0%;">
                     <h1 class="title">Dawg Drive-in</h1>
                 </td>
-                <td style="width: 900px; font-size: 20px;">
-                	<p style="text-align: right; cursor:pointer;" onclick="home();">Return Home</p>
+                <td align="right"style="font-size: 20px; padding-right: 10px;">
+                	<p style="text-align: right; cursor: pointer;" onclick="home();">Return to <b>Home</b></p>
                 </td>
             </tr>
-        </table>
+           </table>
     </div>
     
     <div id="addMovie" style="border: 3px solid black;">
@@ -238,8 +238,12 @@
             %>
         </table>
         <div></div>
-        <form action="DeleteMovieController" method="get" style="margin-left: 400px;">
-        		Enter Movie Name to be deleted: <input type="text" name="movie" style="width: 300px; margin-top: 30px; margin-bottom: 30px"/>
+        <form action="DeleteMovieController" method="get">
+        		<table align="center">
+        			<tr>
+        				<td align="center">Enter Movie Name to be deleted: <input type="text" name="movie" style="width: 300px; margin-top: 30px; margin-bottom: 30px"/><td>
+        			</tr>
+        		</table>
         		<input type="submit" value="Delete" />
         </form>
     </div>
@@ -379,10 +383,18 @@
 			}
             %>
         </table>
-        <form action="UpdateTypeController" method="get" style="margin-left: 600px; margin-bottom: 30px;">
-        		UserId to be changed: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/><br>
-        		New TypeId: <input type="number" min="1" max="6" name="typeId" style="margin-bottom: 10px;"><br>
-        		<input type="submit" value="Change" />
+        <form action="UpdateTypeController" method="get" style="margin-bottom: 30px;">
+        		<table align="center">
+        			<tr>
+        				<td>UserId to be changed: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/></td>
+        			</tr>
+        			<tr>
+        				<td>New TypeId: <input type="number" min="1" max="6" name="typeId" style="margin-bottom: 10px;"></td>
+        			</tr>
+        			<tr>
+        				<td><input type="submit" value="Change" /></td>
+        			</tr>
+        		</table>
         </form>
         <div></div>
     </div>
@@ -438,10 +450,18 @@
 			}
             %>
         </table>
-        <form action="UpdateStatusController" method="get" style="margin-left: 600px; margin-bottom: 30px;">
-        		UserId to be changed: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/><br>
-        		New Status: <input type="number" min="0" max="2" name="status" style="margin-bottom: 10px;"><br>
-        		<input type="submit" value="Change" />
+        <form action="UpdateStatusController" method="get" style="margin-bottom: 30px;">
+        		<table align="center">
+        			<tr>
+        				<td>UserId to be changed: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/></td>
+        			</tr>
+        			<tr>
+        				<td>New Status: <input type="number" min="0" max="2" name="status" style="margin-bottom: 10px;"></td>
+        			</tr>
+        			<tr>
+        				<td><input type="submit" value="Change" /></td>
+        			</tr>
+        		</table>
         </form>
         <div></div>
     </div>
@@ -497,9 +517,15 @@
 			}
             %>
         </table>
-        <form action="DeleteUserController" method="get" style="margin-left: 600px; margin-bottom: 30px;">
-        		UserId to be deleted: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/><br>
-        		<input type="submit" value="Delete" />
+        <form action="DeleteUserController" method="get" style="margin-bottom: 30px;">
+        		<table align="center">
+        			<tr>
+        				<td>UserId to be deleted: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/></td>
+        			</tr>
+        			<tr>
+        				<td><input type="submit" value="Delete" /></td>
+        			</tr>
+        		</table>
         </form>
         <div></div>
     </div>

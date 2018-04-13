@@ -83,17 +83,17 @@
 
 <body>
     <div class="headerDiv">
-        <table>
+        <table style="width: 100%;">
             <tr>
-                <td><img src="transparentWebSiteLogo.png" class="logo"></td>
-                <td>
+                <td style="width: 8%"><img src="transparentWebSiteLogo.png" class="logo"></td>
+                <td style="margin-left: 0%;">
                     <h1 class="title">Dawg Drive-in</h1>
                 </td>
-                <td style="width: 900px; font-size: 20px;">
-                <p style="text-align: right; cursor:pointer;" onclick="home();">Return Home</p>
+                <td align="right"style="font-size: 20px; padding-right: 10px;">
+                	<p style="text-align: right; cursor: pointer;" onclick="home();">Return to <b>Home</b></p>
                 </td>
             </tr>
-        </table>
+           </table>
     </div>
     <div>
     <h1 align="center">Select Movie</h1>
@@ -360,7 +360,7 @@
 					<p>Pick Day:</p>
 				</td>
 				<td>
-					<input type="date" name="datePicked" min="2018-04-01" max="2018-05-10" width="120px;"/>
+					<input type="date" name="datePicked" min="2018-04-01" max="2018-06-01" width="120px;"/>
 				</td>
 				<td>
 					<input type="submit" value="Submit" width="40px;"/>
@@ -403,8 +403,9 @@
 				 	}
     					
     					while(rs.next()){
-    						Date date = rs.getDate("releaseDate");
-    						if(current.after(date)){
+    						Date rdate = rs.getDate("releaseDate");
+    						Date eDate = rs.getDate("expiration");
+    						if(current.after(rdate) && current.before(eDate)){
     							String title = rs.getString("Title");
     					 		String rating = rs.getString("MpaaRating");
     					 		String trailer = rs.getString("TrailerVideo");
