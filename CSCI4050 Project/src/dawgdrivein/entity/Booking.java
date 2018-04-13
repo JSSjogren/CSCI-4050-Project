@@ -43,6 +43,21 @@ public class Booking {
 	
 	@Transient
 	private BookingDBA bookingDBA;
+	
+	@Transient
+	private static final int CHILD_TICKET_PRICE = 6;
+	
+	@Transient
+	private static final int ADULT_TICKET_PRICE = 10;
+	
+	@Transient
+	private static final int SENIOR_TICKET_PRICE = 8;
+	
+	@Transient
+	private static final double TAX = 0.07;
+	
+	@Transient
+	private static final double ONLINE_FEE = 2.00;
 
 	public Booking(int userID, int bookingNo, float totalPrice, int noOfTickets, int showtimeID, int promoId, int movieId)
 	{
@@ -84,6 +99,22 @@ public class Booking {
 		return bookingDBA.updateBooking(this);
 	}
 
+	public double calculatePreTotal(int numChildren, int numAdults, int numSeniors)
+	{
+		double total = (numChildren * CHILD_TICKET_PRICE) + (numAdults * ADULT_TICKET_PRICE) + (numSeniors * SENIOR_TICKET_PRICE);
+		return total;
+	}
+	
+	public double calculateDiscount(double total, double promoDiscount)
+	{
+		return total * promoDiscount;
+	}
+	
+	public double calculateTax(double total)
+	{
+		return getTax() * total;
+	}
+	
 	/**
 	 * Retrieves a Booking from the database using its ID
 	 * @param id the booking ID that hibernate will use to retrieve a Booking object
@@ -156,4 +187,25 @@ public class Booking {
 		this.movieId = movieId;
 	}
 
+	public static int getChildTicketPrice() {
+		return CHILD_TICKET_PRICE;
+	}
+
+	public static int getAdultTicketPrice() {
+		return ADULT_TICKET_PRICE;
+	}
+
+	public static int getSeniorTicketPrice() {
+		return SENIOR_TICKET_PRICE;
+	}
+
+	public static double getTax() {
+		return TAX;
+	}
+	
+	public static double getOnlineFee() {
+		return ONLINE_FEE;
+	}
+
+	
 }

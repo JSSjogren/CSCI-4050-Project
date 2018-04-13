@@ -120,12 +120,12 @@
             <tr>
             		<%
             		try {
-            				request.setAttribute("movieSelected", "13 Hours");
+/*             				request.setAttribute("movieSelected", "13 Hours"); */
 						Connection conn;
     						Class.forName("com.mysql.jdbc.Driver");
     				 		conn = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
     				 		String status = "Established connection";
-    				 		String movieSelected = (String) request.getAttribute("movieSelected");
+    				 		String movieSelected = (String) session.getAttribute("movieSelected");
     				 		String query = "Select * from Movie where Title='" + movieSelected + "'";
     				 		Statement stmt = conn.createStatement();
         					ResultSet rs = stmt.executeQuery(query);
@@ -182,9 +182,14 @@
                  <td>
                     <p class="dateTitle">Date: </p>
                 </td>
+                <form action = "DatePickerController" method = "get">
                 <td>
-                    <input style="margin-left: 40px;" type="date" min="${strCurrent}" max="${expire}" name="date">
+                    <input style="margin-left: 40px;" type="date" min="${strCurrent}" max="${expire}" name="dateSelected">
                 </td>
+                <td>
+                		<input type="submit" value="Select Date" />
+                </td>
+                </form>
             </tr>
         </table>
     </div>

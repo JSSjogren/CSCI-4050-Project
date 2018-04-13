@@ -85,7 +85,8 @@
 </head>
 
 <%
-session.setAttribute("firstName", "John");
+
+/* session.setAttribute("firstName", "John");
 session.setAttribute("lastName", "Doe");
 session.setAttribute("email", "johndoe@gmail.com");
 session.setAttribute("movieSelected", "13 Hours");
@@ -93,7 +94,7 @@ session.setAttribute("seating", "Spot 3");
 session.setAttribute("numSeats", 1);
 session.setAttribute("time", "12:00 PM");
 session.setAttribute("day", "05-10-2018");
-
+ */
 
 
 String fn = (String) session.getAttribute("firstName");
@@ -102,8 +103,8 @@ String email = (String) session.getAttribute("email");
 String movieSelected = (String) session.getAttribute("movieSelected");
 String seating = (String) session.getAttribute("seating");
 int numSeats = (int) session.getAttribute("numSeats");
-String time = (String) session.getAttribute("time");
-String day = (String) session.getAttribute("day");
+String time = (String) session.getAttribute("timeSelected");
+String day = (String) session.getAttribute("dateSelected");
 
 String name = fn + " " + ln;
 String timeAndDate = day + " " + time;
@@ -200,7 +201,7 @@ pageContext.setAttribute("time", timeAndDate);
 
             			}
             		
-            			double ticketPrices;
+/*             			double ticketPrices;
             			
             			if(discount){
             				ticketPrices = numSeats * 20.00;
@@ -218,17 +219,11 @@ pageContext.setAttribute("time", timeAndDate);
             			double taxes = ticketPrices * 0.06;
             			double onlineFee = 2.00;
             			double total = ticketPrices + taxes + onlineFee;
+            			*/
+            			DecimalFormat df = new DecimalFormat("#.##");
             			
-            			DecimalFormat df = new DecimalFormat("#.00");
             			
-            			
-            			
-            			session.setAttribute("ticketPrices",df.format(ticketPrices));
-            			session.setAttribute("taxes",df.format(taxes));
-            			session.setAttribute("onlineFee",df.format(onlineFee));
-            			session.setAttribute("total",df.format(total));
-            			
-            			String spotsAndPrice = seating + ": $" + df.format(total);
+            			String spotsAndPrice = seating + ": $" + Double.valueOf(df.format(session.getAttribute("preTotal")));
             			
             			session.setAttribute("spotsAndPrice", spotsAndPrice);
             			
@@ -238,13 +233,13 @@ pageContext.setAttribute("time", timeAndDate);
                 <td style="font-size: 25px;" class="boxContent"><p style="margin-bottom:0px;">${spotsAndPrice}</p></td>
             </tr>
             <tr>
-                <td style="font-size: 25px;" class="boxContent"><p style="margin-bottom:0px;">Taxes: $ ${taxes}</p></td>
+                <td style="font-size: 25px;" class="boxContent"><p style="margin-bottom:0px;">Taxes: $ ${taxAmount}</p></td>
             </tr>
             <tr>
                 <td style="font-size: 25px;" class="boxContent"><p style="margin-bottom:0px; border-bottom: 1px dashed black;">Online Fee: $2.00</p></td>
             </tr>
             <tr>
-                <td style="font-size: 25px;" class="boxContent"><p style="font-weight:900;">Total: $ ${total}</p></td>
+                <td style="font-size: 25px;" class="boxContent"><p style="font-weight:900;">Total: $${total}</p></td>
             </tr>
             <tr>
             		<td align="center">

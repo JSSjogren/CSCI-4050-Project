@@ -126,16 +126,14 @@
     	
     	<%
     		try{
-    			request.setAttribute("movieSelected", "13 Hours");
-			request.setAttribute("dateSelected", "2018-05-10");
-			request.setAttribute("time", "12:00");
+			/* request.setAttribute("time", "12:00"); */
 			Connection conn;
 			Class.forName("com.mysql.jdbc.Driver");
 	 		conn = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
 	 		String status = "Established connection";
-	 		String movieSelected = (String) request.getAttribute("movieSelected");
-	 		String dateSelected = (String) request.getAttribute("dateSelected");
-	 		String timeSelected = (String) request.getAttribute("time");
+	 		String movieSelected = (String) session.getAttribute("movieSelected");
+	 		String dateSelected = (String) session.getAttribute("dateSelected");
+	 		String timeSelected = (String) session.getAttribute("timeSelected");
 	 		String query = "Select * from Movie where Title='" + movieSelected + "'";
 	 		Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
@@ -156,7 +154,7 @@
 	 		}
 	 		
     	%>
-    		<form id="seats">
+    		<form id="seats" action="SeatPickerController" method="get">
         <table align="center">
             <tr>
                 <td class="parking">

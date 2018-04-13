@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MovieSelectionController
+ * Servlet implementation class TimePickerController
  */
-@WebServlet("/MovieSelectionController")
-public class MovieSelectionController extends HttpServlet {
+@WebServlet("/TimePickerController")
+public class TimePickerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MovieSelectionController() {
+    public TimePickerController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,12 +26,15 @@ public class MovieSelectionController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String movieSelected = request.getParameter("movieSelected");
-		request.getSession().setAttribute("movieSelected", movieSelected);
+		// TODO Auto-generated method stub
+		request.getSession().setAttribute("timeSelected", request.getParameter("time"));
+		String time = (String)request.getSession().getAttribute("timeSelected");
+		
 		if (request.getSession().getAttribute("userId") != null)
-			response.sendRedirect("DatePicker.jsp");
+			response.sendRedirect("SeatPicker.jsp");
 		else
 			response.sendRedirect("signIn.html");
+		System.out.println(time);
 	}
 
 	/**
