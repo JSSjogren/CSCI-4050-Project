@@ -228,6 +228,9 @@ public class Movie {
 		this.title = title;
 	}
 
-
+	public int getMovieIdByName(String name)
+	{
+		return movieDBA.getMovieIdByName(name);
+	}
 
 }

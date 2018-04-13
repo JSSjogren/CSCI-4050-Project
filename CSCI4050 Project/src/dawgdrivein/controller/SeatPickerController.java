@@ -1,7 +1,7 @@
 package dawgdrivein.controller;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.servlet.ServletException;
@@ -41,6 +41,7 @@ public class SeatPickerController extends HttpServlet {
 		
 		String seats = new String();
 		int numSeats = 0;
+		int numSpace = 0;
 		
 		if (Collections.list(request.getParameterNames()).size() == 0)
 		{
@@ -48,26 +49,34 @@ public class SeatPickerController extends HttpServlet {
 			return;
 		}
 		
+		ArrayList<String> seatList = new ArrayList<String>();
+		
 		for (String key : Collections.list(request.getParameterNames()))
 		{
 			if (key.contains("seat"))
 			{
+				seatList.add(key);
 				seats += key + ", ";
-				numSeats += 1;
+				numSpace += 1;
 			}
 		}
 		
-		int numChildren = 1;
-		int numAdults = 2;
-		int numSeniors = 1;
+		int numChildren = Integer.parseInt(request.getParameter("numChildren"));
+		int numAdults = Integer.parseInt(request.getParameter("numAdults"));
+		int numSeniors = Integer.parseInt(request.getParameter("numSeniors"));
+		
+		numSeats = numChildren + numAdults + numSeniors;
+		
 		int promoDiscount = 0;
 		
 		seats = seats.substring(0, seats.length() - 2);
-		seats = seats.replaceAll("s", "S");
-		seats = seats.replaceAll("t", "t ");
+		seats = seats.replace("seat", "Space ");
 		
 		request.getSession().setAttribute("numSeats", numSeats);
+		request.getSession().setAttribute("numSpaces", numSpace);
+		
 		request.getSession().setAttribute("seating", seats);
+		request.getSession().setAttribute("seatList", seatList);
 		System.out.println(seats);
 		
 		//Calculate total
@@ -85,12 +94,13 @@ public class SeatPickerController extends HttpServlet {
 		//Apply tax to total;
 		total += taxAmount;
 		total += booking.getOnlineFee();
+		total += booking.getParkingSpaceFee() * numSpace;
 		
-		DecimalFormat df = new DecimalFormat("#.##");
-		request.getSession().setAttribute("preTotal", Double.valueOf(df.format(preTotal)));
-		request.getSession().setAttribute("discountAmount", Double.valueOf(df.format(discountAmount)));
-		request.getSession().setAttribute("taxAmount", Double.valueOf(df.format(taxAmount)));
-		request.getSession().setAttribute("total", Double.valueOf(df.format(total)));
+		request.getSession().setAttribute("parkingFee", booking.getParkingSpaceFee() * numSeats);
+		request.getSession().setAttribute("preTotal", preTotal);
+		request.getSession().setAttribute("discountAmount", discountAmount);
+		request.getSession().setAttribute("taxAmount", taxAmount);
+		request.getSession().setAttribute("total", total);
 		
 		response.sendRedirect("OrderSummary.jsp");
 	}
