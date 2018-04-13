@@ -100,17 +100,17 @@
 
 <body>
     <div class="headerDiv">
-        <table>
+        <table style="width: 100%;">
             <tr>
-                <td><img src="transparentWebSiteLogo.png" class="logo"></td>
-                <td>
+                <td style="width: 8%"><img src="transparentWebSiteLogo.png" class="logo"></td>
+                <td style="margin-left: 0%;">
                     <h1 class="title">Dawg Drive-in</h1>
                 </td>
-                <td style="width: 900px; font-size: 20px;">
-                <p style="text-align: right">Return to <b>Home</b></p>
+                <td align="right"style="font-size: 20px; padding-right: 10px;">
+                	<p style="text-align: right; cursor: pointer;" onclick="home();">Return to <b>Home</b></p>
                 </td>
             </tr>
-        </table>
+           </table>
     </div>
     <div>
         <p style="text-align: center;color: whitesmoke; font-size: 30px; padding-top: 10px; font-family: Apple Chancery, Time, serif;">Pick a day</p>
