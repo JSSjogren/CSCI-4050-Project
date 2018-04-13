@@ -409,13 +409,24 @@
         </table>
         <table align="center">
         		<tr>
-        			<td align="center"><p style="color: white; text-align: center; margin-top: 50px;">Enter Ages:        			
-        				<select name="age">
-						<option value="child">Mostly Children</option>
-						<option value="adult">Mostly Adults</option>
-						<option value="senior">Mostly Seniors</option>
-					</select>      			
-        			</p></td>
+        			<td align="center">
+        				<p style="color: white; text-align: center; margin-top: 50px; font-size: 20px;">Select number of tickets based on age:</p>
+        			</td>
+        		</tr>
+        		<tr>
+        			<td align="center" style="margin-bottom: 15px; margin-top: 15px; padding: 15px;">
+        				<span style="color: white; font-size: 20px;">Number of Children: </span> <input  type="number" value="0" name="numChildren" min="0" max="20"  />
+        			</td>
+        		</tr>
+        		<tr>
+        			<td align="center" style="margin-bottom: 15px; margin-top: 15px; padding: 15px;">
+        				<span style="color: white; font-size: 20px; ">Number of Adults: </span> <input  type="number" value="0" name="numAdults" min="0" max="20"  />
+        			</td>
+        		<tr/>
+        		<tr>
+        			<td align="center" style="margin-bottom: 15px; margin-top: 15px; padding: 15px;">
+        				<span style="color: white; font-size: 20px;">Number of Seniors: </span> <input  type="number" value="0" name="numSeniors" min="0" max="20"  />
+        			</td>
         		</tr>
         		<tr>
                 <td align="center">
