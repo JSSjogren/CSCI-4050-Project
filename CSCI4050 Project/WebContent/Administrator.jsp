@@ -183,20 +183,20 @@
                 <td><input type="text" size="60" name="rating"></td>
             </tr>
             <tr>
-                <td class="boxContent">Release Date (yyyy-mm-dd):</td>
+                <td class="boxContent">Release Date:</td>
             </tr>
             <tr>
-                <td><input type="text" size="60" name="releaseDate"></td>
+                <td><input type="date" size="100" name="releaseDate" style="font-size: 15px;"></td>
             </tr>
             <tr>
-                <td class="boxContent">Date and Time (yyyy-mm-dd --:-- --):</td>
+                <td class="boxContent">Expiration Date</td>
             </tr>
             <tr>
-                <td><input type="datetime-local" size="60" name="dateTime"></td>
+                <td><input type="date" size="100" name="expiration" style="font-size: 15px;"></td>
             </tr>
             <tr style="height: 50px;">
-                <td>
-                    <button style="font-size: 20px; margin-top: 10px; width: 400px; margin-left: 15px; cursor:pointer;" form="form">Submit</button>
+                <td align="center">
+                    <button style="font-size: 20px; margin-top: 10px; width: 400px; cursor:pointer;" form="form">Submit</button>
                   
                 </td>
             </tr>
@@ -204,13 +204,62 @@
         </form>
     	
     	</div>
+    	
+    	<div id="addMovieTime" style="border: 3px solid black;">
+    		<p class="register">Add Movie Time</p>
+    		<form id="addTime" method="get" action="AddTimeController">
+    		<table class="registerBox" align="center" style="margin-bottom: 30px;">
+    			<tr>
+    				<td>
+    					<select name="movieTitle" form="addTime" style="font-size: 20px; margin-bottom: 15px;margin-top: 15px;">
+    					<%
+    						Connection conn;
+    						try{
+    							Class.forName("com.mysql.jdbc.Driver");
+    						 	conn = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+    						 	String status = "Established connection";
+    						 	String query = "Select * from Movie";
+    							Statement stmt = conn.createStatement();
+    							ResultSet rs = stmt.executeQuery(query);
+    							while(rs.next()){
+    								String title = rs.getString("Title");
+    								pageContext.setAttribute("title", title);
+    					%>
+    						<option value="${title}">${title}</option>
+    					<%
+    							}
+    					%>
+    					</select>
+    				</td>
+    			</tr>
+    				<%
+    						}catch(Exception e){
+    							e.printStackTrace();
+    						}
+    				
+    				%>
+    			<tr>
+    				<td align="center">
+    					<input type="datetime-local" name="dateAndTime" style="font-size: 20px; margin-bottom: 15px;" />
+    				</td>
+    			</tr>
+    			<tr>
+    				<td align="center">
+    					<input type="submit" value="Add Time" style="font-size: 20px; margin-bottom: 15px;" />
+    				</td>
+    			</tr>
+    		</table>
+    		</form>
+    	
+    	</div>
+    	
+    	
     
     <div id="deleteMovie" style="border: 3px solid black;">
     		<p class="register">Delete Movie</p>
     		<table class="registerBox" align="center">
             <caption class="boxTitle">Movie List</caption>
             <%
-            Connection conn;
 			
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -220,6 +269,7 @@
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next()){
+					
 			%>
 				<tr>
 				<td>
@@ -242,94 +292,89 @@
         		<table align="center">
         			<tr>
         				<td align="center">Enter Movie Name to be deleted: <input type="text" name="movie" style="width: 300px; margin-top: 30px; margin-bottom: 30px"/><td>
+        				<td align="center"><input type="submit" value="Delete" style="font-size: 20px;"/></td>
         			</tr>
         		</table>
-        		<input type="submit" value="Delete" />
         </form>
     </div>
     
     <div id="updateMovie" style="border: 3px solid black;">
     		<p class="register">Update Movie</p>
-    		<form action="UpdateMovieController" method="get" id="form2" style="margin-bottom: 30px;">
-        <table class="registerBox" align="center">
-            <caption class="boxTitle">Enter Updated Movie Info</caption>
-            <tr>
-                <td class="boxContent">Title:</td>
-
-            </tr>
-            <tr>
-                <td><input type="text" size="60" name="title"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Genre:</td>
-
-            </tr>
-            <tr>
-                <td><input type="text" size="60" name="genre"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Cast:</td>
-
-            </tr>
-            <tr>
-                <td><input type="text" size="60" name="cast"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Director:</td>
-
-            </tr>
-            <tr>
-                <td><input type="password" size="60" name="director"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Producer:</td>
-
-            </tr>
-            <tr>
-                <td><input type="password" size="60" name="producer"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Description:</td>
-
-            </tr>
-            <tr>
-                <td><input type="text" size="60" name="description"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Trailer Picture Link:</td>
-
-            </tr>
-            <tr>
-                <td><input type="text" size="60" name="picture"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Trailer Video:</td>
-
-            </tr>
-            <tr>
-                <td><input type="text" size="60" name="video"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">MpaaRating:</td>
-
-            </tr>
-            <tr>
-                <td><input type="text" size="60" name="rating"></td>
-            </tr>
-            <tr>
-                <td class="boxContent">Release Date (yyyy-mm-dd):</td>
-            </tr>
-            <tr>
-                <td><input type="text" size="60" name="releaseDate"></td>
-            </tr>
-            <tr style="height: 50px;">
-                <td>
-                    <button style="font-size: 20px; margin-top: 10px; width: 400px; margin-left: 15px; cursor:pointer;" form="form2">Submit</button>
-                  
-                </td>
-            </tr>
-        </table>
-        </form>
+    		<table class="registerBox" align="center" style="max-width: 100%; margin-bottom: 30px;">
+    		<tr>
+    			<th>MovieId</th>
+    			<th>Title</th>
+    			<th>Genre</th>
+    			<th>Cast</th>
+    			<th>Director</th>
+    			<th>Producer</th>
+    			<th>Description</th>
+    			<th>Trailer Picture</th>
+    			<th>Trailer Video</th>
+    			<th>Rating</th>
+    			<th>Release</th>
+    			<th>Expiration</th>
+    			<th>Update Button</th>
+    		
+    		</tr>
+    		<%
+    			try{
+    				Class.forName("com.mysql.jdbc.Driver");
+    			 	conn = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+    			 	String status = "Established connection";
+    			 	String query = "Select * from Movie";
+    				Statement stmt = conn.createStatement();
+    				ResultSet rs = stmt.executeQuery(query);
+    				while(rs.next()){
+    					String movieId = rs.getString("MovieId");
+    					String title = rs.getString("Title");
+    					String genre = rs.getString("Genre");
+    					String cast = rs.getString("Cast");
+    					String director = rs.getString("Director");
+    					String producer = rs.getString("Producer");
+    					String description = rs.getString("Description");
+    					String picture = rs.getString("TrailerPicture");
+    					String video = rs.getString("TrailerVideo");
+    					String rating = rs.getString("MpaaRating");
+    					String release = rs.getString("releaseDate");
+    					String expiration = rs.getString("expiration");
+    					pageContext.setAttribute("movieId", movieId);
+					pageContext.setAttribute("title", title);
+					pageContext.setAttribute("genre", genre);
+					pageContext.setAttribute("cast", cast);
+					pageContext.setAttribute("director", director);
+					pageContext.setAttribute("producer", producer);
+					pageContext.setAttribute("description", description);
+					pageContext.setAttribute("picture", picture);
+					pageContext.setAttribute("video", video);
+					pageContext.setAttribute("rating", rating);
+					pageContext.setAttribute("release", release);
+					pageContext.setAttribute("expiration", expiration);
+    		%>
+    			<tr>
+    				<td align="center">${movieId}</td>
+    				<td align="center"><input type="text" name="title" value="${title}" form="${movieId}" /></td>
+    				<td align="center"><input style="width:40px;" type="text" name="genre" value="${genre}" form="${movieId}" /></td>
+    				<td align="center"><input type="text" name="cast" value="${cast}" form="${movieId}" /></td>
+    				<td align="center"><input type="text" name="director" value="${director}" form="${movieId}" /></td>
+    				<td align="center"><input type="text" name="producer" value="${producer}" form="${movieId}" /></td>
+    				<td align="center"><input type="text" name="description" value="${description}" form="${movieId}" /></td>
+    				<td align="center"><input type="text" name="picture" value="${picture}" form="${movieId}" /></td>
+    				<td align="center"><input type="text" name="video" value="${video}" form="${movieId}" /></td>
+    				<td align="center"><input style="width:30px;" type="text" name="rating" value="${rating}" form="${movieId}" /></td>
+    				<td align="center"><input style="width:70px;" type="text" name="release" value="${release}" form="${movieId}" /></td>
+    				<td align="center"><input style="width:70px;" type="text" name="expiration" value="${expiration}" form="${movieId}" /></td>
+    				<td align="center"><form id="${movieId}" action="UpdateMovieController"><input type="submit" value="Update"/></form></td>
+    				
+    			</tr>
+    		<%
+    				}
+    				conn.close();
+    			}catch(Exception e){
+    				e.printStackTrace();
+    			}
+    		%>
+    		</table>
     </div>
     
     <div id="updateType" style="border: 3px solid black;">

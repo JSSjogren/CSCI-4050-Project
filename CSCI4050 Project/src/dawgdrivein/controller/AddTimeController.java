@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AddMovieController
+ * Servlet implementation class AddTimeController
  */
-@WebServlet("/AddMovieController")
-public class AddMovieController extends HttpServlet {
+@WebServlet("/AddTimeController")
+public class AddTimeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddMovieController() {
+    public AddTimeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,17 +26,8 @@ public class AddMovieController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("title");
-		String genre = request.getParameter("genre");
-		String cast = request.getParameter("cast");
-		String director = request.getParameter("director");
-		String producer = request.getParameter("producer");
-		String description = request.getParameter("description");
-		String picture = request.getParameter("picture");
-		String video = request.getParameter("video");
-		String rating = request.getParameter("rating");
-		String releaseDate = request.getParameter("releaseDate");
-		String expiration = request.getParameter("expiration");
+		String movie = request.getParameter("movieTitle");
+		String dateAndTime = request.getParameter("dateAndTime");
 	}
 
 	/**
