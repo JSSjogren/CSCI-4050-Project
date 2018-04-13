@@ -66,6 +66,7 @@ public class SignInController extends HttpServlet {
 		
 		//Setup session so that we can get important attributes of the signed in user
 		request.getSession().setAttribute("userId", user.getId());
+		request.getSession().setAttribute("email", user.getEmail());
 		request.getSession().setAttribute("firstName", user.getFirstName());
 		request.getSession().setAttribute("lastName", user.getLastName());
 		request.getSession().setAttribute("rank", user.getRank());

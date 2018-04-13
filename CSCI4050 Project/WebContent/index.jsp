@@ -111,7 +111,7 @@
                 <td><button class="tabButton" onclick="food();">Food & Drink</button></td>
                 
                 <%
-                		if(session != null && session.getAttribute("user") == null){
+                		if(session != null && session.getAttribute("userId") == null){
                 %>
                 
                 <td><button class="tabButton" onclick="signIn();">Book Tickets</button></td>

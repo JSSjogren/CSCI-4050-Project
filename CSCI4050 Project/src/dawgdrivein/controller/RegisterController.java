@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dawgdrivein.entity.Address;
 import dawgdrivein.entity.Email;
 import dawgdrivein.entity.RegisteredCustomer;
 import dawgdrivein.entity.User;
@@ -37,7 +38,7 @@ public class RegisterController extends HttpServlet {
 		String addressStreet = request.getParameter("addressStreet");
 		String city = request.getParameter("city");
 		String state = request.getParameter("state");
-		String zipCode = request.getParameter("zip");
+		int zipCode = Integer.parseInt(request.getParameter("zip"));
 		//value is "yes" if they chose to subscribe
 		String subscribe = request.getParameter("subscribe");
 		int rank = 1;
@@ -46,14 +47,11 @@ public class RegisterController extends HttpServlet {
 		boolean subscribed = true;
 		
 		//checks if any form fields and empty
-		if(fn.equals("") || ln.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("") || addressStreet.equals("") || city.equals("") || state.equals("") || zipCode.equals("") || !password.equals(confirmPassword)) {
+		if(fn.equals("") || ln.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("") || addressStreet.equals("") || city.equals("") || state.equals("") || request.getParameter("zip").equals("") || !password.equals(confirmPassword)) {
 			response.sendRedirect("RegistrationError.html");
 			return;
 		}
 		//if all fields were entered....move on to handle all information, send verification code, etc...
-		
-		//Concat all address fields
-		String address = addressStreet + ", " + city + ", " + state + ", " + zipCode;
 		
 		//Status 0 = Inactive, 1 = Active, 2 = Suspended
 		//Create registered customer and save to database
@@ -71,6 +69,9 @@ public class RegisterController extends HttpServlet {
 			System.out.println("Id: " + rc.getId());
 			int id = (Integer)request.getSession().getAttribute("userId");
 			System.out.println("ID in RegistrationController: " + id);
+			
+			Address address = new Address(0, id, addressStreet, city, state, zipCode);
+			address.saveAddress();
 		}
 		else
 		{
