@@ -269,12 +269,16 @@
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next()){
-					
+					Date today = new Date();
+					Date rDate = rs.getDate("releaseDate");
+					Date eDate = rs.getDate("expiration");
 			%>
 				<tr>
 				<td>
 				<%
-					out.print(rs.getString("title"));
+					if(today.before(eDate)){
+						out.print(rs.getString("title"));
+					}
 				%>
 				</td>
 				</tr>

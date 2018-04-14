@@ -130,14 +130,17 @@
     				String title = rsTwo.getString("Title");
     				String rating = rsTwo.getString("MpaaRating");
     				Date date = rsTwo.getDate("releaseDate");
+    				Date eDate = rsTwo.getDate("expiration");
     				String trailer = rsTwo.getString("TrailerVideo");
     				pageContext.setAttribute("title", title);
     				pageContext.setAttribute("rating", rating);
     				pageContext.setAttribute("trailer", trailer);
     				Date current = new Date();
     				boolean now = false;
+    				boolean showing = false;
     				now = current.after(date);
-    				if(now){
+    				showing = current.before(eDate);
+    				if(now && showing){
     				%>
     				<tr>
     					<td  align="center" style="font-size: 30px; border: 3px solid black; padding: 15px;">${title}</td>
@@ -189,14 +192,17 @@
     				String title = rsTwo.getString("Title");
     				String rating = rsTwo.getString("MpaaRating");
     				Date date = rsTwo.getDate("releaseDate");
+    				Date eDate = rsTwo.getDate("expiration");
     				String trailer = rsTwo.getString("TrailerVideo");
     				pageContext.setAttribute("title", title);
     				pageContext.setAttribute("rating", rating);
     				pageContext.setAttribute("trailer", trailer);
     				Date current = new Date();
+    				boolean showing = false;
     				boolean now = false;
+    				showing = current.before(eDate);
     				now = current.before(date);
-    				if(now){
+    				if(now && showing){
     				%>
     				<tr>
     					<td  align="center" style="font-size: 30px; border: 3px solid black; padding: 15px;">${title}</td>

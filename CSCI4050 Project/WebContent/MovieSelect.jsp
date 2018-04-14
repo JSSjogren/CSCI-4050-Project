@@ -183,7 +183,8 @@
     					
     					while(rs.next()){
     						Date date = rs.getDate("releaseDate");
-    						if(current.after(date)){
+    						Date eDate = rs.getDate("expiration");
+    						if(current.after(date) && current.before(eDate)){
     							String title = rs.getString("Title");
     					 		String rating = rs.getString("MpaaRating");
     					 		String trailer = rs.getString("TrailerVideo");
@@ -292,7 +293,8 @@
     					
     					while(rs.next()){
     						Date date = rs.getDate("releaseDate");
-    						if(current.after(date)){
+    						Date eDate = rs.getDate("expiration");
+    						if(current.after(date) && current.before(eDate)){
     							String title = rs.getString("Title");
     					 		String rating = rs.getString("MpaaRating");
     					 		String trailer = rs.getString("TrailerVideo");
@@ -359,8 +361,14 @@
 				<td>
 					<p>Pick Day:</p>
 				</td>
+				<%
+					Date today = new Date();
+					DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+					pageContext.setAttribute("today",today.toString());
+					
+				%>
 				<td>
-					<input type="date" name="datePicked" min="2018-04-01" max="2018-06-01" width="120px;"/>
+					<input type="date" name="datePicked" min="${today}" max="2018-06-01" width="120px;"/>
 				</td>
 				<td>
 					<input type="submit" value="Submit" width="40px;"/>
@@ -394,7 +402,7 @@
 				 	String query = "Select * from Movie";
 				 	Statement stmt = conn.createStatement();
 				 	ResultSet rs = stmt.executeQuery(query);
-				 	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+				 	df = new SimpleDateFormat("yyyy-MM-dd");
 				 	Date current = new Date();
 				 	try {
 				 	    current = df.parse(datePicked);
