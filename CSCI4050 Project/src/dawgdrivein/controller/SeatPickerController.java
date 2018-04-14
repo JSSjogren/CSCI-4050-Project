@@ -96,7 +96,7 @@ public class SeatPickerController extends HttpServlet {
 		total += booking.getOnlineFee();
 		total += booking.getParkingSpaceFee() * numSpace;
 		
-		request.getSession().setAttribute("parkingFee", booking.getParkingSpaceFee() * numSeats);
+		request.getSession().setAttribute("parkingFee", booking.getParkingSpaceFee() * numSpace);
 		request.getSession().setAttribute("preTotal", preTotal);
 		request.getSession().setAttribute("discountAmount", discountAmount);
 		request.getSession().setAttribute("taxAmount", taxAmount);

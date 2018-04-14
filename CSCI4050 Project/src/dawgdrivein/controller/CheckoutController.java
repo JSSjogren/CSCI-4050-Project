@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dawgdrivein.entity.Booking;
 import dawgdrivein.entity.CreditCard;
+import dawgdrivein.entity.Email;
 import dawgdrivein.entity.Seat;
 import dawgdrivein.entity.Ticket;
 
@@ -86,6 +87,20 @@ public class CheckoutController extends HttpServlet {
 			ticket.saveTicket();
 		}
 		
+		Email email = new Email();
+		
+		email.orderConfirmation(
+		booking.getBookingNo(),
+		(String)request.getSession().getAttribute("email"),
+		(String)request.getSession().getAttribute("firstName"),
+		(String)request.getSession().getAttribute("lastName"),
+	    (String)request.getSession().getAttribute("total"),
+	    (String)request.getSession().getAttribute("movieSelected"),
+	    (String)request.getSession().getAttribute("seating"),
+	    (int)request.getSession().getAttribute("numSeats"),
+	    (int)request.getSession().getAttribute("numSpaces"),
+	    (String)request.getSession().getAttribute("timeSelected"),
+	    (String)request.getSession().getAttribute("dateSelected"));		
 		response.sendRedirect("OrderConfirmation.jsp");
 	}
 

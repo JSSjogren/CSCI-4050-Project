@@ -186,32 +186,28 @@ pageContext.setAttribute("time", timeAndDate);
             				}
 
             			}
-            		
-    					DecimalFormat df = new DecimalFormat("0.00");
-    					df.setMinimumFractionDigits(2);
+    				%>
 
-    					session.setAttribute("spotsAndPrice", "Ticket Total: $" + df.format(session.getAttribute("preTotal")));
-
-    					session.setAttribute("taxAmount", "" + df.format(Double.parseDouble((String)session.getAttribute("taxAmount"))));
-
-    					session.setAttribute("total", "" + df.format(Double.parseDouble((String)session.getAttribute("total"))));
-
-    					session.setAttribute("parkingFee", "" + df.format(Double.parseDouble((String)session.getAttribute("parkingFee"))));
-            			
-            			
-            		%>
-            
-                <td style="font-size: 25px;" class="boxContent"><p style="margin-bottom:0px;">${spotsAndPrice}</p></td>
-            </tr>
-            <tr>
-                <td style="font-size: 25px;" class="boxContent"><p style="margin-bottom:0px;">Taxes: $ ${taxes}</p></td>
-            </tr>
-            <tr>
-                <td style="font-size: 25px;" class="boxContent"><p style="margin-bottom:0px; border-bottom: 1px dashed black;">Online Fee: $2.00</p></td>
-            </tr>
-            <tr>
-                <td style="font-size: 25px;" class="boxContent"><p style="font-weight:900;">Total: $ ${total}</p></td>
-            </tr>
+    				<td style="font-size: 25px;" class="boxContent"><p
+    						style="margin-bottom: 0px;">${spotsAndPrice}</p></td>
+    			</tr>
+    			<tr>
+    				<td style="font-size: 25px;" class="boxContent"><p
+    						style="margin-bottom: 0px;">Taxes: $${taxAmount}</p></td>
+    			</tr>
+    			<tr>
+    				<td style="font-size: 25px;" class="boxContent"><p
+    						style="margin-bottom: 0px;">Online Fee: $2.00</p></td>
+    			</tr>
+    			<tr>
+    				<td style="font-size: 25px;" class="boxContent"><p
+    						style="margin-bottom: 0px; border-bottom: 1px dashed black;">Parking
+    						Space Fee: $${parkingFee}</p></td>
+    			</tr>
+    			<tr>
+    				<td style="font-size: 25px;" class="boxContent"><p
+    						style="font-weight: 900;">Total: $${total}</p></td>
+    			</tr>
             <tr>
             		<td align="center">
             			<p style="font-size:22px;"><b>The order confirmation has been sent to your email!</b></p>
