@@ -13,9 +13,6 @@ import dawgdrivein.db.AddressDBA;
 public class Address {
 
 	@Id
-	@Column(name = "AddressId")
-	private int addressId;
-	
 	@Column(name = "UserId")
 	private int userId;
 	
@@ -34,9 +31,8 @@ public class Address {
 	@Transient
 	private AddressDBA addressDBA;
 	
-	public Address(int addressId, int userId, String street, String city, String state, int zip)
+	public Address(int userId, String street, String city, String state, int zip)
 	{
-		this.addressId = addressId;
 		this.userId = userId;
 		this.street = street;
 		this.city = city;
@@ -48,7 +44,6 @@ public class Address {
 	
 	public Address()
 	{
-		this.addressId = -1;
 		this.userId = -1;
 		this.street = null;
 		this.city = null;
@@ -61,5 +56,50 @@ public class Address {
 	public boolean saveAddress()
 	{
 		return addressDBA.saveAddress(this);
+	}
+	
+	public void updateAddress(int uID, String street, String city, String state, int zip)
+	{
+		addressDBA.updateAddress(uID, street, city, state, zip);
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public int getZip() {
+		return zip;
+	}
+
+	public void setZip(int zip) {
+		this.zip = zip;
 	}
 }

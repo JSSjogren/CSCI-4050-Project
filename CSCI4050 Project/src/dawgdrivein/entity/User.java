@@ -5,17 +5,22 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import dawgdrivein.db.UserDBA;
 
-@MappedSuperclass
+@Entity
 @Table(name="User")
+@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TypeId")
 public class User implements Serializable {
 
 	//Should allow us to auto-increment the User ID's
@@ -39,7 +44,7 @@ public class User implements Serializable {
 	@Column(name = "Status")
 	protected int status;
 	
-	@Column(name = "TypeId")
+	@Column(name = "TypeId", insertable = false, updatable = false)
 	protected int rank;
 	
 	@Column(name = "SubPref")

@@ -1,19 +1,17 @@
 package dawgdrivein.entity;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import dawgdrivein.db.UserDBA;
-
 @Entity
 @Table(name = "User")
+@DiscriminatorValue(value = "1")
 public class RegisteredCustomer extends User {
 
 	@Transient
@@ -57,13 +55,13 @@ public class RegisteredCustomer extends User {
 	}
 	
 	/**
-	 * Tells DB to update user info
+	 * Tells DB to update user profile info
 	 * 
 	 * @return success at updating user entries in DB
 	 */
-	public boolean updateCustomer()
+	public void updateProfile(int uID, String fN, String lN, String email, boolean sub_pref)
 	{
-		return userDBA.updateUser(this);
+		userDBA.updateProfile(uID, fN, lN, email, sub_pref);
 	}
 	
 	public boolean deleteCustomer()

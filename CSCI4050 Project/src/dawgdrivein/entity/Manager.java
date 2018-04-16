@@ -2,6 +2,7 @@ package dawgdrivein.entity;
 
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -10,6 +11,7 @@ import dawgdrivein.db.UserDBA;
 
 @Entity
 @Table(name = "User")
+@DiscriminatorValue(value = "3")
 public class Manager extends User {
 	
 	@Transient

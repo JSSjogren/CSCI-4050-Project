@@ -41,10 +41,19 @@ public class RegisterController extends HttpServlet {
 		int zipCode = Integer.parseInt(request.getParameter("zip"));
 		//value is "yes" if they chose to subscribe
 		String subscribe = request.getParameter("subscribe");
+		
+		boolean sub = false;
+		if (subscribe.equals("yes"))
+		{
+			sub = true;
+		}
+		else
+		{
+			sub = false;
+		}
+		
 		int rank = 1;
 		int status = 0;
-		//todo
-		boolean subscribed = true;
 		
 		//checks if any form fields and empty
 		if(fn.equals("") || ln.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("") || addressStreet.equals("") || city.equals("") || state.equals("") || request.getParameter("zip").equals("") || !password.equals(confirmPassword)) {
@@ -55,7 +64,7 @@ public class RegisterController extends HttpServlet {
 		
 		//Status 0 = Inactive, 1 = Active, 2 = Suspended
 		//Create registered customer and save to database
-		RegisteredCustomer rc = new RegisteredCustomer(fn, ln, email, password, 1, 0, true);
+		RegisteredCustomer rc = new RegisteredCustomer(fn, ln, email, password, 1, 0, sub);
 		if (rc.emailExists() == false)
 		{
 			rc.saveRegisteredCustomer();
@@ -70,7 +79,7 @@ public class RegisterController extends HttpServlet {
 			int id = (Integer)request.getSession().getAttribute("userId");
 			System.out.println("ID in RegistrationController: " + id);
 			
-			Address address = new Address(0, id, addressStreet, city, state, zipCode);
+			Address address = new Address(id, addressStreet, city, state, zipCode);
 			address.saveAddress();
 		}
 		else
