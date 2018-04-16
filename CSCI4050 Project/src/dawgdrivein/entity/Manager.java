@@ -43,7 +43,8 @@ public class Manager extends User {
 	 */
 	public boolean updateManager()
 	{
-		return userDBA.updateUser(this);
+		return true;
+//		return userDBA.updateUser(this);
 	}
 	
 	/**

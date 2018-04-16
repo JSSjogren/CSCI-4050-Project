@@ -205,4 +205,9 @@ public class User implements Serializable {
 		if (password.equals(confirmPassword))
 			userDBA.changePassword(getId(), generateHash(password));
 	}
+	
+	public boolean changeAccountType()
+	{
+		return userDBA.updateAccountType(this);
+	}
 }
