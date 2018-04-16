@@ -1,11 +1,15 @@
 package dawgdrivein.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dawgdrivein.entity.Promotion;
 
 /**
  * Servlet implementation class AddPromoController
@@ -27,8 +31,12 @@ public class AddPromoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String code = request.getParameter("code");
-		String percentDiscount = request.getParameter("discount");
+		int percentDiscount = Integer.parseInt(request.getParameter("discount"));
 		String expDate = request.getParameter("expiration");
+		
+		Promotion promo = new Promotion(0, Date.valueOf(expDate), code, percentDiscount);
+		promo.savePromo();
+		response.sendRedirect("Administrator.jsp");
 	}
 
 	/**

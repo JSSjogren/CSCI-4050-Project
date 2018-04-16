@@ -1,5 +1,12 @@
 package dawgdrivein.db;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,7 +25,7 @@ public class PromotionDBA {
 	 */
 	public boolean savePromo(Promotion promo)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Promotion.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		try {
@@ -47,25 +54,26 @@ public class PromotionDBA {
 	 */
 	public boolean updatePromo(Promotion promo)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		Session session = sessionFactory.openSession();
-		
+		System.out.println("Update");
+		Connection connect = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
 		try {
-            // Starting Transaction
-            Transaction transaction = session.beginTransaction();
-            session.saveOrUpdate(promo);
-            transaction.commit();
-            System.out.println("\n\n Details Updated \n");
-            return true;
- 
-        } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-            System.out.println("error");
-            return false;
-        }
-		finally
+			//Drop on ground
+			Class.forName("com.mysql.jdbc.Driver");
+			// Setup the connection with the DB
+			connect = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+
+			// Statements allow to issue SQL queries to the database
+			statement = connect.createStatement();
+			
+			statement.executeUpdate("UPDATE Promotion SET PercentDiscount = " + promo.getPercent_discount() + ", ExpDate = '" + promo.getExp_date() + "' WHERE code = '" + promo.getCode() + "';");
+			connect.close();
+			return true;
+		} catch (Exception e)
 		{
-			sessionFactory.close();
+			e.printStackTrace();
+			return false;
 		}
 	}
 	

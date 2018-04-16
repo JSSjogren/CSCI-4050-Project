@@ -1,6 +1,6 @@
 package dawgdrivein.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ public class Promotion {
 	@Column(name = "PromoId")
 	private int id;
 	
-	@Column(name = "exp_date", columnDefinition="DATETIME")
+	@Column(name = "ExpDate", columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date exp_date;
 	
@@ -51,7 +51,7 @@ public class Promotion {
 		this.exp_date = null;
 		this.code = null;
 		this.percent_discount = -1;
-		this.promoDBA = null;
+		this.promoDBA = new PromotionDBA();
 	}
 	
 	/**
