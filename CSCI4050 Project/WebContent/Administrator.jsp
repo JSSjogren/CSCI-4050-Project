@@ -145,14 +145,14 @@
 
             </tr>
             <tr>
-                <td><input type="password" size="60" name="director"></td>
+                <td><input type="text" size="60" name="director"></td>
             </tr>
             <tr>
                 <td class="boxContent">Producer:</td>
 
             </tr>
             <tr>
-                <td><input type="password" size="60" name="producer"></td>
+                <td><input type="text" size="60" name="producer"></td>
             </tr>
             <tr>
                 <td class="boxContent">Description:</td>
