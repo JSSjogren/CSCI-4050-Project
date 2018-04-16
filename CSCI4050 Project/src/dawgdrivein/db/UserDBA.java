@@ -165,7 +165,9 @@ public class UserDBA {
 			// Statements allow to issue SQL queries to the database
 			statement = connect.createStatement();
 			// Update a user's status to 2 (suspended)
-			statement.executeUpdate("UPDATE User SET status =  3 WHERE userId = " + user.getId() + ";");
+			statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 0;");
+			statement.executeUpdate("DELETE FROM User WHERE userId = " + user.getId() + ";");
+			statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 1;");
 			return true;
 		} catch (Exception e)
 		{
