@@ -23,6 +23,9 @@ public class MovieDBA {
 	 */
 	public boolean saveMovie(Movie movie)
 	{
+		if (getMovieIdByName(movie.getTitle()) == -1)
+				return false;
+		
 		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Movie.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
