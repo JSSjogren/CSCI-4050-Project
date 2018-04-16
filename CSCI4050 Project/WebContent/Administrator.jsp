@@ -676,8 +676,8 @@
         		</form>
     		</div>
     		<div id="update"  style="display: none;">
-    			<form id="updatePromo">
-        		<table align="center" action="UpdatePromoController" method="get">
+    			<form id="updatePromo" action="UpdatePromoController" method="get">
+        		<table align="center">
         			<tr>
         				<td align="center">Update Promotion by Entering the Promo Code and Updated Info</td>
         			</tr>
