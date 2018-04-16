@@ -45,7 +45,7 @@ public class CheckoutController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		if (request.getSession().getAttribute("userId") == null)
+		if (request.getSession().getAttribute("userId") == null && !request.getSession().getAttribute("status").equals("1"))
 		{
 			response.sendRedirect("signIn.html");
 			return;

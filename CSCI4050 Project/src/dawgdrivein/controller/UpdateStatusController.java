@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dawgdrivein.entity.User;
+
 /**
  * Servlet implementation class UpdateStatusController
  */
@@ -26,9 +28,14 @@ public class UpdateStatusController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
-		String status = request.getParameter("status");
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		int status = Integer.parseInt(request.getParameter("status"));
 		
+		User user = new User();
+		user.setId(userId);
+		user.setStatus(status);
+		user.changeStatus();
+		response.sendRedirect("Administrator.jsp");
 	}
 
 	/**

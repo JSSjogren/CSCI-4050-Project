@@ -210,4 +210,9 @@ public class User implements Serializable {
 	{
 		return userDBA.updateAccountType(this);
 	}
+	
+	public boolean changeStatus()
+	{
+		return userDBA.updateStatus(this);
+	}
 }

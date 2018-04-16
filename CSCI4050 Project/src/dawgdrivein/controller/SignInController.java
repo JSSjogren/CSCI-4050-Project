@@ -64,6 +64,16 @@ public class SignInController extends HttpServlet {
 			request.getSession().setAttribute("userId", user.getId());
 			return;
 		}
+		if (user.getStatus() == 3)
+		{
+			response.sendRedirect("signIn.html");
+			return;
+		}
+		if (user.getStatus() == 0)
+		{
+			response.sendRedirect("Verification.html");
+			return;
+		}
 		
 		//Setup session so that we can get important attributes of the signed in user
 		request.getSession().setAttribute("userId", user.getId());
