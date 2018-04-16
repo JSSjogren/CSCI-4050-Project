@@ -342,6 +342,7 @@
     					String rating = rs.getString("MpaaRating");
     					String release = rs.getString("releaseDate");
     					String expiration = rs.getString("expiration");
+    					request.setAttribute("movieId", Integer.parseInt(movieId));
     					pageContext.setAttribute("movieId", movieId);
 					pageContext.setAttribute("title", title);
 					pageContext.setAttribute("genre", genre);
@@ -357,6 +358,7 @@
     		%>
     			<tr>
     				<td align="center">${movieId}</td>
+    				<input type="text" name="movieId" value="${movieId}" form="${movieId}" style="display:none"/>
     				<td align="center"><input type="text" name="title" value="${title}" form="${movieId}" /></td>
     				<td align="center"><input style="width:40px;" type="text" name="genre" value="${genre}" form="${movieId}" /></td>
     				<td align="center"><input type="text" name="cast" value="${cast}" form="${movieId}" /></td>
@@ -368,7 +370,7 @@
     				<td align="center"><input style="width:30px;" type="text" name="rating" value="${rating}" form="${movieId}" /></td>
     				<td align="center"><input style="width:70px;" type="text" name="release" value="${release}" form="${movieId}" /></td>
     				<td align="center"><input style="width:70px;" type="text" name="expiration" value="${expiration}" form="${movieId}" /></td>
-    				<td align="center"><form id="${movieId}" action="UpdateMovieController"><input type="submit" value="Update"/></form></td>
+    				<td align="center"><form id="${movieId}" action="UpdateMovieController" method = "post"><input type="submit" value="Update"/></form></td>
     				
     			</tr>
     		<%

@@ -57,13 +57,28 @@ public class MovieDBA {
 	 */
 	public boolean updateMovie(Movie movie)
 	{
+		System.out.println("Lol");
 		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Movie.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		try {
             // Starting Transaction
             Transaction transaction = session.beginTransaction();
-            session.saveOrUpdate(movie);
+            Movie updatedMovie = (Movie) session.get(Movie.class, movie.getId());
+            updatedMovie.setId(movie.getId());
+            System.out.println(movie.getTitle());
+            updatedMovie.setTitle(movie.getTitle());
+            updatedMovie.setCast(movie.getCast());
+            updatedMovie.setDescription(movie.getDescription());
+            updatedMovie.setProducer(movie.getProducer());
+            updatedMovie.setGenre(movie.getGenre());
+            updatedMovie.setDirector(movie.getDirector());
+            updatedMovie.setMPAA_rating(movie.getMPAA_rating());
+            updatedMovie.setReleaseDate(movie.getReleaseDate());
+            updatedMovie.setExpiration(movie.getExpiration());
+            updatedMovie.setTrailer_picture(movie.getTrailer_picture());
+            updatedMovie.setTrailer_video(movie.getTrailer_video());
+            session.saveOrUpdate(updatedMovie);
             transaction.commit();
             System.out.println("\n\n Details Updated \n");
             return true;
