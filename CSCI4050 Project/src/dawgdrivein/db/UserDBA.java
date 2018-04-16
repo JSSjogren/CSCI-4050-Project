@@ -150,30 +150,6 @@ public class UserDBA {
 		}
 		return null;
 	}
-
-	public boolean updateUser(User user)
-	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		Session session = sessionFactory.openSession();
-
-		try {
-			// Starting Transaction
-			Transaction transaction = session.beginTransaction();
-			session.saveOrUpdate(user);
-			transaction.commit();
-			System.out.println("\n\n Details Updated \n");
-			return true;
-
-		} catch (HibernateException e) {
-			System.out.println(e.getMessage());
-			System.out.println("error");
-			return false;
-		}
-		finally
-		{
-			sessionFactory.close();
-		}
-	}
 	
 	public boolean deleteUser(User user)
 	{
@@ -353,6 +329,29 @@ public class UserDBA {
 		finally
 		{
 			sessionFactory.close();
+		}
+	}
+	
+	public boolean updateAccountType(User user)
+	{
+		Connection connect = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+			//Drop on ground
+			Class.forName("com.mysql.jdbc.Driver");
+			// Setup the connection with the DB
+			connect = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+
+			// Statements allow to issue SQL queries to the database
+			statement = connect.createStatement();
+			// Update a user's status to 2 (suspended)
+			statement.executeUpdate("UPDATE User SET TypeId = " + user.getRank() + " WHERE userId = " + user.getId() + ";");
+			return true;
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return false;
 		}
 	}
 }

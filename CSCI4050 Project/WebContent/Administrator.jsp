@@ -440,7 +440,7 @@
         				<td>UserId to be changed: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/></td>
         			</tr>
         			<tr>
-        				<td>New TypeId: <input type="number" min="1" max="6" name="typeId" style="margin-bottom: 10px;"></td>
+        				<td>New TypeId: <input type="number" min="1" max="4" name="typeId" style="margin-bottom: 10px;"></td>
         			</tr>
         			<tr>
         				<td><input type="submit" value="Change" /></td>

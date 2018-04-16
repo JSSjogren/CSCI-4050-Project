@@ -34,7 +34,8 @@ public class Employee extends User {
 	 */
 	public boolean updateEmployee()
 	{
-		return userDBA.updateUser(this);
+		return true;
+//		return userDBA.updateUser(this);
 	}
 	
 	/**
