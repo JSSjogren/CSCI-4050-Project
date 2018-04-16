@@ -33,7 +33,7 @@ public class TimePickerController extends HttpServlet {
 		request.getSession().setAttribute("timeSelected", request.getParameter("time"));
 		String time = (String)request.getSession().getAttribute("timeSelected");
 		
-		if (request.getSession().getAttribute("userId") != null)
+		if (request.getSession().getAttribute("userId") != null && request.getSession().getAttribute("status").equals("1"))
 		{
 			Showtime showtime = new Showtime();
 			System.out.println(request.getSession().getAttribute("dateSelected") + "T" + time);

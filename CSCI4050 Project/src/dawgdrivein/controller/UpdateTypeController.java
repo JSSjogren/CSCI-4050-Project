@@ -35,6 +35,7 @@ public class UpdateTypeController extends HttpServlet {
 		user.setId(userId);
 		user.setRank(newType);
 		user.changeAccountType();
+		response.sendRedirect("Administrator.jsp");
 	}
 
 	/**

@@ -164,8 +164,8 @@ public class UserDBA {
 
 			// Statements allow to issue SQL queries to the database
 			statement = connect.createStatement();
-			// Removes the row where the primary key matches the user's ID
-			statement.executeUpdate("DELETE FROM User WHERE userId = " + user.getId() + ";");
+			// Update a user's status to 2 (suspended)
+			statement.executeUpdate("UPDATE User SET status =  3 WHERE userId = " + user.getId() + ";");
 			return true;
 		} catch (Exception e)
 		{
@@ -347,6 +347,29 @@ public class UserDBA {
 			statement = connect.createStatement();
 			// Update a user's status to 2 (suspended)
 			statement.executeUpdate("UPDATE User SET TypeId = " + user.getRank() + " WHERE userId = " + user.getId() + ";");
+			return true;
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean updateStatus(User user)
+	{
+		Connection connect = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+			//Drop on ground
+			Class.forName("com.mysql.jdbc.Driver");
+			// Setup the connection with the DB
+			connect = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+
+			// Statements allow to issue SQL queries to the database
+			statement = connect.createStatement();
+			// Update a user's status to 2 (suspended)
+			statement.executeUpdate("UPDATE User SET status = " + user.getStatus() + " WHERE userId = " + user.getId() + ";");
 			return true;
 		} catch (Exception e)
 		{

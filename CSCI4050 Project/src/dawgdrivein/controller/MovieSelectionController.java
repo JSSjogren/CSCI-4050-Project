@@ -30,7 +30,7 @@ public class MovieSelectionController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String movieSelected = request.getParameter("movieSelected");
 		request.getSession().setAttribute("movieSelected", movieSelected);
-		if (request.getSession().getAttribute("userId") != null)
+		if (request.getSession().getAttribute("userId") != null && request.getSession().getAttribute("status").equals("1"))
 		{
 			Movie movie = new Movie();
 			request.getSession().setAttribute("movieId", movie.getMovieIdByName(movieSelected));
