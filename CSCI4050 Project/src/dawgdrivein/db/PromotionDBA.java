@@ -54,10 +54,8 @@ public class PromotionDBA {
 	 */
 	public boolean updatePromo(Promotion promo)
 	{
-		System.out.println("Update");
 		Connection connect = null;
 		Statement statement = null;
-		ResultSet resultSet = null;
 		try {
 			//Drop on ground
 			Class.forName("com.mysql.jdbc.Driver");
@@ -84,25 +82,24 @@ public class PromotionDBA {
 	 */
 	public boolean deletePromo(Promotion promo)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		Session session = sessionFactory.openSession();
-		
+		Connection connect = null;
+		Statement statement = null;
 		try {
-            // Starting Transaction
-            Transaction transaction = session.beginTransaction();
-            session.save(promo);
-            transaction.commit();
-            System.out.println("\n\n Details Removed \n");
-            return true;
- 
-        } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-            System.out.println("error");
-            return false;
-        }
-		finally
+			//Drop on ground
+			Class.forName("com.mysql.jdbc.Driver");
+			// Setup the connection with the DB
+			connect = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+
+			// Statements allow to issue SQL queries to the database
+			statement = connect.createStatement();
+			
+			statement.executeUpdate("DELETE FROM Promotion WHERE code = '" + promo.getCode() + "';");
+			connect.close();
+			return true;
+		} catch (Exception e)
 		{
-			sessionFactory.close();
+			e.printStackTrace();
+			return false;
 		}
 	}
 	
