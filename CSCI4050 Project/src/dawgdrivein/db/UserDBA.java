@@ -326,4 +326,33 @@ public class UserDBA {
 			e.printStackTrace();
 		}
 	}
+	
+	public void updateProfile(int uId, String fN, String lN, String email, boolean sub_pref)
+	{
+		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(User.class).buildSessionFactory();
+		Session session = sessionFactory.openSession();
+
+		try {
+			// Starting Transaction
+			Transaction transaction = session.beginTransaction();
+			User user = (User) session.get(User.class, uId);
+			
+			user.setFirstName(fN);
+			user.setLastName(lN);
+			user.setEmail(email);
+			user.setSub_pref(sub_pref);
+			
+			session.saveOrUpdate(user);
+			transaction.commit();
+			System.out.println("\n\n Details Updated \n");
+
+		} catch (HibernateException e) {
+			System.out.println(e.getMessage());
+			System.out.println("error");
+		}
+		finally
+		{
+			sessionFactory.close();
+		}
+	}
 }

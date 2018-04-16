@@ -49,8 +49,9 @@ public class SignInController extends HttpServlet {
 		
 		
 		User user = new User();
+		System.out.println("Before validate");
 		user = user.validate(email, password);
-		
+		System.out.println("After validate");
 		if (user == null)
 		{
 			System.out.println("Cust null");

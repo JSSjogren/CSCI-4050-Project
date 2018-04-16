@@ -2,11 +2,13 @@ package dawgdrivein.entity;
 
 import java.sql.Date;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "User")
+@DiscriminatorValue(value = "4")
 public class SystemAdministrator extends User {
 
 
@@ -48,7 +50,7 @@ public class SystemAdministrator extends User {
 		if (rank == 4)
 		{
 			RegisteredCustomer customer = new RegisteredCustomer(newFirstName, newLastName, newEmail, newPassword, newRank, newStatus, newSubscription_pref);
-			return customer.updateCustomer();
+//			return customer.updateCustomer();
 		}
 		//Is the member being updated an Employee?
 		else if (rank == 3)
