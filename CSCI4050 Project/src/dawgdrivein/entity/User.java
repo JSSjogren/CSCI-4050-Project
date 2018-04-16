@@ -215,4 +215,9 @@ public class User implements Serializable {
 	{
 		return userDBA.updateStatus(this);
 	}
+	
+	public boolean deleteAccount()
+	{
+		return userDBA.deleteUser(this);
+	}
 }

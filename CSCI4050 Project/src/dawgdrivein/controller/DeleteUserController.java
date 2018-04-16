@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dawgdrivein.entity.User;
+
 /**
  * Servlet implementation class DeleteUserController
  */
@@ -27,7 +29,11 @@ public class DeleteUserController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//delete user with this Id
-		String userId = request.getParameter("userId");
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		User user = new User();
+		user.setId(userId);
+		user.deleteAccount();
+		response.sendRedirect("Administrator.jsp");
 	}
 
 	/**

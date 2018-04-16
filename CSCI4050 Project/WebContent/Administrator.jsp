@@ -507,7 +507,7 @@
         				<td>UserId to be changed: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/></td>
         			</tr>
         			<tr>
-        				<td>New Status: <input type="number" min="0" max="3" name="status" style="margin-bottom: 10px;"></td>
+        				<td>New Status: <input type="number" min="0" max="2" name="status" style="margin-bottom: 10px;"></td>
         			</tr>
         			<tr>
         				<td><input type="submit" value="Change" /></td>
