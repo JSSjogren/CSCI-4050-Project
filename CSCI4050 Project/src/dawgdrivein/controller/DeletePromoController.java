@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dawgdrivein.entity.Promotion;
+
 /**
  * Servlet implementation class DeletePromoController
  */
@@ -28,7 +30,10 @@ public class DeletePromoController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//delete this promo with this code
 		String code = request.getParameter("code");
-		
+		Promotion promo = new Promotion();
+		promo.setCode(code);
+		promo.deletePromo();
+		response.sendRedirect("Administrator.jsp");
 	}
 
 	/**
