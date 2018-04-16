@@ -1,9 +1,12 @@
 package dawgdrivein.db;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -11,7 +14,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import dawgdrivein.entity.Movie;
 import dawgdrivein.entity.Movie;
 
 public class MovieDBA {
@@ -23,7 +25,7 @@ public class MovieDBA {
 	 */
 	public boolean saveMovie(Movie movie)
 	{
-		if (getMovieIdByName(movie.getTitle()) == -1)
+		if (getMovieIdByName(movie.getTitle()) != -1)
 				return false;
 		
 		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Movie.class).buildSessionFactory();
@@ -55,7 +57,7 @@ public class MovieDBA {
 	 */
 	public boolean updateMovie(Movie movie)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Movie.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		try {
@@ -84,26 +86,15 @@ public class MovieDBA {
 	 */
 	public boolean deleteMovie(Movie movie)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		Session session = sessionFactory.openSession();
+		int movieId = getMovieIdByName(movie.getTitle());
 		
-		try {
-            // Starting Transaction
-            Transaction transaction = session.beginTransaction();
-            session.delete(movie);
-            transaction.commit();
-            System.out.println("\n\n Details Deleted \n");
-            return true;
- 
-        } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-            System.out.println("error");
-            return false;
-        }
-		finally
-		{
-			sessionFactory.close();
-		}
+		movie = retrieveMovie(movieId);
+		
+		final Calendar cal = Calendar.getInstance();
+	    cal.add(Calendar.DATE, -1);
+		movie.setExpiration(Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime())));
+		
+		return movie.updateMovie();
 	}
 	
 	/**
@@ -113,7 +104,7 @@ public class MovieDBA {
 	 */
 	public Movie retrieveMovie(int id)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Movie.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		try {
