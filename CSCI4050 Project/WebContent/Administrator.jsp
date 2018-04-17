@@ -96,6 +96,9 @@
     		document.getElementById("update").style.display = "none";
 		document.getElementById("delete").style.display = "initial";
     }
+    function report(){
+		window.location.href = "SalesReport.jsp";
+	}
     </script>
 </head>
 
@@ -106,6 +109,9 @@
                 <td style="width: 8%"><img src="transparentWebSiteLogo.png" class="logo"></td>
                 <td style="margin-left: 0%;">
                     <h1 class="title">Dawg Drive-in</h1>
+                </td>
+                <td align="right"style="font-size: 20px; margin-right: 0px;">
+                	<p style="text-align: right; cursor: pointer;" onclick="report();"><b>View Sales</b></p>
                 </td>
                 <td align="right"style="font-size: 20px; padding-right: 10px;">
                 	<p style="text-align: right; cursor: pointer;" onclick="home();">Return to <b>Home</b></p>
