@@ -110,9 +110,6 @@
                 <td style="margin-left: 0%;">
                     <h1 class="title">Dawg Drive-in</h1>
                 </td>
-                <td align="right"style="font-size: 20px; margin-right: 0px;">
-                	<p style="text-align: right; cursor: pointer;" onclick="report();"><b>View Sales</b></p>
-                </td>
                 <td align="right"style="font-size: 20px; padding-right: 10px;">
                 	<p style="text-align: right; cursor: pointer;" onclick="home();">Return to <b>Home</b></p>
                 </td>
@@ -730,6 +727,57 @@
         		</form>
     		</div>
     </div>
+    
+    <div id="adjustPrices" style="border: 3px solid black; padding-bottom: 30px;">
+    		<p class="register">Adjust Prices</p>
+    		<table align="center" style="border: 3px solid black; border-collapse: collapse; margin-bottom: 15px;">
+    			<%
+    				try{
+    					Class.forName("com.mysql.jdbc.Driver");
+    				 	conn = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+    				 	String status = "Established connection";
+    				 	String query = "Select * from Price";
+    				 	Statement stmt = conn.createStatement();
+    					ResultSet rs = stmt.executeQuery(query);
+    					while(rs.next()){
+    						String type = rs.getString("type");
+    						double price = rs.getDouble("price");
+    						pageContext.setAttribute(type, price);
+    						
+    					}
+    					conn.close();
+    				}catch(Exception e){
+    					e.printStackTrace();
+    				}		
+    			
+    			%>
+    	
+    			<tr>
+    				<td valign="middle"><p>Booking Fee: $</p></td>
+    				<td valign="middle" style="padding-top: 5px;"><form action="PricesController" method="get"><input type="text" name="booking" value="${bookingFee}" /> <input type="submit" value="Change" /></form></td>
+    			</tr>
+    			<tr>
+    				<td valign="middle"><p>Parking Fee: $</p></td>
+    				<td valign="middle"><form action="PricesController" method="get"><input type="text" name="parking" value="${parkingFee}" /> <input type="submit" value="Change" /></form></td>
+    			</tr>
+    			<tr>
+    				<td valign="middle"><p>Child Ticket: $</p></td>
+    				<td valign="middle"><form action="PricesController" method="get"><input type="text" name="child" value="${childPrice}" /> <input type="submit" value="Change" /></form></td>
+    			</tr>
+    			<tr>
+    				<td valign="middle"><p>Adult Ticket: $</p></td>
+    				<td valign="middle"><form action="PricesController" method="get"><input type="text" name="adult" value="${adultPrice}" /> <input type="submit" value="Change" /></form></td>
+    			</tr>
+    			<tr>
+    				<td valign="middle"><p>Senior Ticket: $</p></td>
+    				<td valign="middle"><form action="PricesController" method="get"><input type="text" name="senior" value="${seniorPrice}" /> <input type="submit" value="Change" /></form></td>
+    			</tr>
+    		</table>
+    	</div>
+    	<div id="sales" style="border-top: 3px solid black; padding-bottom: 30px;">
+    		<p class="register">View Sales Reports</p>
+    		<p style="text-align: center; font-size: 25px;">Click <b onclick="report();" style="cursor:pointer;">HERE</b> to view Sales Report</p>
+    	</div>
 </body>
 
 </html>

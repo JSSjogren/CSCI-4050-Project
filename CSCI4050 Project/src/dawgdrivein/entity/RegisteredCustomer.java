@@ -101,11 +101,6 @@ public class RegisteredCustomer extends User {
 		//todo
 	}
 	
-	private void addReview(String content, int star_rating, int movieId)
-	{
-		Review review = new Review(1, content, star_rating, movieId);
-		review.saveReview();
-	}
 	
 	private void editProfile(String newFN, String newLN, String newEmail, String newAddress, boolean newSubPref)
 	{
