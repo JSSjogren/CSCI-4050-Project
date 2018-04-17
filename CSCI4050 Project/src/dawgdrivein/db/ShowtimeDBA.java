@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import dawgdrivein.entity.Booking;
 import dawgdrivein.entity.Showtime;
 
 public class ShowtimeDBA {
@@ -125,6 +126,30 @@ public class ShowtimeDBA {
 		{
 			e.printStackTrace();
 			return -1;
+		}
+	}
+	
+	public Showtime retrieveShowtime(int id)
+	{
+		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Showtime.class).buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		try {
+            // Starting Transaction
+            Transaction transaction = session.beginTransaction();
+            Showtime showtime = (Showtime)session.get(Showtime.class, id);
+            transaction.commit();
+            System.out.println("\n\n Retrieved showtime by ID \n");
+            return showtime;
+ 
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+            System.out.println("error");
+            return null;
+        }
+		finally
+		{
+			sessionFactory.close();
 		}
 	}
 	
