@@ -144,7 +144,6 @@ public class UserDBA {
 
 		} catch (Exception e)
 		{
-			System.out.println("Stacktrace: ");
 			e.printStackTrace();
 			return null;
 		}

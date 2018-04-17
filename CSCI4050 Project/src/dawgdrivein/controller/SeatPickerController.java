@@ -33,7 +33,7 @@ public class SeatPickerController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		if (request.getSession().getAttribute("userId") == null && request.getSession().getAttribute("status").equals("1"))
+		if (request.getSession().getAttribute("userId") != null && (int)request.getSession().getAttribute("status") != 1)
 		{
 			response.sendRedirect("signIn.html");
 			return;
@@ -77,7 +77,6 @@ public class SeatPickerController extends HttpServlet {
 		
 		request.getSession().setAttribute("seating", seats);
 		request.getSession().setAttribute("seatList", seatList);
-		System.out.println(seats);
 		
 		//Calculate total
 		Booking booking = new Booking();

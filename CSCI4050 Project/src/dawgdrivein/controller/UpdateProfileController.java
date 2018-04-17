@@ -38,7 +38,6 @@ public class UpdateProfileController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("UpdateProfileController");
 		String newFirstName = request.getParameter("fn");
 		String newLastName = request.getParameter("ln");
 		String newEmail = request.getParameter("email");

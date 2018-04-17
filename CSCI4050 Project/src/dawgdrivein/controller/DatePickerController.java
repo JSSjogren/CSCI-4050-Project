@@ -28,8 +28,7 @@ public class DatePickerController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.getSession().setAttribute("dateSelected", request.getParameter("dateSelected"));
-		System.out.println(request.getSession().getAttribute("dateSelected"));
-		if (request.getSession().getAttribute("userId") != null && request.getSession().getAttribute("status").equals("1"))
+		if (request.getSession().getAttribute("userId") != null && (int)request.getSession().getAttribute("status") == 1)
 			response.sendRedirect("TimePicker.jsp");
 		else
 			response.sendRedirect("signIn.html");
