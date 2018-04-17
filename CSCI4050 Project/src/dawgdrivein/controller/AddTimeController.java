@@ -37,7 +37,6 @@ public class AddTimeController extends HttpServlet {
 		Movie lookUpMovie = new Movie();
 		int movieId = lookUpMovie.getMovieIdByName(movie);
 		
-		System.out.println(dateAndTime.replace("T", " "));
 		//Save showtime
 		Showtime showtime = new Showtime();
 		showtime.setMovieId(movieId);

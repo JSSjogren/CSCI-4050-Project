@@ -75,7 +75,6 @@ public class RegisteredCustomer extends User {
 	 */
 	public boolean emailExists()
 	{
-		System.out.println("EmailExists in RegisteredCustomer");
 		return userDBA.emailExists(this);
 	}
 	

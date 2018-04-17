@@ -30,13 +30,12 @@ public class VerifyController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int id = (Integer)request.getSession().getAttribute("userId");
-		System.out.println("ID in VerifyController: " + id);
 		String code = request.getParameter("code");
 		if (code.equals("1234"))
 		{
 			RegisteredCustomer register = new RegisteredCustomer();
 			register.verification(id);
-			
+
 			response.sendRedirect("VerifyConfirmation.html");
 		}
 		else

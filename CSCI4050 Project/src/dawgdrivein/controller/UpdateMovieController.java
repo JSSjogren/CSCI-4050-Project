@@ -40,7 +40,6 @@ public class UpdateMovieController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		int movieId = Integer.parseInt(request.getParameter("movieId"));
-		System.out.println(movieId);
 		String title = request.getParameter("title");
 		String genre = request.getParameter("genre");
 		String cast = request.getParameter("cast");

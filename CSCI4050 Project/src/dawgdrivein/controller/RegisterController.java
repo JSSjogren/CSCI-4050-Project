@@ -75,9 +75,7 @@ public class RegisterController extends HttpServlet {
 			request.getSession().setAttribute("userId", rc.getId());
 			response.sendRedirect("Verification.html");
 			
-			System.out.println("Id: " + rc.getId());
 			int id = (Integer)request.getSession().getAttribute("userId");
-			System.out.println("ID in RegistrationController: " + id);
 			
 			Address address = new Address(id, addressStreet, city, state, zipCode);
 			address.saveAddress();

@@ -2,6 +2,7 @@ package dawgdrivein.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -45,7 +46,8 @@ public class CheckoutController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		if (request.getSession().getAttribute("userId") == null && !request.getSession().getAttribute("status").equals("1"))
+		
+		if (request.getSession().getAttribute("userId") == null || (int)request.getSession().getAttribute("status") != 1)
 		{
 			response.sendRedirect("signIn.html");
 			return;
@@ -59,16 +61,16 @@ public class CheckoutController extends HttpServlet {
 
 		Date date = Date.valueOf(year + "-" + month + "-" + 11);
 		CreditCard cc = new CreditCard(0, date, (Integer)request.getSession().getAttribute("userId"), cardNum, Integer.parseInt(code), cardType);
-		if (cc.saveCreditCard() == false)
-		{
-			response.sendRedirect("Checkout.html");
-			return;
-		}
+//		if (cc.saveCreditCard() == false)
+//		{
+//			response.sendRedirect("Checkout.html");
+//			return;
+//		}
 		
 		
 		Booking booking = new Booking((Integer)request.getSession().getAttribute("userId"), 
 				0, 
-				Float.parseFloat((String)request.getSession().getAttribute("total")), 
+				((Double)request.getSession().getAttribute("total")).floatValue(), 
 				(Integer)request.getSession().getAttribute("numSeats"), 
 				(Integer)request.getSession().getAttribute("showId"),
 				1,
@@ -89,12 +91,16 @@ public class CheckoutController extends HttpServlet {
 		
 		Email email = new Email();
 		
+		DecimalFormat df = new DecimalFormat("0.00");
+		df.setMinimumFractionDigits(2);
+		df.setMaximumFractionDigits(2);
+		
 		email.orderConfirmation(
 		booking.getBookingNo(),
 		(String)request.getSession().getAttribute("email"),
 		(String)request.getSession().getAttribute("firstName"),
 		(String)request.getSession().getAttribute("lastName"),
-	    (String)request.getSession().getAttribute("total"),
+	    df.format(request.getSession().getAttribute("total")),
 	    (String)request.getSession().getAttribute("movieSelected"),
 	    (String)request.getSession().getAttribute("seating"),
 	    (int)request.getSession().getAttribute("numSeats"),

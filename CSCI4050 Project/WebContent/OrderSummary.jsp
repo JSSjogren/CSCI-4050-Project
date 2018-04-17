@@ -177,65 +177,72 @@ form {
 			</tr>
 			<tr>
 				<%
-					boolean discount = false;
-					String discountPercent = "0";
-					if (request.getParameter("code") != null) {
-						String discountCode = request.getParameter("code");
-						try {
-							Connection conn;
-							Class.forName("com.mysql.jdbc.Driver");
-							conn = DriverManager.getConnection(
-									"jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
-							String status = "Established connection";
-							String query = "Select * from Promotion where Code = '" + discountCode + "'";
-							Statement stmt = conn.createStatement();
-							ResultSet rs = stmt.executeQuery(query);
-							if (rs.next()) {
-								discount = true;
-								discountPercent = rs.getString("PercentDiscount");
-							}
-							conn.close();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-
-					}
-
 					DecimalFormat df = new DecimalFormat("0.00");
 					df.setMinimumFractionDigits(2);
+					df.setMaximumFractionDigits(2);
 
+					/* if (session.getAttribute("taxAmount") == null) { */
 					session.setAttribute("spotsAndPrice", "Ticket Total: $" + df.format(session.getAttribute("preTotal")));
 
-					session.setAttribute("taxAmount", "" + df.format(session.getAttribute("taxAmount")));
+					System.out.println(session.getAttribute("taxAmount").getClass());
+					session.setAttribute("taxAmount", session.getAttribute("taxAmount"));
 
-					session.setAttribute("total", df.format(session.getAttribute("total")));
+					session.setAttribute("total", session.getAttribute("total"));
 
-					session.setAttribute("parkingFee", df.format(session.getAttribute("parkingFee")));
+					session.setAttribute("parkingFee", session.getAttribute("parkingFee"));
+					/* } */
 				%>
 
 				<td style="font-size: 25px;" class="boxContent"><p
 						style="margin-bottom: 0px;">${spotsAndPrice}</p></td>
 			</tr>
+			<%
+				if (request.getSession().getAttribute("discountAmount") != null) {
+					session.setAttribute("discountAmount", session.getAttribute("discountAmount"));
+			%>
 			<tr>
 				<td style="font-size: 25px;" class="boxContent"><p
-						style="margin-bottom: 0px;">Taxes: $ ${taxAmount}</p></td>
+						style="margin-bottom: 0px;">
+						Percent Discount: -$<%
+					out.print(df.format(session.getAttribute("discountAmount")));
+				%>
+					</p></td>
 			</tr>
+			<%
+				}
+			%>
 			<tr>
 				<td style="font-size: 25px;" class="boxContent"><p
 						style="margin-bottom: 0px;">Online Fee: $2.00</p></td>
 			</tr>
 			<tr>
 				<td style="font-size: 25px;" class="boxContent"><p
-						style="margin-bottom: 0px; border-bottom: 1px dashed black;">Parking
-						Space Fee: $${parkingFee}</p></td>
+						style="margin-bottom: 0px; border-bottom: 1px dashed black;">
+						Parking Space Fee: $<%
+					out.print(df.format(session.getAttribute("parkingFee")));
+				%>
+					</p></td>
 			</tr>
 			<tr>
 				<td style="font-size: 25px;" class="boxContent"><p
-						style="font-weight: 900;">Total: $${total}</p></td>
+						style="margin-bottom: 0px;">
+						Taxes: $<%
+					out.print(df.format(session.getAttribute("taxAmount")));
+				%>
+					</p></td>
+			</tr>
+			<tr>
+				<td style="font-size: 25px;" class="boxContent"><p
+						style="font-weight: 900;">
+						Total: $<%
+					out.print(df.format(session.getAttribute("total")));
+				%>
+					</p></td>
 			</tr>
 			<tr>
 				<td align="center">
-					<form action="OrderSummary.jsp" style="font-size: 20px;">
+					<form action="OrderSummaryController" method="get"
+						style="font-size: 20px;">
 						Promo Code:<input type="text" name="code"
 							style="width: 100px; font-size: 20px;" /> <input type="submit"
 							value="Apply" style="font-size: 20px;" />
@@ -245,7 +252,8 @@ form {
 			<tr style="height: 50px;">
 				<td align="center">
 					<form action="Checkout.html">
-							<button type="submit" style="font-size: 20px; margin-top: 10px; width: 90%;">Proceed
+						<button type="submit"
+							style="font-size: 20px; margin-top: 10px; width: 90%;">Proceed
 							to Checkout</button>
 					</form>
 

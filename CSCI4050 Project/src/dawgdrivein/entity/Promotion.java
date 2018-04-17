@@ -24,7 +24,6 @@ public class Promotion {
 	private int id;
 	
 	@Column(name = "ExpDate", columnDefinition="DATETIME")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date exp_date;
 	
 	@Column(name = "Code")
@@ -89,6 +88,11 @@ public class Promotion {
 	public Promotion retrievePromotion(int id)
 	{
 		return promoDBA.retrievePromo(id);
+	}
+	
+	public int retrievePromoAmount(String code)
+	{
+		return promoDBA.retrievePromoAmount(code);
 	}
 
 	public int getId() {

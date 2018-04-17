@@ -33,16 +33,14 @@ public class TimePickerController extends HttpServlet {
 		request.getSession().setAttribute("timeSelected", request.getParameter("time"));
 		String time = (String)request.getSession().getAttribute("timeSelected");
 		
-		if (request.getSession().getAttribute("userId") != null && request.getSession().getAttribute("status").equals("1"))
+		if (request.getSession().getAttribute("userId") != null && (int)request.getSession().getAttribute("status") == 1)
 		{
 			Showtime showtime = new Showtime();
-			System.out.println(request.getSession().getAttribute("dateSelected") + "T" + time);
 			request.getSession().setAttribute("showId", showtime.getShowtimeIdFromDB((Integer)request.getSession().getAttribute("movieId"), request.getSession().getAttribute("dateSelected") + "T" + time));
 			response.sendRedirect("SeatPicker.jsp");
 		}
 		else
 			response.sendRedirect("signIn.html");
-		System.out.println(time);
 	}
 
 	/**

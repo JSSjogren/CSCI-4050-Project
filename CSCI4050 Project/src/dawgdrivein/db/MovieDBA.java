@@ -57,7 +57,6 @@ public class MovieDBA {
 	 */
 	public boolean updateMovie(Movie movie)
 	{
-		System.out.println("Lol");
 		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Movie.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
@@ -66,7 +65,6 @@ public class MovieDBA {
             Transaction transaction = session.beginTransaction();
             Movie updatedMovie = (Movie) session.get(Movie.class, movie.getId());
             updatedMovie.setId(movie.getId());
-            System.out.println(movie.getTitle());
             updatedMovie.setTitle(movie.getTitle());
             updatedMovie.setCast(movie.getCast());
             updatedMovie.setDescription(movie.getDescription());
