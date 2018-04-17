@@ -136,9 +136,11 @@ public class UserDBA {
 					while (resultSet.next())
 					{
 						User user = new User(resultSet.getInt("userId"), resultSet.getString("firstName"), resultSet.getString("lastName"), email, password, resultSet.getInt("typeId"), resultSet.getInt("Status"), resultSet.getBoolean("subpref"));
+						connect.close();
 						return user;
 					}
 				}
+				connect.close();
 				return null;
 			}
 
@@ -167,6 +169,7 @@ public class UserDBA {
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 0;");
 			statement.executeUpdate("DELETE FROM User WHERE userId = " + user.getId() + ";");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 1;");
+			connect.close();
 			return true;
 		} catch (Exception e)
 		{
@@ -190,6 +193,7 @@ public class UserDBA {
 			statement = connect.createStatement();
 			// Update a user's status to 2 (suspended)
 			statement.executeUpdate("UPDATE TABLE User SET status = 2 WHERE userId = " + user.getId() + ";");
+			connect.close();
 			return true;
 		} catch (Exception e)
 		{
@@ -212,7 +216,7 @@ public class UserDBA {
 			statement = connect.createStatement();
 			// Query to update user in DB to set them as active
 			statement.executeUpdate("UPDATE User SET status = 1 WHERE UserId = " + id + ";");
-
+			connect.close();
 		} catch (Exception e)
 		{
 			e.printStackTrace();
@@ -247,6 +251,7 @@ public class UserDBA {
 			// Query to update user in DB to set their temporary password
 			statement.executeUpdate("UPDATE User SET password = '" + temporaryPassword + "' WHERE UserId = " + userId + ";");
 			statement.executeUpdate("UPDATE User SET temporary = true WHERE UserId = " + userId + ";");
+			connect.close();
 			return true;
 		} catch (Exception e)
 		{
@@ -272,8 +277,10 @@ public class UserDBA {
 			while (rs.next())
 			{
 				boolean temporary = rs.getBoolean("temporary");
+				connect.close();
 				return temporary;
 			}
+			connect.close();
 			return false;
 
 		} catch (Exception e)
@@ -297,7 +304,7 @@ public class UserDBA {
 			// Query to update user in DB to set them as active
 			statement.executeUpdate("UPDATE User SET password = '" + password + "' WHERE UserId = " + id + ";");
 			statement.executeUpdate("UPDATE User SET temporary = false WHERE UserId = " + id + ";");
-
+			connect.close();
 		} catch (Exception e)
 		{
 			e.printStackTrace();
@@ -348,6 +355,7 @@ public class UserDBA {
 			statement = connect.createStatement();
 			// Update a user's status to 2 (suspended)
 			statement.executeUpdate("UPDATE User SET TypeId = " + user.getRank() + " WHERE userId = " + user.getId() + ";");
+			connect.close();
 			return true;
 		} catch (Exception e)
 		{
@@ -371,6 +379,7 @@ public class UserDBA {
 			statement = connect.createStatement();
 			// Update a user's status to 2 (suspended)
 			statement.executeUpdate("UPDATE User SET status = " + user.getStatus() + " WHERE userId = " + user.getId() + ";");
+			connect.close();
 			return true;
 		} catch (Exception e)
 		{
