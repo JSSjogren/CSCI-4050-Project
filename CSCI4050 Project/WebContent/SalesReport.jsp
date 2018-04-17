@@ -10,7 +10,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>DDI Administrator</title>
+    <title>DDI Sales Report</title>
     <style>
         body {
             background-color: rgb(245, 245, 245);
@@ -157,7 +157,7 @@
 		%>
 	</div>
 	
-	<div style="border: 3px solid black;">
+	<div style="border: 3px solid black; padding-bottom: 30px;">
 		<p style="text-align: center; font-size: 30px;"><b>Sales Report based on Movie:</b></p>
 		<form action="SalesReport.jsp">
 		<table align="center" style="padding-bottom: 15px;">
@@ -238,7 +238,7 @@
 				</tr>
 				</table>
 		<%
-					
+				conn.close();
 				}catch(Exception e){
 					e.printStackTrace();
 				}	
@@ -247,7 +247,7 @@
 		
 	</div>
 	
-	<div style="border: 3px solid black;">
+	<div style="border: 3px solid black; padding-bottom: 30px; border-bottom: 6px solid black;">
 		<p style="text-align: center; font-size: 30px;"><b>Sales Report based on Genre:</b></p>
 		<form action="SalesReport.jsp">
 		<table align="center" style="padding-bottom: 15px;">
