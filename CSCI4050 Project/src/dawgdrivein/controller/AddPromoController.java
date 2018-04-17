@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dawgdrivein.entity.Email;
 import dawgdrivein.entity.Promotion;
 
 /**
@@ -36,6 +37,10 @@ public class AddPromoController extends HttpServlet {
 		
 		Promotion promo = new Promotion(0, Date.valueOf(expDate), code, percentDiscount);
 		promo.savePromo();
+		
+		Email email = new Email();
+		email.sendPromoEmails(promo);
+		
 		response.sendRedirect("Administrator.jsp");
 	}
 

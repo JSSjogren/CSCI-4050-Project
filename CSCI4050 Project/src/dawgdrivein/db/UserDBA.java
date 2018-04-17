@@ -1,12 +1,12 @@
 package dawgdrivein.db;
 
-import java.sql.Connection; 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -17,7 +17,6 @@ import dawgdrivein.entity.Manager;
 import dawgdrivein.entity.RegisteredCustomer;
 import dawgdrivein.entity.SystemAdministrator;
 import dawgdrivein.entity.User;
-import dawgdrivein.hibernate.HibernateUtil;
 
 public class UserDBA {
 
@@ -385,6 +384,39 @@ public class UserDBA {
 		{
 			e.printStackTrace();
 			return false;
+		}
+	}
+	
+	public ArrayList<String> retrieveSubscribedUserEmails()
+	{
+		Connection connect = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		ArrayList<String> emails = new ArrayList<String>();
+		try {
+			//Drop on ground
+			Class.forName("com.mysql.jdbc.Driver");
+			// Setup the connection with the DB
+			connect = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+
+			// Statements allow to issue SQL queries to the database
+			statement = connect.createStatement();
+			// Update a user's status to 2 (suspended)
+			resultSet = statement.executeQuery("SELECT * FROM User WHERE SubPref = true;");
+			if (!resultSet.next())
+				return null;
+			
+			resultSet.beforeFirst();
+			while (resultSet.next())
+			{
+				emails.add(resultSet.getString("email"));
+			}
+			connect.close();
+			return emails;
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
 		}
 	}
 }

@@ -3,6 +3,7 @@ package dawgdrivein.entity;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -219,5 +220,10 @@ public class User implements Serializable {
 	public boolean deleteAccount()
 	{
 		return userDBA.deleteUser(this);
+	}
+	
+	public ArrayList<String> retrieveSubscribedUserEmails()
+	{
+		return userDBA.retrieveSubscribedUserEmails();
 	}
 }

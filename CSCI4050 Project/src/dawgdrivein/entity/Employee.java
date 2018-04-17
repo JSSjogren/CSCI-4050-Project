@@ -63,7 +63,7 @@ public class Employee extends User {
 	private List<Booking> createReport()
 	{
 		OrderHistory oh = new OrderHistory();
-		return oh.getOrderHistory();
+		return oh.getOrderHistory(id);
 	}
 	
 }
