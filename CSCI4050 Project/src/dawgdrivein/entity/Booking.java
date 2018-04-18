@@ -46,9 +46,6 @@ public class Booking {
 	private BookingDBA bookingDBA;
 	
 	@Transient
-	private PriceDBA priceDBA;
-	
-	@Transient
 	private double childTicketPrice;
 	
 	@Transient
@@ -76,14 +73,15 @@ public class Booking {
 		this.promoId = promoId;
 		this.movieId = movieId;
 		
-		priceDBA = new PriceDBA();
+		Price price = new Price();
+		this.childTicketPrice = price.retrieveChildTicketPrice();
+		this.adultTicketPrice = price.retrieveAdultTicketPrice();
+		this.seniorTicketPrice = price.retrieveSeniorTicketPrice();
+		this.onlineFee = price.retrieveOnlineFee();
+		this.parkingSpaceFee = price.retrieveParkingSpaceFee();
+		
 		bookingDBA = new BookingDBA();
 		
-		this.childTicketPrice = priceDBA.retrieveChildTicketPrice();
-		this.adultTicketPrice = priceDBA.retrieveAdultTicketPrice();
-		this.seniorTicketPrice = priceDBA.retrieveSeniorTicketPrice();
-		this.onlineFee = priceDBA.retrieveOnlineFee();
-		this.parkingSpaceFee = priceDBA.retrieveParkingSpaceFee();
 	}
 
 	public Booking()
@@ -96,14 +94,14 @@ public class Booking {
 		this.promoId = -1;
 		this.movieId = -1;
 		
-		priceDBA = new PriceDBA();
-		bookingDBA = new BookingDBA();
+		Price price = new Price();
+		this.childTicketPrice = price.retrieveChildTicketPrice();
+		this.adultTicketPrice = price.retrieveAdultTicketPrice();
+		this.seniorTicketPrice = price.retrieveSeniorTicketPrice();
+		this.onlineFee = price.retrieveOnlineFee();
+		this.parkingSpaceFee = price.retrieveParkingSpaceFee();
 		
-		this.childTicketPrice = priceDBA.retrieveChildTicketPrice();
-		this.adultTicketPrice = priceDBA.retrieveAdultTicketPrice();
-		this.seniorTicketPrice = priceDBA.retrieveSeniorTicketPrice();
-		this.onlineFee = priceDBA.retrieveOnlineFee();
-		this.parkingSpaceFee = priceDBA.retrieveParkingSpaceFee();
+		bookingDBA = new BookingDBA();
 	}
 
 	public boolean saveBooking()
