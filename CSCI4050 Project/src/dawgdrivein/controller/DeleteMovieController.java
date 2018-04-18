@@ -34,6 +34,7 @@ public class DeleteMovieController extends HttpServlet {
 		Movie deleteMovie = new Movie();
 		deleteMovie.setTitle(movie);
 		deleteMovie.deleteMovie();
+		response.sendRedirect("Administrator.jsp");
 	}
 
 	/**

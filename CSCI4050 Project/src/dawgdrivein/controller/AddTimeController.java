@@ -42,6 +42,7 @@ public class AddTimeController extends HttpServlet {
 		showtime.setMovieId(movieId);
 		showtime.setShowtime(Timestamp.valueOf(dateAndTime.replace("T", " ") + ":00"));
 		showtime.saveShowtime();
+		response.sendRedirect("Administrator.jsp");
 	}
 
 	/**
