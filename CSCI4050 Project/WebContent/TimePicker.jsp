@@ -235,7 +235,7 @@
             					
             		%>
             		<td>
-            			<form id="${fullTime}"  action = "TimePickerController" method = "get">
+            			<form id="${fullTime}"  action = "TimePickerController" method = "post">
             			<input type="text" value="${paramTime}" name="time" style="display:none;"/>
             			<button type="submit" form="${fullTime}" style="font-size: 22px; border-radius: 4px;">${fullTime}</button>
             			</form>

@@ -154,7 +154,7 @@
 	 		}
 	 		
     	%>
-    		<form id="seats" action="SeatPickerController" method="get">
+    		<form id="seats" action="SeatPickerController" method="post">
         <table align="center">
             <tr>
                 <td class="parking">

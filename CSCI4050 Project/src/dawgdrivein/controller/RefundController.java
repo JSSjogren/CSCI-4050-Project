@@ -18,39 +18,19 @@ import dawgdrivein.entity.Showtime;
 @WebServlet("/RefundController")
 public class RefundController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RefundController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public RefundController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//booking id to refund. Can be refunded if no late than 60 minutes before showtime.
-		int bookingId = Integer.parseInt(request.getParameter("bookingId"));
-		
-		Booking booking = new Booking();
-		booking = booking.retrieveBooking(bookingId);
-		Showtime showtime = new Showtime();
-		showtime = showtime.retrieveShowtime(booking.getShowtimeID());
-		
-		long difference = showtime.getShowtime().getTime() - System.currentTimeMillis();
-		long minutes = TimeUnit.MILLISECONDS.toMinutes(difference);
-		if (minutes > 60)
-		{
-			booking.deleteBooking();
-			response.sendRedirect("EditProfile.jsp");
-		}
-		else
-		{
-			response.sendRedirect("RefundError.html");
-		}
-		
 	}
 
 	/**
@@ -59,6 +39,32 @@ public class RefundController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-	}
 
+		//booking id to refund. Can be refunded if no late than 60 minutes before showtime.
+		if (!request.getParameter("bookingId").equals(""))
+		{
+			int bookingId = Integer.parseInt(request.getParameter("bookingId"));
+
+			Booking booking = new Booking();
+			booking = booking.retrieveBooking(bookingId);
+			Showtime showtime = new Showtime();
+			showtime = showtime.retrieveShowtime(booking.getShowtimeID());
+
+			long difference = showtime.getShowtime().getTime() - System.currentTimeMillis();
+			long minutes = TimeUnit.MILLISECONDS.toMinutes(difference);
+			if (minutes > 60)
+			{
+				booking.deleteBooking();
+				response.sendRedirect("EditProfile.jsp");
+			}
+			else
+			{
+				response.sendRedirect("RefundError.html");
+			}
+		}
+		else
+		{
+			response.sendRedirect("EditProfile.jsp");
+		}
+	}
 }

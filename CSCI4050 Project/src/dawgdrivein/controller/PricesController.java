@@ -28,6 +28,15 @@ public class PricesController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+		
 		String newBooking = request.getParameter("booking");
 		String newParking = request.getParameter("parking");
 		String newChild = request.getParameter("child");
@@ -69,15 +78,7 @@ public class PricesController extends HttpServlet {
 			price.setPrice(Double.parseDouble(newSenior));
 			price.updatePrice();
 		}
-		response.sendRedirect("Administrator.jsp");	
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.sendRedirect("Administrator.jsp");
 	}
 
 }

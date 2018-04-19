@@ -18,31 +18,19 @@ import dawgdrivein.entity.Showtime;
 @WebServlet("/AddTimeController")
 public class AddTimeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddTimeController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public AddTimeController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String movie = request.getParameter("movieTitle");
-		String dateAndTime = request.getParameter("dateAndTime");
-		
-		Movie lookUpMovie = new Movie();
-		int movieId = lookUpMovie.getMovieIdByName(movie);
-		
-		//Save showtime
-		Showtime showtime = new Showtime();
-		showtime.setMovieId(movieId);
-		showtime.setShowtime(Timestamp.valueOf(dateAndTime.replace("T", " ") + ":00"));
-		showtime.saveShowtime();
-		response.sendRedirect("Administrator.jsp");
 	}
 
 	/**
@@ -51,6 +39,22 @@ public class AddTimeController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		String movie = request.getParameter("movieTitle");
+		String dateAndTime = request.getParameter("dateAndTime");
+		
+		if (!movie.equals("") && !dateAndTime.equals(""))
+		{
+			Movie lookUpMovie = new Movie();
+			int movieId = lookUpMovie.getMovieIdByName(movie);
+
+			//Save showtime
+			Showtime showtime = new Showtime();
+			showtime.setMovieId(movieId);
+			showtime.setShowtime(Timestamp.valueOf(dateAndTime.replace("T", " ") + ":00"));
+			showtime.saveShowtime();
+		}
+		response.sendRedirect("Administrator.jsp");
 	}
 
 }

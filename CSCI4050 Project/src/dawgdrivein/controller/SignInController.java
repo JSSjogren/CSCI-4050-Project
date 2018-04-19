@@ -45,6 +45,7 @@ public class SignInController extends HttpServlet {
 		//Check if these strings match a record in the database. If these do not match or are empty, send to SignInError.html
 		if(email.equals("") || password.equals("")) {
 			response.sendRedirect("SignInError.html");
+			return;
 		}
 		
 		

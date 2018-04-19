@@ -73,10 +73,6 @@ public class AddressDBA {
             // Starting Transaction
             Transaction transaction = session.beginTransaction();
             
-//            Criteria criteria = session.createCriteria(User.class);  
-//            criteria.add(Restrictions.eq("UserId", userId));
-//            List results = criteria.list();
-//            Address address = (Address) results.get(0);
             Address address = (Address)session.get(Address.class, userId);
             	
             address.setStreet(street);

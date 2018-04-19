@@ -119,7 +119,7 @@
     
     <div id="addMovie" style="border: 3px solid black;">
     		<p class="register">Add Movie</p>
-    		<form action="AddMovieController" method="get" id="form" style="margin-bottom: 30px;">
+    		<form action="AddMovieController" method="post" id="form" style="margin-bottom: 30px;">
         <table class="registerBox" align="center">
             <caption class="boxTitle">Enter Movie Info</caption>
             <tr>
@@ -210,7 +210,7 @@
     	
     	<div id="addMovieTime" style="border: 3px solid black;">
     		<p class="register">Add Movie Time</p>
-    		<form id="addTime" method="get" action="AddTimeController">
+    		<form id="addTime" method="post" action="AddTimeController">
     		<table class="registerBox" align="center" style="margin-bottom: 30px;">
     			<tr>
     				<td>
@@ -295,7 +295,7 @@
             %>
         </table>
         <div></div>
-        <form action="DeleteMovieController" method="get">
+        <form action="DeleteMovieController" method="post">
         		<table align="center">
         			<tr>
         				<td align="center">Enter Movie Name to be deleted: <input type="text" name="movie" style="width: 300px; margin-top: 30px; margin-bottom: 30px"/><td>
@@ -437,7 +437,7 @@
 			}
             %>
         </table>
-        <form action="UpdateTypeController" method="get" style="margin-bottom: 30px;">
+        <form action="UpdateTypeController" method="post" style="margin-bottom: 30px;">
         		<table align="center">
         			<tr>
         				<td>UserId to be changed: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/></td>
@@ -504,7 +504,7 @@
 			}
             %>
         </table>
-        <form action="UpdateStatusController" method="get" style="margin-bottom: 30px;">
+        <form action="UpdateStatusController" method="post" style="margin-bottom: 30px;">
         		<table align="center">
         			<tr>
         				<td>UserId to be changed: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/></td>
@@ -571,7 +571,7 @@
 			}
             %>
         </table>
-        <form action="DeleteUserController" method="get" style="margin-bottom: 30px;">
+        <form action="DeleteUserController" method="post" style="margin-bottom: 30px;">
         		<table align="center">
         			<tr>
         				<td>UserId to be deleted: <input type="number" name="userId" min="1" max="1000" style="margin-top: 30px; margin-bottom: 10px"/></td>
@@ -650,7 +650,7 @@
         		</div>
     		</div>
     		<div id="add" style="display: none;">
-    			<form id="addPromo" action="AddPromoController" method="get">
+    			<form id="addPromo" action="AddPromoController" method="post">
         		<table align="center">
         			<tr>
         				<td>Add Promotion by Entering the Information Below</td>
@@ -679,7 +679,7 @@
         		</form>
     		</div>
     		<div id="update"  style="display: none;">
-    			<form id="updatePromo" action="UpdatePromoController" method="get">
+    			<form id="updatePromo" action="UpdatePromoController" method="post">
         		<table align="center">
         			<tr>
         				<td align="center">Update Promotion by Entering the Promo Code and Updated Info</td>
@@ -708,7 +708,7 @@
         		</form>
     		</div>
     		<div id="delete" style="display: none;">
-    			<form id="deletePromo" action="DeletePromoController" method="get">
+    			<form id="deletePromo" action="DeletePromoController" method="post">
         		<table align="center">
         			<tr>
         				<td align="center">Delete Promotion by Entering the Code Below</td>
@@ -754,23 +754,23 @@
     	
     			<tr>
     				<td valign="middle"><p>Booking Fee: $</p></td>
-    				<td valign="middle" style="padding-top: 5px;"><form action="PricesController" method="get"><input type="text" name="booking" value="${bookingFee}" /> <input type="submit" value="Change" /></form></td>
+    				<td valign="middle" style="padding-top: 5px;"><form action="PricesController" method="post"><input type="text" name="booking" value="${bookingFee}" /> <input type="submit" value="Change" /></form></td>
     			</tr>
     			<tr>
     				<td valign="middle"><p>Parking Fee: $</p></td>
-    				<td valign="middle"><form action="PricesController" method="get"><input type="text" name="parking" value="${parkingFee}" /> <input type="submit" value="Change" /></form></td>
+    				<td valign="middle"><form action="PricesController" method="post"><input type="text" name="parking" value="${parkingFee}" /> <input type="submit" value="Change" /></form></td>
     			</tr>
     			<tr>
     				<td valign="middle"><p>Child Ticket: $</p></td>
-    				<td valign="middle"><form action="PricesController" method="get"><input type="text" name="child" value="${childPrice}" /> <input type="submit" value="Change" /></form></td>
+    				<td valign="middle"><form action="PricesController" method="post"><input type="text" name="child" value="${childPrice}" /> <input type="submit" value="Change" /></form></td>
     			</tr>
     			<tr>
     				<td valign="middle"><p>Adult Ticket: $</p></td>
-    				<td valign="middle"><form action="PricesController" method="get"><input type="text" name="adult" value="${adultPrice}" /> <input type="submit" value="Change" /></form></td>
+    				<td valign="middle"><form action="PricesController" method="post"><input type="text" name="adult" value="${adultPrice}" /> <input type="submit" value="Change" /></form></td>
     			</tr>
     			<tr>
     				<td valign="middle"><p>Senior Ticket: $</p></td>
-    				<td valign="middle"><form action="PricesController" method="get"><input type="text" name="senior" value="${seniorPrice}" /> <input type="submit" value="Change" /></form></td>
+    				<td valign="middle"><form action="PricesController" method="post"><input type="text" name="senior" value="${seniorPrice}" /> <input type="submit" value="Change" /></form></td>
     			</tr>
     		</table>
     	</div>

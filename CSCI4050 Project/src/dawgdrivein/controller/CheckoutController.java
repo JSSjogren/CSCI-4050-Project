@@ -46,10 +46,10 @@ public class CheckoutController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
+
 		if (request.getSession().getAttribute("userId") == null || (int)request.getSession().getAttribute("status") != 1)
 		{
-			response.sendRedirect("signIn.html");
+			response.sendRedirect("index.jsp");
 			return;
 		}
 
@@ -59,54 +59,58 @@ public class CheckoutController extends HttpServlet {
 		String code = request.getParameter("code");
 		String cardType = request.getParameter("cardType");
 
-		Date date = Date.valueOf(year + "-" + month + "-" + 11);
-		CreditCard cc = new CreditCard(0, date, (Integer)request.getSession().getAttribute("userId"), cardNum, Integer.parseInt(code), cardType);
-//		if (cc.saveCreditCard() == false)
-//		{
-//			response.sendRedirect("Checkout.html");
-//			return;
-//		}
-		
-		
-		Booking booking = new Booking((Integer)request.getSession().getAttribute("userId"), 
-				0, 
-				((Double)request.getSession().getAttribute("total")).floatValue(), 
-				(Integer)request.getSession().getAttribute("numSeats"), 
-				(Integer)request.getSession().getAttribute("showId"),
-				1,
-				(Integer)request.getSession().getAttribute("movieId"));
-		booking.saveBooking();
-		
-		ArrayList<String> seatList = (ArrayList<String>)request.getSession().getAttribute("seatList");
-		
-		for (int i = 0; i < (Integer)request.getSession().getAttribute("numSpaces"); i ++)
+		if (!cardNum.equals("") && !month.equals("") && !year.equals("") && !code.equals("") && !cardType.equals(""))
 		{
-			int seatNum = Integer.parseInt(seatList.get(i).replace("seat", ""));
-			Seat seat = new Seat(0, (Integer)request.getSession().getAttribute("showId"), seatNum);
-			seat.saveReservedSeat();
-			
-			Ticket ticket = new Ticket(booking.getBookingNo(), 0, seat.getSeat());
-			ticket.saveTicket();
-		}
+			Date date = Date.valueOf(year + "-" + month + "-" + 11);
+			CreditCard cc = new CreditCard(0, date, (Integer)request.getSession().getAttribute("userId"), cardNum, Integer.parseInt(code), cardType);
+			//		if (cc.saveCreditCard() == false)
+			//		{
+			//			response.sendRedirect("Checkout.html");
+			//			return;
+			//		}
+
+
+			Booking booking = new Booking((Integer)request.getSession().getAttribute("userId"), 
+					0, 
+					((Double)request.getSession().getAttribute("total")).floatValue(), 
+					(Integer)request.getSession().getAttribute("numSeats"), 
+					(Integer)request.getSession().getAttribute("showId"),
+					1,
+					(Integer)request.getSession().getAttribute("movieId"));
+			booking.saveBooking();
+
+			ArrayList<String> seatList = (ArrayList<String>)request.getSession().getAttribute("seatList");
+
+			for (int i = 0; i < (Integer)request.getSession().getAttribute("numSpaces"); i ++)
+			{
+				int seatNum = Integer.parseInt(seatList.get(i).replace("seat", ""));
+				Seat seat = new Seat(0, (Integer)request.getSession().getAttribute("showId"), seatNum);
+				seat.saveReservedSeat();
+
+				Ticket ticket = new Ticket(booking.getBookingNo(), 0, seat.getSeat());
+				ticket.saveTicket();
+			}
+
+			Email email = new Email();
+
+			DecimalFormat df = new DecimalFormat("0.00");
+			df.setMinimumFractionDigits(2);
+			df.setMaximumFractionDigits(2);
+
+			email.orderConfirmation(
+					booking.getBookingNo(),
+					(String)request.getSession().getAttribute("email"),
+					(String)request.getSession().getAttribute("firstName"),
+					(String)request.getSession().getAttribute("lastName"),
+					df.format(request.getSession().getAttribute("total")),
+					(String)request.getSession().getAttribute("movieSelected"),
+					(String)request.getSession().getAttribute("seating"),
+					(int)request.getSession().getAttribute("numSeats"),
+					(int)request.getSession().getAttribute("numSpaces"),
+					(String)request.getSession().getAttribute("timeSelected"),
+					(String)request.getSession().getAttribute("dateSelected"));	
+		}//If all parameters are filled in do these things
 		
-		Email email = new Email();
-		
-		DecimalFormat df = new DecimalFormat("0.00");
-		df.setMinimumFractionDigits(2);
-		df.setMaximumFractionDigits(2);
-		
-		email.orderConfirmation(
-		booking.getBookingNo(),
-		(String)request.getSession().getAttribute("email"),
-		(String)request.getSession().getAttribute("firstName"),
-		(String)request.getSession().getAttribute("lastName"),
-	    df.format(request.getSession().getAttribute("total")),
-	    (String)request.getSession().getAttribute("movieSelected"),
-	    (String)request.getSession().getAttribute("seating"),
-	    (int)request.getSession().getAttribute("numSeats"),
-	    (int)request.getSession().getAttribute("numSpaces"),
-	    (String)request.getSession().getAttribute("timeSelected"),
-	    (String)request.getSession().getAttribute("dateSelected"));		
 		response.sendRedirect("OrderConfirmation.jsp");
 	}
 
