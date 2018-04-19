@@ -15,14 +15,14 @@ import dawgdrivein.entity.User;
 @WebServlet("/PasswordChangeController")
 public class PasswordChangeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PasswordChangeController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public PasswordChangeController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,14 +38,19 @@ public class PasswordChangeController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String password = request.getParameter("password");
 		String confirm = request.getParameter("confirmPassword");
-		
-		if (password.equals(confirm))
+
+		if (!password.equals("") && !confirm.equals(""))
 		{
-			User user = new User();
-			user.setId((int)request.getSession().getAttribute("userId"));
-			user.changePassword(password, confirm);
-			response.sendRedirect("ChangePasswordConfirmation.html");
+			if (password.equals(confirm))
+			{
+				User user = new User();
+				user.setId((int)request.getSession().getAttribute("userId"));
+				user.changePassword(password, confirm);
+				response.sendRedirect("ChangePasswordConfirmation.html");
+			}
 		}
+		else
+			response.sendRedirect("ChangePassword.html");
 	}
 
 }

@@ -32,36 +32,6 @@ public class OrderSummaryController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		if (request.getParameter("code") != null)
-		{
-			int percentDiscount = new Promotion().retrievePromoAmount(request.getParameter("code"));
-			//Calculate total
-			Booking booking = new Booking();
-			//Pre-total before applying discounts/tax
-			double preTotal = (double)request.getSession().getAttribute("preTotal");
-			//Start total
-			double total = preTotal;
-			//Calculate/store discount
-			double discountAmount = booking.calculateDiscount(total, ((double)percentDiscount) / 100);
-			System.out.println();
-			//Apply discount to total
-			total -= discountAmount;
-			//Calculate/store tax
-			double taxAmount = booking.calculateTax(total);
-			//Apply tax to total;
-			total += taxAmount;
-			total += booking.getOnlineFee();
-			total += (double)request.getSession().getAttribute("parkingFee");
-
-			request.getSession().setAttribute("parkingFee", (double)request.getSession().getAttribute("parkingFee"));
-			request.getSession().setAttribute("preTotal", preTotal);
-			request.getSession().setAttribute("discountAmount", discountAmount);
-			request.getSession().setAttribute("taxAmount", taxAmount);
-			request.getSession().setAttribute("total", total);
-			
-		}
-		response.sendRedirect("OrderSummary.jsp");
 	}
 
 	/**
@@ -70,6 +40,44 @@ public class OrderSummaryController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		if (request.getSession().getAttribute("userId") != null && (int)request.getSession().getAttribute("status") == 1)
+		{
+
+			if (!request.getParameter("code").equals(""))
+			{
+				int percentDiscount = new Promotion().retrievePromoAmount(request.getParameter("code"));
+				//Calculate total
+				Booking booking = new Booking();
+				//Pre-total before applying discounts/tax
+				double preTotal = (double)request.getSession().getAttribute("preTotal");
+				//Start total
+				double total = preTotal;
+				//Calculate/store discount
+				double discountAmount = booking.calculateDiscount(total, ((double)percentDiscount) / 100);
+				System.out.println();
+				//Apply discount to total
+				total -= discountAmount;
+				//Calculate/store tax
+				double taxAmount = booking.calculateTax(total);
+				//Apply tax to total;
+				total += taxAmount;
+				total += booking.getOnlineFee();
+				total += (double)request.getSession().getAttribute("parkingFee");
+
+				request.getSession().setAttribute("parkingFee", (double)request.getSession().getAttribute("parkingFee"));
+				request.getSession().setAttribute("preTotal", preTotal);
+				request.getSession().setAttribute("discountAmount", discountAmount);
+				request.getSession().setAttribute("taxAmount", taxAmount);
+				request.getSession().setAttribute("total", total);
+
+			}
+			response.sendRedirect("OrderSummary.jsp");
+		}
+		else
+		{
+			response.sendRedirect("index.jsp");
+		}
+		
 	}
 
 }

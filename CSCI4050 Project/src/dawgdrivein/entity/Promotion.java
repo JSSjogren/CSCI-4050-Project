@@ -126,5 +126,5 @@ public class Promotion {
 	public void setPercent_discount(int percent_discount) {
 		this.percent_discount = percent_discount;
 	}
-	
+
 }

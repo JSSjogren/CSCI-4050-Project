@@ -17,29 +17,19 @@ import dawgdrivein.entity.Promotion;
 @WebServlet("/UpdatePromoController")
 public class UpdatePromoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdatePromoController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public UpdatePromoController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String code = request.getParameter("code");
-		String percentDiscount = request.getParameter("discount");
-		String expDate = request.getParameter("expiration");
-		
-		Promotion promo = new Promotion();
-		promo.setCode(code);
-		promo.setPercent_discount(Integer.parseInt(percentDiscount));
-		promo.setExp_date(Date.valueOf(expDate));
-		promo.updatePromo();
-		response.sendRedirect("Administrator.jsp");
 	}
 
 	/**
@@ -48,6 +38,21 @@ public class UpdatePromoController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+
+		String code = request.getParameter("code");
+		String percentDiscount = request.getParameter("discount");
+		String expDate = request.getParameter("expiration");
+
+		if (!code.equals("") && !percentDiscount.equals("") && !expDate.equals(""))
+		{
+			Promotion promo = new Promotion();
+			promo.setCode(code);
+			promo.setPercent_discount(Integer.parseInt(percentDiscount));
+			promo.setExp_date(Date.valueOf(expDate));
+			promo.updatePromo();
+		}
+		
+		response.sendRedirect("Administrator.jsp");
 	}
 
 }

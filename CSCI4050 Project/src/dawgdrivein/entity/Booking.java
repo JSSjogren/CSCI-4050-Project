@@ -208,28 +208,46 @@ public class Booking {
 	}
 
 	public double getChildTicketPrice() {
-		return adultTicketPrice;
+		return childTicketPrice;
+	}
+
+	public void setChildTicketPrice(double childTicketPrice) {
+		this.childTicketPrice = childTicketPrice;
 	}
 
 	public double getAdultTicketPrice() {
 		return adultTicketPrice;
 	}
 
-	public double getSeniorTicketPrice() {
-		return adultTicketPrice;
+	public void setAdultTicketPrice(double adultTicketPrice) {
+		this.adultTicketPrice = adultTicketPrice;
 	}
 
-	public static double getTax() {
-		return TAX;
+	public double getSeniorTicketPrice() {
+		return seniorTicketPrice;
 	}
-	
+
+	public void setSeniorTicketPrice(double seniorTicketPrice) {
+		this.seniorTicketPrice = seniorTicketPrice;
+	}
+
 	public double getOnlineFee() {
 		return onlineFee;
+	}
+
+	public void setOnlineFee(double onlineFee) {
+		this.onlineFee = onlineFee;
 	}
 
 	public double getParkingSpaceFee() {
 		return parkingSpaceFee;
 	}
 
-	
+	public void setParkingSpaceFee(double parkingSpaceFee) {
+		this.parkingSpaceFee = parkingSpaceFee;
+	}
+
+	public static double getTax() {
+		return TAX;
+	}
 }

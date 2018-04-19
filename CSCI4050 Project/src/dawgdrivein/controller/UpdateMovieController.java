@@ -17,14 +17,14 @@ import dawgdrivein.entity.Movie;
 @WebServlet("/UpdateMovieController")
 public class UpdateMovieController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateMovieController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public UpdateMovieController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -51,20 +51,17 @@ public class UpdateMovieController extends HttpServlet {
 		String rating = request.getParameter("rating");
 		String rd = request.getParameter("release");
 		String exp = request.getParameter("expiration");
-		
+
 		if (!title.equals("") && !genre.equals("") && !cast.equals("") && !director.equals("") && !producer.equals("") && !description.equals("") && !picture.equals("") && !video.equals("") && !rating.equals("") && !rd.equals("") && !exp.equals(""))
 		{
 			Date releaseDate = Date.valueOf(rd);
 			Date expiration = Date.valueOf(exp);
-			
+
 			Movie movie = new Movie(movieId, title, genre, cast, director, producer, description, picture, video, rating, releaseDate, expiration);
 			movie.updateMovie();
-			response.sendRedirect("Administrator.jsp");
 		}
-		else
-		{
-			response.sendRedirect("Administrator.jsp");
-		}
+		
+		response.sendRedirect("Administrator.jsp");
 	}
 
 }

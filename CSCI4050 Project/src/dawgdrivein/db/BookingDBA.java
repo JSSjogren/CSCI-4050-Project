@@ -59,6 +59,7 @@ public class BookingDBA {
 			// Statements allow to issue SQL queries to the database
 			statement = connect.createStatement();
 			// Delete a booking
+			//Have to set a foreign key check to off
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 0;");
 			statement.executeUpdate("DELETE FROM Booking WHERE bookingId = " + booking.getBookingNo() + ";");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 1;");
@@ -73,7 +74,7 @@ public class BookingDBA {
 	
 	public boolean updateBooking(Booking booking)
 	{
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Booking.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		try {

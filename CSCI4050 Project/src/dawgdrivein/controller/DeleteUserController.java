@@ -15,25 +15,20 @@ import dawgdrivein.entity.User;
 @WebServlet("/DeleteUserController")
 public class DeleteUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteUserController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public DeleteUserController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//delete user with this Id
-		int userId = Integer.parseInt(request.getParameter("userId"));
-		User user = new User();
-		user.setId(userId);
-		user.deleteAccount();
-		response.sendRedirect("Administrator.jsp");
 	}
 
 	/**
@@ -42,6 +37,17 @@ public class DeleteUserController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		String uid = request.getParameter("userId");
+		
+		if (!uid.equals(""))
+		{
+			int userId = Integer.parseInt(uid);
+			User user = new User();
+			user.setId(userId);
+			user.deleteAccount();
+		}
+		response.sendRedirect("Administrator.jsp");
 	}
 
 }

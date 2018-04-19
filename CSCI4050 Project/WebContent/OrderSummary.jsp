@@ -241,7 +241,7 @@ form {
 			</tr>
 			<tr>
 				<td align="center">
-					<form action="OrderSummaryController" method="get"
+					<form action="OrderSummaryController" method="post"
 						style="font-size: 20px;">
 						Promo Code:<input type="text" name="code"
 							style="width: 100px; font-size: 20px;" /> <input type="submit"

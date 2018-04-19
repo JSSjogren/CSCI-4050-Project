@@ -76,5 +76,5 @@ public class Seat {
 	public void setNumber(int number) {
 		this.number = number;
 	}
-	
+
 }
