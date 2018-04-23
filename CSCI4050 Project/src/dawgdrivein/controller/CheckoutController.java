@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import dawgdrivein.entity.Booking;
 import dawgdrivein.entity.CreditCard;
 import dawgdrivein.entity.Email;
+import dawgdrivein.entity.Promotion;
 import dawgdrivein.entity.Seat;
 import dawgdrivein.entity.Ticket;
 
@@ -70,12 +71,14 @@ public class CheckoutController extends HttpServlet {
 			//		}
 
 
+			Promotion promo = new Promotion();
+			
 			Booking booking = new Booking((Integer)request.getSession().getAttribute("userId"), 
 					0, 
 					((Double)request.getSession().getAttribute("total")).floatValue(), 
 					(Integer)request.getSession().getAttribute("numSeats"), 
 					(Integer)request.getSession().getAttribute("showId"),
-					1,
+					(Integer)promo.retrievePromoId((String)request.getSession().getAttribute("code")),
 					(Integer)request.getSession().getAttribute("movieId"));
 			booking.saveBooking();
 
@@ -109,6 +112,9 @@ public class CheckoutController extends HttpServlet {
 					(int)request.getSession().getAttribute("numSpaces"),
 					(String)request.getSession().getAttribute("timeSelected"),
 					(String)request.getSession().getAttribute("dateSelected"));	
+			
+			request.getSession().removeAttribute("code");
+			request.getSession().removeAttribute("percentDiscount");
 		}//If all parameters are filled in do these things
 		
 		response.sendRedirect("OrderConfirmation.jsp");

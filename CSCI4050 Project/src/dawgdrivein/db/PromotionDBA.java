@@ -157,4 +157,28 @@ public class PromotionDBA {
 		}
 
 	}
+	
+	public int retrievePromoId(String code)
+	{
+		int discountPercent = 0;
+		try{
+			Connection conn;
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+			String status = "Established connection";
+			String query = "Select * from Promotion where Code = '" + code + "';";
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			if(rs.next()){
+				discountPercent = rs.getInt("PromoId");
+			}
+			conn.close();
+			return discountPercent;
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;
+		}
+
+	}
 }
