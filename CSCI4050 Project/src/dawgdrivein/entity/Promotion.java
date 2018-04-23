@@ -95,6 +95,11 @@ public class Promotion {
 		return promoDBA.retrievePromoAmount(code);
 	}
 
+	public int retrievePromoId(String code)
+	{
+		return promoDBA.retrievePromoId(code);
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -64,6 +64,7 @@ public class OrderSummaryController extends HttpServlet {
 				total += booking.getOnlineFee();
 				total += (double)request.getSession().getAttribute("parkingFee");
 
+				request.getSession().setAttribute("code", request.getParameter("code"));
 				request.getSession().setAttribute("parkingFee", (double)request.getSession().getAttribute("parkingFee"));
 				request.getSession().setAttribute("preTotal", preTotal);
 				request.getSession().setAttribute("discountAmount", discountAmount);
