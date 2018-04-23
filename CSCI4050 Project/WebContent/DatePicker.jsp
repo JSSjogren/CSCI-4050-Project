@@ -96,6 +96,11 @@
         }
         
     </style>
+    <script>
+    		function home(){
+			window.location.href = "index.jsp";
+		}
+    </script>
 </head>
 
 <body>
