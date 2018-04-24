@@ -96,6 +96,11 @@
         }
         
     </style>
+    <script>
+    		function home(){
+			window.location.href = "index.jsp";
+		}
+    </script>
 </head>
 
 <body>
@@ -182,7 +187,7 @@
                  <td>
                     <p class="dateTitle">Date: </p>
                 </td>
-                <form action = "DatePickerController" method = "get">
+                <form action = "DatePickerController" method = "post">
                 <td>
                     <input style="margin-left: 40px;" type="date" min="${strCurrent}" max="${expire}" name="dateSelected">
                 </td>

@@ -75,7 +75,6 @@ public class RegisteredCustomer extends User {
 	 */
 	public boolean emailExists()
 	{
-		System.out.println("EmailExists in RegisteredCustomer");
 		return userDBA.emailExists(this);
 	}
 	
@@ -85,47 +84,10 @@ public class RegisteredCustomer extends User {
 	}
 	
 	
-	private void changeSubscriptionPreference(boolean pref)
-	{
-		this.sub_pref = pref;
-	}
-	
-	private boolean bookMovie(Showtime showtime, float totalPrice, int noOfTickets, int showtimeID)
-	{
-//		Booking booking = new Booking(id, 1, totalPrice, noOfTickets, showtimeID);
-//		return booking.saveBooking();
-		return false;
-	}
-	
-	private void checkout()
-	{
-		//todo
-	}
-	
-	private void addReview(String content, int star_rating, int movieId)
-	{
-		Review review = new Review(1, content, star_rating, movieId);
-		review.saveReview();
-	}
-	
-	private void editProfile(String newFN, String newLN, String newEmail, String newAddress, boolean newSubPref)
-	{
-		this.firstName = newFN;
-		this.lastName = newLN;
-		this.email = newEmail;
-		this.sub_pref = newSubPref;
-	}
-	
-	private void recoverLostPassword()
-	{
-		
-	}
-	
-	private void returnTickets(Booking booking)
-	{
-		booking.deleteBooking();
-	}
-	
+	/**
+	 * Could be used to return user's order history
+	 * @return
+	 */
 	private List<Booking> viewOrderHistory()
 	{
 		OrderHistory oh = new OrderHistory(id);

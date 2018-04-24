@@ -13,26 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/DatePickerController")
 public class DatePickerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DatePickerController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public DatePickerController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getSession().setAttribute("dateSelected", request.getParameter("dateSelected"));
-		System.out.println(request.getSession().getAttribute("dateSelected"));
-		if (request.getSession().getAttribute("userId") != null && request.getSession().getAttribute("status").equals("1"))
-			response.sendRedirect("TimePicker.jsp");
-		else
-			response.sendRedirect("signIn.html");
 	}
 
 	/**
@@ -41,6 +35,19 @@ public class DatePickerController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+
+		if (!request.getParameter("dateSelected").equals(""))
+		{
+			request.getSession().setAttribute("dateSelected", request.getParameter("dateSelected"));
+			if (request.getSession().getAttribute("userId") != null && (int)request.getSession().getAttribute("status") == 1)
+				response.sendRedirect("TimePicker.jsp");
+			else
+				response.sendRedirect("index.jsp");
+		}
+		else
+		{
+			response.sendRedirect("DatePicker.jsp");
+		}
 	}
 
 }

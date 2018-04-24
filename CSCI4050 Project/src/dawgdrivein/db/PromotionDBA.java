@@ -27,26 +27,26 @@ public class PromotionDBA {
 	{
 		SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Promotion.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
-		
+
 		try {
-            // Starting Transaction
-            Transaction transaction = session.beginTransaction();
-            session.save(promo);
-            transaction.commit();
-            System.out.println("\n\n Details Added \n");
-            return true;
- 
-        } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-            System.out.println("error");
-            return false;
-        }
+			// Starting Transaction
+			Transaction transaction = session.beginTransaction();
+			session.save(promo);
+			transaction.commit();
+			System.out.println("\n\n Details Added \n");
+			return true;
+
+		} catch (HibernateException e) {
+			System.out.println(e.getMessage());
+			System.out.println("error");
+			return false;
+		}
 		finally
 		{
 			sessionFactory.close();
 		}
 	}
-	
+
 	/**
 	 * Update a promo in the DB
 	 * @param promo the Promo object to be updated in the DB
@@ -64,7 +64,7 @@ public class PromotionDBA {
 
 			// Statements allow to issue SQL queries to the database
 			statement = connect.createStatement();
-			
+
 			statement.executeUpdate("UPDATE Promotion SET PercentDiscount = " + promo.getPercent_discount() + ", ExpDate = '" + promo.getExp_date() + "' WHERE code = '" + promo.getCode() + "';");
 			connect.close();
 			return true;
@@ -74,7 +74,7 @@ public class PromotionDBA {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Remove a Promo object from the DB
 	 * @param promo the Promo object to be deleted
@@ -92,8 +92,9 @@ public class PromotionDBA {
 
 			// Statements allow to issue SQL queries to the database
 			statement = connect.createStatement();
-			
+			statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 0;");
 			statement.executeUpdate("DELETE FROM Promotion WHERE code = '" + promo.getCode() + "';");
+			statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 1;");
 			connect.close();
 			return true;
 		} catch (Exception e)
@@ -102,7 +103,7 @@ public class PromotionDBA {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Retrieves a specific Promo based on ID
 	 * @param id the ID to use as a reference
@@ -112,23 +113,71 @@ public class PromotionDBA {
 	{
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
-		
+
 		try {
-            // Starting Transaction
-            Transaction transaction = session.beginTransaction();
-            Promotion promotion = (Promotion)session.get(Promotion.class, id);
-            transaction.commit();
-            System.out.println("\n\n Retrieved Promotion by ID \n");
-            return promotion;
- 
-        } catch (HibernateException e) {
-            System.out.println(e.getMessage());
-            System.out.println("error");
-            return null;
-        }
+			// Starting Transaction
+			Transaction transaction = session.beginTransaction();
+			Promotion promotion = (Promotion)session.get(Promotion.class, id);
+			transaction.commit();
+			System.out.println("\n\n Retrieved Promotion by ID \n");
+			return promotion;
+
+		} catch (HibernateException e) {
+			System.out.println(e.getMessage());
+			System.out.println("error");
+			return null;
+		}
 		finally
 		{
 			sessionFactory.close();
 		}
+	}
+
+	public int retrievePromoAmount(String code)
+	{
+		int discountPercent = 0;
+		try{
+			Connection conn;
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+			String status = "Established connection";
+			String query = "Select * from Promotion where Code = '" + code + "';";
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			if(rs.next()){
+				discountPercent = rs.getInt("PercentDiscount");
+			}
+			conn.close();
+			return discountPercent;
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;
+		}
+
+	}
+	
+	public int retrievePromoId(String code)
+	{
+		int discountPercent = 0;
+		try{
+			Connection conn;
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://69.89.31.237:3306/ristiod8_dawgcinema?user=ristiod8_dcuser&password=cinemadb&useSSL=false");
+			String status = "Established connection";
+			String query = "Select * from Promotion where Code = '" + code + "';";
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			if(rs.next()){
+				discountPercent = rs.getInt("PromoId");
+			}
+			conn.close();
+			return discountPercent;
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;
+		}
+
 	}
 }

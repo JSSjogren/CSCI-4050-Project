@@ -7,8 +7,8 @@ import org.hibernate.service.ServiceRegistry;
 
 import dawgdrivein.entity.Address;
 import dawgdrivein.entity.Movie;
+import dawgdrivein.entity.Price;
 import dawgdrivein.entity.Promotion;
-import dawgdrivein.entity.Review;
 import dawgdrivein.entity.Showtime;
 import dawgdrivein.entity.User;
 
@@ -24,7 +24,7 @@ public class HibernateUtil {
         try {
             // Create the SessionFactory from hibernate.cfg.xml
             Configuration configuration = new Configuration();
-            configuration.configure("hibernate.cfg.xml").addAnnotatedClass(User.class).addAnnotatedClass(Movie.class).addAnnotatedClass(Address.class).addAnnotatedClass(Promotion.class).addAnnotatedClass(Showtime.class).addAnnotatedClass(Review.class);
+            configuration.configure("hibernate.cfg.xml").addAnnotatedClass(Price.class).addAnnotatedClass(User.class).addAnnotatedClass(Movie.class).addAnnotatedClass(Address.class).addAnnotatedClass(Promotion.class).addAnnotatedClass(Showtime.class);
             System.out.println("Hibernate Configuration loaded");
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();

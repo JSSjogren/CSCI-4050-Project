@@ -110,7 +110,7 @@
                     <h1 class="title">Dawg Drive-in</h1>
                 </td>
                 <td align="right"style="font-size: 20px; padding-right: 10px;">
-                	<p style="text-align: right">Return to <b>Home</b></p>
+                	<p style="text-align: right">Return to <b style="cursor:pointer;" onclick="home();">Home</b></p>
                 </td>
             </tr>
            </table>
@@ -154,7 +154,7 @@
 	 		}
 	 		
     	%>
-    		<form id="seats" action="SeatPickerController" method="get">
+    		<form id="seats" action="SeatPickerController" method="post">
         <table align="center">
             <tr>
                 <td class="parking">

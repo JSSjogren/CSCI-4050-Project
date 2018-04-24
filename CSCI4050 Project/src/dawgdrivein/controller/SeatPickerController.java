@@ -32,10 +32,24 @@ public class SeatPickerController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 		
-		if (request.getSession().getAttribute("userId") == null && request.getSession().getAttribute("status").equals("1"))
+		if (request.getSession().getAttribute("userId") != null && (int)request.getSession().getAttribute("status") != 1)
 		{
-			response.sendRedirect("signIn.html");
+			response.sendRedirect("index.jsp");
+			return;
+		}
+		
+		if (request.getParameter("numChildren").equals("") || request.getParameter("numAdults").equals("") || request.getParameter("numSeniors").equals(""))
+		{
+			response.sendRedirect("SeatPicker.jsp");
 			return;
 		}
 		
@@ -77,7 +91,6 @@ public class SeatPickerController extends HttpServlet {
 		
 		request.getSession().setAttribute("seating", seats);
 		request.getSession().setAttribute("seatList", seatList);
-		System.out.println(seats);
 		
 		//Calculate total
 		Booking booking = new Booking();
@@ -103,14 +116,6 @@ public class SeatPickerController extends HttpServlet {
 		request.getSession().setAttribute("total", total);
 		
 		response.sendRedirect("OrderSummary.jsp");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

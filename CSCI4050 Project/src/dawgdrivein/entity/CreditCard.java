@@ -149,4 +149,5 @@ public class CreditCard {
 	public void setCardType(String cardType) {
 		this.cardType = cardType;
 	}
+
 }

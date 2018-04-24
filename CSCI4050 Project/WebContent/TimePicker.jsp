@@ -88,6 +88,11 @@
         }
         
     </style>
+    <script>
+    		function home(){
+			window.location.href = "index.jsp";
+		}
+    </script>
 </head>
 
 <body>
@@ -100,7 +105,7 @@
                     <h1 class="title">Dawg Drive-in</h1>
                 </td>
                 <td align="right"style="font-size: 20px; padding-right: 10px;">
-                	<p style="text-align: right">Return to <b>Home</b></p>
+                	<p style="text-align: right">Return to <b style="cursor: pointer;" onclick="home();">Home</b></p>
                 </td>
             </tr>
            </table>
@@ -235,7 +240,7 @@
             					
             		%>
             		<td>
-            			<form id="${fullTime}"  action = "TimePickerController" method = "get">
+            			<form id="${fullTime}"  action = "TimePickerController" method = "post">
             			<input type="text" value="${paramTime}" name="time" style="display:none;"/>
             			<button type="submit" form="${fullTime}" style="font-size: 22px; border-radius: 4px;">${fullTime}</button>
             			</form>

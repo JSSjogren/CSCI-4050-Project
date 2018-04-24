@@ -132,12 +132,25 @@ public class Movie {
 		return movieDBA.retrieveMovie(id);
 	}
 
+	public int getMovieIdByName(String name)
+	{
+		return movieDBA.getMovieIdByName(name);
+	}
+
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getGenre() {
@@ -218,19 +231,6 @@ public class Movie {
 
 	public void setExpiration(Date expiration) {
 		this.expiration = expiration;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public int getMovieIdByName(String name)
-	{
-		return movieDBA.getMovieIdByName(name);
 	}
 
 }

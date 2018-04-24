@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import dawgdrivein.db.BookingDBA;
+import dawgdrivein.db.PriceDBA;
 
 @Entity
 @Table (name = "Booking")
@@ -45,22 +46,22 @@ public class Booking {
 	private BookingDBA bookingDBA;
 	
 	@Transient
-	private static final int CHILD_TICKET_PRICE = 6;
+	private double childTicketPrice;
 	
 	@Transient
-	private static final int ADULT_TICKET_PRICE = 10;
+	private double adultTicketPrice;
 	
 	@Transient
-	private static final int SENIOR_TICKET_PRICE = 8;
+	private double seniorTicketPrice;
 	
 	@Transient
 	private static final double TAX = 0.07;
 	
 	@Transient
-	private static final double ONLINE_FEE = 2.00;
+	private double onlineFee;
 	
 	@Transient
-	private static final double PARKING_SPACE_FEE = 7.00;
+	private double parkingSpaceFee;
 
 	public Booking(int userID, int bookingNo, float total, int noOfTickets, int showtimeID, int promoId, int movieId)
 	{
@@ -71,8 +72,16 @@ public class Booking {
 		this.showtimeID = showtimeID;
 		this.promoId = promoId;
 		this.movieId = movieId;
-
+		
+		Price price = new Price();
+		this.childTicketPrice = price.retrieveChildTicketPrice();
+		this.adultTicketPrice = price.retrieveAdultTicketPrice();
+		this.seniorTicketPrice = price.retrieveSeniorTicketPrice();
+		this.onlineFee = price.retrieveOnlineFee();
+		this.parkingSpaceFee = price.retrieveParkingSpaceFee();
+		
 		bookingDBA = new BookingDBA();
+		
 	}
 
 	public Booking()
@@ -84,6 +93,14 @@ public class Booking {
 		this.showtimeID = -1;
 		this.promoId = -1;
 		this.movieId = -1;
+		
+		Price price = new Price();
+		this.childTicketPrice = price.retrieveChildTicketPrice();
+		this.adultTicketPrice = price.retrieveAdultTicketPrice();
+		this.seniorTicketPrice = price.retrieveSeniorTicketPrice();
+		this.onlineFee = price.retrieveOnlineFee();
+		this.parkingSpaceFee = price.retrieveParkingSpaceFee();
+		
 		bookingDBA = new BookingDBA();
 	}
 
@@ -104,7 +121,7 @@ public class Booking {
 
 	public double calculatePreTotal(int numChildren, int numAdults, int numSeniors)
 	{
-		double total = (numChildren * CHILD_TICKET_PRICE) + (numAdults * ADULT_TICKET_PRICE) + (numSeniors * SENIOR_TICKET_PRICE);
+		double total = (numChildren * childTicketPrice) + (numAdults * adultTicketPrice) + (numSeniors * seniorTicketPrice);
 		return total;
 	}
 	
@@ -190,29 +207,47 @@ public class Booking {
 		this.movieId = movieId;
 	}
 
-	public static int getChildTicketPrice() {
-		return CHILD_TICKET_PRICE;
+	public double getChildTicketPrice() {
+		return childTicketPrice;
 	}
 
-	public static int getAdultTicketPrice() {
-		return ADULT_TICKET_PRICE;
+	public void setChildTicketPrice(double childTicketPrice) {
+		this.childTicketPrice = childTicketPrice;
 	}
 
-	public static int getSeniorTicketPrice() {
-		return SENIOR_TICKET_PRICE;
+	public double getAdultTicketPrice() {
+		return adultTicketPrice;
+	}
+
+	public void setAdultTicketPrice(double adultTicketPrice) {
+		this.adultTicketPrice = adultTicketPrice;
+	}
+
+	public double getSeniorTicketPrice() {
+		return seniorTicketPrice;
+	}
+
+	public void setSeniorTicketPrice(double seniorTicketPrice) {
+		this.seniorTicketPrice = seniorTicketPrice;
+	}
+
+	public double getOnlineFee() {
+		return onlineFee;
+	}
+
+	public void setOnlineFee(double onlineFee) {
+		this.onlineFee = onlineFee;
+	}
+
+	public double getParkingSpaceFee() {
+		return parkingSpaceFee;
+	}
+
+	public void setParkingSpaceFee(double parkingSpaceFee) {
+		this.parkingSpaceFee = parkingSpaceFee;
 	}
 
 	public static double getTax() {
 		return TAX;
 	}
-	
-	public double getOnlineFee() {
-		return ONLINE_FEE;
-	}
-
-	public double getParkingSpaceFee() {
-		return PARKING_SPACE_FEE;
-	}
-
-	
 }

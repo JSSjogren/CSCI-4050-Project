@@ -294,7 +294,7 @@
     		</div>
     </div>
     <div id="returnTicket" style="margin-top: 70px;">
-    		<form action="RefundController" method="get">
+    		<form action="RefundController" method="post">
     		<table align="center" style="border: 3px solid black; border-collapse: collapse;">
     			<tr>
     				<th style="border: 3px solid black;">Enter BookingId of Order to get Refund</th>

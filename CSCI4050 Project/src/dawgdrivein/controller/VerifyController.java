@@ -15,34 +15,19 @@ import dawgdrivein.entity.RegisteredCustomer;
 @WebServlet("/VerifyController")
 public class VerifyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public VerifyController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public VerifyController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int id = (Integer)request.getSession().getAttribute("userId");
-		System.out.println("ID in VerifyController: " + id);
-		String code = request.getParameter("code");
-		if (code.equals("1234"))
-		{
-			RegisteredCustomer register = new RegisteredCustomer();
-			register.verification(id);
-			
-			response.sendRedirect("VerifyConfirmation.html");
-		}
-		else
-		{
-			response.sendRedirect("Verification.html");
-		}
 	}
 
 	/**
@@ -51,6 +36,28 @@ public class VerifyController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+
+		String code = request.getParameter("code");
+		if (!code.equals(""))
+		{
+
+			int id = (Integer)request.getSession().getAttribute("userId");
+			if (code.equals("1234"))
+			{
+				RegisteredCustomer register = new RegisteredCustomer();
+				register.verification(id);
+
+				response.sendRedirect("VerifyConfirmation.html");
+			}
+			else
+			{
+				response.sendRedirect("Verification.html");
+			}
+		}
+		else
+		{
+			response.sendRedirect("Verification.html");
+		}
 	}
 
 }

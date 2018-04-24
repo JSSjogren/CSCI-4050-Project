@@ -205,7 +205,7 @@
 						</iframe>
 						</td>
 						<td align="center" style="border: 3px solid black;  padding: 15px;">
-							<form action="MovieSelectionController" method="get">
+							<form action="MovieSelectionController" method="post">
 								<input type="text" name="movieSelected" value="${title}" style="display:none;"/>
 								<input type="submit" value="Book This Movie" />
 							</form>
@@ -315,7 +315,7 @@
 						</iframe>
 						</td>
 						<td align="center" style="border: 3px solid black;  padding: 15px;">
-							<form action="MovieSelectionController" method="get">
+							<form action="MovieSelectionController" method="post">
 								<input type="text" name="movieSelected" value="${title}" style="display:none;"/>
 								<input type="submit" value="Book This Movie" />
 							</form>
@@ -434,7 +434,7 @@
 						</iframe>
 						</td>
 						<td align="center" style="border: 3px solid black;  padding: 15px;">
-							<form action="MovieSelectionController" method="get">
+							<form action="MovieSelectionController" method="post">
 								<input type="text" name="movieSelected" value="${title}" style="display:none;"/>
 								<input type="submit" value="Book This Movie" />
 							</form>

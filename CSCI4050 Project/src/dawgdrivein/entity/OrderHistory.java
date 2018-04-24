@@ -39,12 +39,21 @@ public class OrderHistory {
 	}
 	
 	/**
-	 * Returns list of bookings for all movies/users
+	 * Returns list of bookings for specific movie
 	 * @return list of all bookings
 	 */
-	public List<Booking> getOrderHistory()
+	public List<Booking> getMovieOrderHistory(int movieId)
 	{
 		return ohDBA.getOrderHistory();
+	}
+	
+	/**
+	 * Returns list of bookings for all movies/users
+	 * @return
+	 */
+	public List<Booking> getAlltimeOrderHistory()
+	{
+		return null;
 	}
 	
 	public int getUserID() {
