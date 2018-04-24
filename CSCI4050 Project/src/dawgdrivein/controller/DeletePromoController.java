@@ -29,6 +29,12 @@ public class DeletePromoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//delete this promo with this code
+		String code = request.getParameter("code");
+		Promotion promo = new Promotion();
+		promo.setCode(code);
+		promo.deletePromo();
+		
+		response.sendRedirect("Administrator.jsp");
 	}
 
 	/**

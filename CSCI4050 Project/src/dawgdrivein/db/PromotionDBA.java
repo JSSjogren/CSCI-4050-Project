@@ -92,7 +92,6 @@ public class PromotionDBA {
 
 			// Statements allow to issue SQL queries to the database
 			statement = connect.createStatement();
-
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 0;");
 			statement.executeUpdate("DELETE FROM Promotion WHERE code = '" + promo.getCode() + "';");
 			statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 1;");
